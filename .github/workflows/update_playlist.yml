@@ -24,7 +24,7 @@ jobs:
         # This pulls your secret URL from GitHub settings safely
         SECRET_JSON_URL: ${{ secrets.SECRET_JSON_URL }}
       run: |
-        python convert_url.py --url "$SECRET_JSON_URL"
+        python jio.py --url "$SECRET_JSON_URL"
 
     - name: Commit and push changes
       run: |
