@@ -1,0 +1,36 @@
+name: Update IPTV Playlist
+
+on:
+  schedule:
+    # This cron schedule runs the workflow at minute 0 past every 3rd hour.
+    - cron: '0 */3 * * *' 
+  workflow_dispatch: # Allows you to run it manually from the Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Run convert script
+      env:
+        # This pulls your secret URL from GitHub settings safely
+        SECRET_JSON_URL: ${{ secrets.SECRET_JSON_URL }}
+      run: |
+        python convert_url.py --url "$SECRET_JSON_URL"
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add playlist.m3u
+        # Commits the file only if there are new changes
+        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update playlist.m3u"
+        git push
