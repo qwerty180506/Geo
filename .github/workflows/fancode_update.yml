@@ -1,0 +1,41 @@
+name: Fancode
+
+on:
+  schedule:
+    # Runs at minute 0 past every hour (e.g., 1:00, 2:00, 3:00)
+    - cron: '0 * * * *'
+  # Allows you to trigger the workflow manually from the GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-playlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run M3U Generator Script
+        run: fancode.py 
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add fancode_1080p.m3u
+          # If there are no changes to the file, the commit will fail, so we add || exit 0 to prevent workflow errors
+          git commit -m "Auto-update Fancode 1080p M3U playlist" || exit 0
+          git push
