@@ -27,11 +27,11 @@ jobs:
         run: python jiotv.py
 
       # 4. Commit and push the new playlist.m3u back to the repo
+      # 4. Commit and push the new playlist back to the repo
       - name: Commit and Push Changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add playlist.m3u
-          # If there are no changes, it will just echo instead of failing
+          git add jiotv.m3u   <--- CHANGE THIS LINE
           git commit -m "Automated update: Refresh Jio M3U playlist" || echo "No changes to commit"
           git push
