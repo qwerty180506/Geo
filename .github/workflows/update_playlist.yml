@@ -27,16 +27,28 @@ jobs:
         env:
           SECRET_JSON_URL: ${{ secrets.SECRET_JSON_URL }}
         run: |
-          python jio.py --url "$SECRET_JSON_URL"
-          if [ ! -f playlist.m3u ]; then
-            echo "Error: playlist.m3u was not generated!"
+          if [ -z "$SECRET_JSON_URL" ]; then
+            echo "ERROR: SECRET_JSON_URL is empty!"
             exit 1
           fi
+          python jio.py --url "$SECRET_JSON_URL"
+          echo "--- Workspace contents ---"
+          ls -la $GITHUB_WORKSPACE/
+          if [ ! -f playlist.m3u ]; then
+            echo "ERROR: playlist.m3u was not generated!"
+            exit 1
+          fi
+          echo "--- First 10 lines of playlist ---"
+          head -10 playlist.m3u
 
       - name: Commit and push changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add playlist.m3u
+          echo "--- Git status ---"
+          git status
+          echo "--- Git diff ---"
+          git diff --staged
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update playlist.m3u"
           git push
