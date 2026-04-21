@@ -2,35 +2,41 @@ name: Update IPTV Playlist
 
 on:
   schedule:
-    # This cron schedule runs the workflow at minute 0 past every 3rd hour.
-    - cron: '0 */3 * * *' 
-  workflow_dispatch: # Allows you to run it manually from the Actions tab
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.x'
 
-    - name: Run convert script
-      env:
-        # This pulls your secret URL from GitHub settings safely
-        SECRET_JSON_URL: ${{ secrets.SECRET_JSON_URL }}
-      run: |
-        python jio.py --url "$SECRET_JSON_URL"
+      - name: Run convert script
+        env:
+          SECRET_JSON_URL: ${{ secrets.SECRET_JSON_URL }}
+        run: |
+          python jio.py --url "$SECRET_JSON_URL"
+          if [ ! -f playlist.m3u ]; then
+            echo "Error: playlist.m3u was not generated!"
+            exit 1
+          fi
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add playlist.m3u
-        # Commits the file only if there are new changes
-        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update playlist.m3u"
-        git push
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add playlist.m3u
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update playlist.m3u"
+          git push
