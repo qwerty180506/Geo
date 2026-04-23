@@ -3,35 +3,35 @@ import os
 import urllib.request
 from urllib.parse import urlparse
 
+def clean_url(url):
+    """Converts '...index.mpd|cookie=__hdnea__' to '...index.mpd?__hdnea__'"""
+    if '|cookie=' in url:
+        base, cookie_value = url.split('|cookie=', 1)
+        return f"{base}?{cookie_value}"
+    return url
+
 def extract_name_from_url(url):
     """Extracts, cleans, and formats the channel name from the stream URL."""
     def clean_name(raw_name):
-        # Remove the "_MOB" suffix first, then replace underscores with spaces
         name = raw_name.replace("_MOB", "").replace("_", " ")
-        # Catch any lingering " MOB" at the end just in case
         if name.endswith(" MOB"):
             name = name[:-4]
         return name.strip()
 
     try:
-        # Parse the path from the URL
         path = urlparse(url).path
-        # Split by '/' and remove empty strings
         parts = [p for p in path.split('/') if p] 
         
-        # Most Jio URLs structure is: /bpk-tv/Channel_Name_Here/WDVLive/index.mpd
         if 'WDVLive' in parts:
             idx = parts.index('WDVLive')
             if idx > 0:
                 return clean_name(parts[idx - 1])
                 
-        # Fallback: look for 'bpk-tv' and grab the folder right after it
         if 'bpk-tv' in parts:
             idx = parts.index('bpk-tv')
             if idx + 1 < len(parts):
                 return clean_name(parts[idx + 1])
                 
-        # Final fallback if those specific folders aren't found
         if len(parts) >= 2:
             return clean_name(parts[-2])
             
@@ -65,29 +65,26 @@ def generate_m3u_from_url(jio_url, meta_file, output_file):
             print(f"Error parsing {meta_file}. Ensure it is valid JSON.")
             return
             
-    # Create a dictionary for quick metadata lookup by "tvg-id"
     meta_dict = {str(item.get("tvg-id")): item for item in meta_data}
     
     with open(output_file, 'w', encoding='utf-8') as out:
         out.write("#EXTM3U\n")
         
         for channel_id, stream_info in jio_data.items():
-            url = stream_info.get("url", "")
+            raw_url = stream_info.get("url", "")
             
-            # Skip if there's no stream URL
-            if not url:
+            if not raw_url:
                 continue
+
+            url = clean_url(raw_url)  # <-- Clean the URL here
                 
             meta_info = meta_dict.get(str(channel_id), {})
             
-            # Check if it's an unknown channel (not in meta.txt)
             if not meta_info:
-                # Extract and format the name from the URL
                 name = extract_name_from_url(url)
                 logo = ""
                 group = "Unknown"
             else:
-                # Known channel, but fallback to URL extraction if name is missing
                 name = meta_info.get("channel-name")
                 if not name:
                     name = extract_name_from_url(url)
@@ -95,10 +92,8 @@ def generate_m3u_from_url(jio_url, meta_file, output_file):
                 logo = meta_info.get("tvg-logo", "")
                 group = meta_info.get("group-title", "Unknown")
                 
-            # A. Format the standard EXTINF line with metadata
             extinf = f'#EXTINF:-1 tvg-id="{channel_id}" tvg-logo="{logo}" group-title="{group}",{name}\n'
             
-            # B. Add DRM properties for player compatibility
             drm_props = (
                 '#KODIPROP:inputstream=inputstream.adaptive\n'
                 '#KODIPROP:inputstream.adaptive.manifest_type=mpd\n'
@@ -106,7 +101,6 @@ def generate_m3u_from_url(jio_url, meta_file, output_file):
                 f'#KODIPROP:inputstream.adaptive.license_key=https://temp.webplay.fun/jtv/key.php?id={channel_id}\n'
             )
             
-            # C. Write the compiled data block to the file
             out.write(extinf)
             out.write(drm_props)
             out.write(url + "\n\n")
