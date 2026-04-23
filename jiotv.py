@@ -85,12 +85,12 @@ def generate_m3u_from_url(jio_url, meta_file, output_file):
                 logo = ""
                 group = "Unknown"
             else:
-                name = meta_info.get("channel-name")
+                name = meta_info.get("name")
                 if not name:
                     name = extract_name_from_url(url)
                     
-                logo = meta_info.get("tvg-logo", "")
-                group = meta_info.get("group-title", "Unknown")
+                logo = meta_info.get("logo", "")
+                group = meta_info.get("group", "Unknown")
                 
             extinf = f'#EXTINF:-1 tvg-id="{channel_id}" tvg-logo="{logo}" group-title="{group}",{name}\n'
             
