@@ -1,33 +1,30 @@
 #EXTM3U
 # Source: https://fcapi.amitbala1993.workers.dev/
 
-#EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/ESTRELLA-GALICIA-_GRAND-PRIX-OF-SPAIN_FC-Web.jpg" group-title="Fancode",ESTRELLA GALICIA 0,0 GRAND PRIX OF SPAIN 2026 Day 1 Circuito de Jerez - | Ángel vs Nieto
-https://in-mc-flive.fancode.com/mumbai/139936_english_hls_eaec628eef82203_1ta-di_h264/1080p5.m3u8?hdntl=Expires=1777124961~_GO=Generated~acl=/mumbai/139936_english_hls_eaec628eef82203_1ta-di_h264/*~Signature=AVFFTBrZDgBDOYZZvvXUbcAA-rwp8cN8kkSf505k0DUmOAykgL2GAtnKH41HQu47fhb5v8mW5P3dH8vdZXFV2FcqyxsI
-
-#EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Mutua-Madrid-Open,-ATP-1000-old-_1776846287648.png" group-title="Fancode",ATP Masters Mutua Madrid Open 2026 Day 3 - Main Feed | Madrid, vs Spain
-https://in-mc-flive.fancode.com/mumbai/141856_english_hls_77d920a64816841_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777124980~_GO=Generated~acl=/mumbai/141856_english_hls_77d920a64816841_1ta-di_h264/*~Signature=AVFFTBrvG8wpj1yB1ljIwm6_5xQIMkC0AppzSdyS5XJ0-DdDACA35VNzqId3Gm0oJWC_Kx6aaC_g3wuhie3R_Qzv_wYK
+#EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Jannik-Sinner-vs-Benjamin-Bonzi-old-player-vs-player.png" group-title="Fancode",ATP Masters Mutua Madrid Open 2026 Sinner vs Bonzi | Sinner vs Bonzi
+https://in-mc-flive.fancode.com/mumbai/141856_english_hls_77d920a64816841_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129824~_GO=Generated~acl=/mumbai/141856_english_hls_77d920a64816841_1ta-di_h264/*~Signature=AVFFTBrqRDLvTTbNjlrBYcxQ-MWFiNoifhGuNKxq7FAqHHWjGtbms-S--RroNhOAMwk07-p7Gj3A_AtVt3y5hrddwFQJ
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Mutua-Madrid-Open,-ATP-1000-old-_1776846287648.png" group-title="Fancode",ATP Masters Mutua Madrid Open 2026 Day 3 - Court 4 Madrid | Live Stream
-https://in-mc-flive.fancode.com/mumbai/142276_english_hls_e849ee830481582_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777124998~_GO=Generated~acl=/mumbai/142276_english_hls_e849ee830481582_1ta-di_h264/*~Signature=AVFFTBo4ZJLmAFJ1yoNNIaXeyZXpBCNGQAG7ToEsbABbTqBQZTMUholLzxy-ixnOlPIancE9masvKGqfXgPHByt3rbcL
-
-#EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Mini-Match-Card-(1080x810)-(15).png" group-title="Fancode",DTM 2026 Day 1 - Red Bull Ring Red | Bull vs Ring
-https://in-mc-flive.fancode.com/mumbai/142277_english_hls_886cce7d5c49249_1ta-di_h264/1080p5.m3u8?hdntl=Expires=1777125016~_GO=Generated~acl=/mumbai/142277_english_hls_886cce7d5c49249_1ta-di_h264/*~Signature=AVFFTBr9mI3f7QKnuGnSiUkFtpqJIP-PsgfJL_Z034qTSeGl3s6UkJcR7VA3Ch0PKev3I3HojLw8BTjpActDdd3Pf7sO
+https://in-mc-flive.fancode.com/mumbai/142276_english_hls_e849ee830481582_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129842~_GO=Generated~acl=/mumbai/142276_english_hls_e849ee830481582_1ta-di_h264/*~Signature=AVFFTBrnEGi5Sl3mHEm8H8-WbiNsPeTTuylAP6NIO4otk4ZyePwiHYPR9MCEMVKLJLKeC-Xbjl1N2CBSFIPi32kpv1EB
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Mutua-Madrid-Open,-ATP-1000-old-_1776846287648.png" group-title="Fancode",ATP Masters Mutua Madrid Open 2026 Day 3 - Arantxa Sanchez Stadium | Madrid, vs Spain
-https://in-mc-flive.fancode.com/mumbai/141857_english_hls_c6424b1ae513458_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125035~_GO=Generated~acl=/mumbai/141857_english_hls_c6424b1ae513458_1ta-di_h264/*~Signature=AVFFTBrczhNlU3BNRl8L2Q7vfIyI_tXF9bwqWArhmyWNtyNT1x9_QG9DouIZEKH7EPwsiZ-jhSiQbsIUiukCoKN6-bgM
+https://in-mc-flive.fancode.com/mumbai/141857_english_hls_c6424b1ae513458_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129860~_GO=Generated~acl=/mumbai/141857_english_hls_c6424b1ae513458_1ta-di_h264/*~Signature=AVFFTBoEl2FeEJI5w6qqUDU7ULGEi-hm_T5n0khL2d9vWLMU1PDOuoKYGPuDumbWCcXawoTtXa6Yx50mtdpwgnd_LQIG
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/South-Africa_web.jpg" group-title="Fancode",Investec South African Women's Open 2026 Day 2 Royal Cape | Golf vs Club
-https://in-mc-flive.fancode.com/mumbai/141643_english_hls_d7e43de69a14524_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125052~_GO=Generated~acl=/mumbai/141643_english_hls_d7e43de69a14524_1ta-di_h264/*~Signature=AVFFTBp05fZkQaqpK3ZDp2kZPmQAXZnsS3_lwFbvqAZfOzGMbfUrUtn5JSjRxjBXYy2uxQvlvTCMQQnIgSlX1GMCygcA
+https://in-mc-flive.fancode.com/mumbai/141643_english_hls_d7e43de69a14524_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129878~_GO=Generated~acl=/mumbai/141643_english_hls_d7e43de69a14524_1ta-di_h264/*~Signature=AVFFTBrZoE7fYTgg3yscojwm1V8AnMOez2RLFCgg_z_MtqrOXuM3mlBnKnLnIaVIXag1DprTj4qV6Xrjz3zUTN7FPzQJ
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Mutua-Madrid-Open,-ATP-1000-old-_1776846287648.png" group-title="Fancode",ATP Masters Mutua Madrid Open 2026 Day 3 - Court 3 Madrid | Live Stream
-https://in-mc-flive.fancode.com/mumbai/142275_english_hls_e92051011639651_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125070~_GO=Generated~acl=/mumbai/142275_english_hls_e92051011639651_1ta-di_h264/*~Signature=AVFFTBobuxHGpd70zlUgCRx0DlvNEUE1j_0l_LdUxEYy4629S4jgn1BPZje-j9YD66ZJ5G-NEjtOht91x2LhPxFHw9QO
+https://in-mc-flive.fancode.com/mumbai/142275_english_hls_e92051011639651_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129896~_GO=Generated~acl=/mumbai/142275_english_hls_e92051011639651_1ta-di_h264/*~Signature=AVFFTBrHQ1cL3QNccIZJW6fFbo6s7TqXFj0PECrxSEuIUkDANTOfMHLP61H39bR4yiF_HyoYFumUPAB2AG1QDGimZEwA
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Zurich-Classic-of-New-Orleans_fc-web.jpg" group-title="Fancode",Zurich Classic of New Orleans 2026 Featured Groups - Day 2 TPC Louisiana - | Avondale, vs Louisiana
-https://in-mc-flive.fancode.com/mumbai/142008_english_hls_dbba8c548213601_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125089~_GO=Generated~acl=/mumbai/142008_english_hls_dbba8c548213601_1ta-di_h264/*~Signature=AVFFTBqecJIcYYvRF_M1x6TLcJlZNRUpHF2U8Y1oYbOubGoQfuMQKhZ0JDFVm-X7ELkIcZczWVyk5LMItsG7nxpCQe4G
+https://in-mc-flive.fancode.com/mumbai/142008_english_hls_dbba8c548213601_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129914~_GO=Generated~acl=/mumbai/142008_english_hls_dbba8c548213601_1ta-di_h264/*~Signature=AVFFTBqvJALdFG9KYdztFDefwbyp2T4WezPIIeVPxaa-3KcasiVgIh5yywG-DhalkTB-0V3D0iLam_XSNycENC9EtCgF
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Zurich-Classic-of-New-Orleans_fc-web.jpg" group-title="Fancode",Zurich Classic of New Orleans 2026 Marquee Group - Day 2 TPC Louisiana - | Avondale, vs Louisiana
-https://in-mc-flive.fancode.com/mumbai/142004_english_hls_a79b193b1387616_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125107~_GO=Generated~acl=/mumbai/142004_english_hls_a79b193b1387616_1ta-di_h264/*~Signature=AVFFTBr4ntKmZ1Ib4BEBLHXYLBqjKoPh4ZUKJiPMnL62rmGwbsr45jlwzm4lnwDXq4BAJAx7770IOX5A4Zb9wCDgVQQP
+https://in-mc-flive.fancode.com/mumbai/142004_english_hls_a79b193b1387616_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129932~_GO=Generated~acl=/mumbai/142004_english_hls_a79b193b1387616_1ta-di_h264/*~Signature=AVFFTBphoJvAvMoS0bx7FP_4_JNbndzNS6tha7QViWvyu7FEQgu7RJc5Z7Y-S7IiQk1kGnvR62REhd2PUJvLq__kiTIG
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Zurich-Classic-of-New-Orleans_fc-web.jpg" group-title="Fancode",Zurich Classic of New Orleans 2026 Main Feed - Day 2 TPC Louisiana - | Avondale, vs Louisiana
-https://in-mc-flive.fancode.com/mumbai/142000_english_hls_0e0f09b5e680114_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777125125~_GO=Generated~acl=/mumbai/142000_english_hls_0e0f09b5e680114_1ta-di_h264/*~Signature=AVFFTBpvBKo0wc_nC4yse8f9guAzTfpOW79v42-qporcDYqryDZwocC4__FEEllGHWdwKdCcmIF1ZcUu7N9UHJ_KW-8C
+https://in-mc-flive.fancode.com/mumbai/142000_english_hls_0e0f09b5e680114_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129950~_GO=Generated~acl=/mumbai/142000_english_hls_0e0f09b5e680114_1ta-di_h264/*~Signature=AVFFTBpLpPYnyHssc9A2d_mJeV85vYHQoBP1EoyJ_U70ac-yBi-gS3Hc9kTyB1AdBRQqRIKIAQN0Oy2JhfoL6dezadsB
+
+#EXTINF:-1 tvg-logo="https://images.fancode.com/skillup-uploads/cms-media/Zurich-Classic-of-New-Orleans_fc-web.jpg" group-title="Fancode",Zurich Classic of New Orleans 2026 Featured Holes - Day 2 TPC Louisiana - | Avondale, vs Louisiana
+https://in-mc-flive.fancode.com/mumbai/142012_english_hls_7caad948d970455_1ta-di_h264/1080p.m3u8?hdntl=Expires=1777129968~_GO=Generated~acl=/mumbai/142012_english_hls_7caad948d970455_1ta-di_h264/*~Signature=AVFFTBpUMcWZJfLmLWhC-VrzIlVzuP-7eMlSA-7ezzvUjfrGG2tS7cawAQO-KWCMC-lGxIZywZVQC0efDdksai0iCx4O
 
