@@ -21,8 +21,16 @@ async function generateFancodeM3U() {
 
   console.log("Generating Fancode playlist at:", now);
 
-  const response = await fetch(JSON_URL);
-
+ const response = await fetch(
+  `${JSON_URL}?t=${Date.now()}`,
+  {
+    headers: {
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+    },
+  }
+);
+  
   const data = await response.json();
 
   let output = [
