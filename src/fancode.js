@@ -16,13 +16,19 @@ function toBase64(str) {
 
 // ---------------- GENERATE FANCODE M3U ----------------
 async function generateFancodeM3U() {
+  // ✅ Fresh timestamp every request
+  const now = new Date().toISOString();
+
+  console.log("Generating Fancode playlist at:", now);
+
   const response = await fetch(JSON_URL);
 
   const data = await response.json();
 
   let output = [
     "#EXTM3U",
-    `# Last Updated: ${data["last update time"] || "N/A"}`,
+    `# Source Updated: ${data["last update time"] || "N/A"}`,
+    `# Generated At: ${now}`, // ✅ FORCE FILE CHANGE
     "",
   ];
 
