@@ -52,6 +52,11 @@ async function processChannel(channel) {
 
 // ---------------- GENERATE M3U ----------------
 async function generateM3U() {
+  // ✅ Fresh timestamp on EVERY request
+  const now = new Date().toISOString();
+
+  console.log("Generating playlist at:", now);
+
   const response = await fetch(JSON_URL, {
     headers: HEADERS,
   });
@@ -73,11 +78,11 @@ async function generateM3U() {
     "#EXTM3U",
     "#Credits 🙏: cloudplay",
     "#Telegram: https://t.me/cloudply",
+    `# Updated: ${now}`, // ✅ TIMESTAMP
     "",
     ...results,
   ].join("\n\n");
 }
-
 // ---------------- GITHUB UPLOAD ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv_cf.m3u";
