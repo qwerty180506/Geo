@@ -57,9 +57,16 @@ async function generateM3U() {
 
   console.log("Generating playlist at:", now);
 
-  const response = await fetch(JSON_URL, {
-    headers: HEADERS,
-  });
+  const response = await fetch(
+  `${JSON_URL}?t=${Date.now()}`,
+  {
+    headers: {
+      ...HEADERS,
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+    },
+  }
+);
 
   const channels = await response.json();
 
