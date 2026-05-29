@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 02:06:34 AM 30-05-2026
-# Generated At: 2026-05-29T20:45:21.720Z
+# Source Updated: 02:16:41 AM 30-05-2026
+# Generated At: 2026-05-29T20:50:20.816Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Roland-Garros-2026_FC-WEB.jpg" group-title="Fancode",Tennis | Court Suzanne-Lenglen vs Stade Roland Garros Paris, France (Roland Garros 2026)
 https://sonypartnersdaimenew.akamaized.net/hls/live/2094589/RG26FCCSL/master_mdh.m3u8?hdnea=exp=1780116815~acl=/*~id=05374241453762883200966251458013~hmac=307d5a2e656be030f359ff533c46f7334a2d6e5c15936594a5035ec3023c8aea
@@ -22,3 +22,6 @@ https://in-mc-fblive.fancode.com/mumbai/142892_english_hls_0c9061c0ab87186_1ta-d
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 2 - Featured Holes vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
 https://in-mc-fblive.fancode.com/mumbai/142895_english_hls_e81ca2f1df93911_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 2 - World Feed vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
+https://in-mc-fblive.fancode.com/mumbai/142891_english_hls_81361e9ec918166_1ta-di_h264/index.m3u8
