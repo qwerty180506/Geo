@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 02:24:22 AM 31-05-2026
-# Generated At: 2026-05-30T21:00:39.721Z
+# Source Updated: 02:34:28 AM 31-05-2026
+# Generated At: 2026-05-30T21:05:14.647Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Roland-Garros-2026_FC-WEB.jpg" group-title="Fancode",Tennis | Court Suzanne Lenglen vs Stade Roland Garros Paris, France (Roland Garros 2026)
 https://sonypartnersdaimenew.akamaized.net/hls/live/2094589/RG26FCCSL/master_mdh.m3u8?hdnea=exp=1780203068~acl=/*~id=20218888152439636326415077374381~hmac=28c0388a6f160ac1f61cfc9ed6c4ab4113fb412f0cfb7764f604c0ed9906d3b6
@@ -11,14 +11,8 @@ https://sonypartnersdaimenew.akamaized.net/hls/live/2037143/RG26FCCPC/master_mdh
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 3 - Main Feed vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
 https://in-mc-fblive.fancode.com/mumbai/142897_english_hls_cf3c7cefd948526_1ta-di_h264/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 3 - Featured Holes vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
-https://in-mc-fblive.fancode.com/mumbai/142900_english_hls_6f5ceeb0e098411_1ta-di_h264/index.m3u8
-
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 3 - Featured Groups vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
 https://in-mc-fblive.fancode.com/mumbai/142899_english_hls_8fabe9b13036316_1ta-di_h264/index.m3u8
-
-#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 3 - Marquee Group vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
-https://in-mc-fblive.fancode.com/mumbai/142898_english_hls_8f06bd52b125270_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Charles-Schwab-Challenge-web.jpg" group-title="Fancode",Golf | Day 3 - World Feed vs Colonial Country Club - Fort Worth, Texas (Charles Schwab Challenge 2026)
 https://in-mc-fblive.fancode.com/mumbai/142896_english_hls_c80b57ab6d25455_1ta-di_h264/index.m3u8
