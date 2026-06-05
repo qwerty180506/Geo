@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 11:05:52 PM 05-06-2026
-# Generated At: 2026-06-05T17:45:24.980Z
+# Source Updated: 11:16:03 PM 05-06-2026
+# Generated At: 2026-06-05T17:50:25.254Z
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/aig/match/v1780469022394/143062_CASACARDS_APP.png" group-title="Fancode",Cricket | Ujjain Falcons vs Malwa Stallions (Madhya Pradesh League T20, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143062_english_hls_bc3bd0258c28250_1ta-di_h264/index.m3u8
@@ -13,3 +13,9 @@ https://in-mc-fblive.fancode.com/mumbai/143111_english_hls_fb4559222f5761_1ta-di
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/The-Memorial-Tournament_fc-web-v2.jpg" group-title="Fancode",Golf | Marquee Feed - Day 2 vs Muirfield Village Golf Club - Dublin, Ohio  (the Memorial Tournament presented by Workday 2026)
 https://in-mc-fblive.fancode.com/mumbai/143110_english_hls_3833df55be29441_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/The-Memorial-Tournament_fc-web-v2.jpg" group-title="Fancode",Golf | World Feed - Day 2 vs Muirfield Village Golf Club - Dublin, Ohio  (the Memorial Tournament presented by Workday 2026)
+https://in-mc-fblive.fancode.com/mumbai/143047_english_hls_1079d2d79735979_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Mini-Match-Card-(1080x810)-(2)_1780397699490.png" group-title="Fancode",Golf | Day 2 vs Riviera Golf Course (US Women's Open 2026)
+https://in-mc-fblive.fancode.com/mumbai/143230_english_hls_9e368c2d6b71674_1ta-di_h264/index.m3u8
