@@ -1,9 +1,12 @@
 #EXTM3U
-# Source Updated: 01:55:40 PM 06-06-2026
-# Generated At: 2026-06-06T08:35:17.310Z
+# Source Updated: 02:05:45 PM 06-06-2026
+# Generated At: 2026-06-06T08:40:24.972Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/142989_6094_GD_UPBS_FC-WEB_1780318029134.jpg" group-title="Fancode",Cricket | Gujarat Diamonds vs UP Brij Stars (Big Cricket League Season 2)
 https://in-mc-fblive.fancode.com/mumbai/142989_english_hls_7d9419e91536983_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Michelin-Grand-Prix-of-Hungary_fc-web.jpg" group-title="Fancode",MotoGP | Day 2 vs Balaton (GRAND PRIX OF HUNGARY 2026)
 https://in-mc-fblive.fancode.com/mumbai/139949_english_hls_e3638dc20393422_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/F3_Australia_web.jpg" group-title="Fancode",Motorsports | Sprint Race vs Monaco (F3 MONACO 2026)
+https://in-mc-fblive.fancode.com/mumbai/139715_english_hls_7a5535ae5357968_1ta-di_h264/index.m3u8
