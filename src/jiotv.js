@@ -7,11 +7,26 @@ const COOKIE_URL =
 const SPORTS_URL =
   "https://allinonereborn.online/jtv-fetch/jstarcookie/cookie.json";
 
+// ---------------- HEADERS ----------------
+const FETCH_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/137.0.0.0 Safari/537.36",
+  "Accept":
+    "application/json,text/plain,*/*",
+  "Cache-Control":
+    "no-cache, no-store, must-revalidate",
+  "Pragma":
+    "no-cache",
+  "Expires":
+    "0",
+};
+
 // ---------------- BASE64 ----------------
 function toBase64(str) {
   const bytes = new TextEncoder().encode(str);
 
   let binary = "";
+
   for (let i = 0; i < bytes.length; i++) {
     binary += String.fromCharCode(bytes[i]);
   }
@@ -19,15 +34,14 @@ function toBase64(str) {
   return btoa(binary);
 }
 
-// ---------------- GET NORMAL COOKIE ----------------
-async function getNormalCookie() {
-  const res = await fetch(
-    `${COOKIE_URL}?t=${Date.now()}`,
+// ---------------- JSON FETCHER ----------------
+async function getJson(url, name) {
+  console.log(`===== ${name} =====`);
+
+  const response = await fetch(
+    `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`,
     {
-      headers: {
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-      },
+      headers: FETCH_HEADERS,
       cf: {
         cacheTtl: 0,
         cacheEverything: false,
@@ -35,35 +49,65 @@ async function getNormalCookie() {
     }
   );
 
-  const data = await res.json();
+  const text = await response.text();
+
+  console.log(`${name} STATUS:`, response.status);
+  console.log(
+    `${name} CONTENT-TYPE:`,
+    response.headers.get("content-type")
+  );
+
+  console.log(
+    `${name} RESPONSE:`
+  );
+
+  console.log(
+    text.substring(0, 1000)
+  );
+
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new Error(
+      `${name} INVALID JSON\n\n` +
+      `STATUS: ${response.status}\n\n` +
+      text.substring(0, 2000)
+    );
+  }
+}
+
+// ---------------- NORMAL COOKIE ----------------
+async function getNormalCookie() {
+  const data = await getJson(
+    COOKIE_URL,
+    "COOKIE"
+  );
 
   const cookieObj = data.find(
     (x) => x.cookie
   );
 
-  return cookieObj?.cookie || "";
-}
+  const cookie =
+    cookieObj?.cookie || "";
 
-// ---------------- GET SPORTS DATA ----------------
-async function getSportsData() {
-  const res = await fetch(
-    `${SPORTS_URL}?t=${Date.now()}`,
-    {
-      headers: {
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-      },
-      cf: {
-        cacheTtl: 0,
-        cacheEverything: false,
-      },
-    }
+  console.log(
+    "NORMAL COOKIE FOUND:",
+    !!cookie
   );
 
-  const data = await res.json();
+  return cookie;
+}
+
+// ---------------- SPORTS DATA ----------------
+async function getSportsData() {
+  const data = await getJson(
+    SPORTS_URL,
+    "SPORTS"
+  );
+
+  const sportsIds = new Set();
 
   const sportsCookies = {};
-  const sportsIds = new Set();
 
   const allChannels = [
     ...(data.successful_results || []),
@@ -71,7 +115,8 @@ async function getSportsData() {
   ];
 
   for (const item of allChannels) {
-    const channelId = String(item.channel_id);
+    const channelId =
+      String(item.channel_id);
 
     sportsIds.add(channelId);
 
@@ -90,27 +135,42 @@ async function getSportsData() {
     }
   }
 
+  console.log(
+    "SPORTS CHANNELS:",
+    sportsIds.size
+  );
+
   return {
     sportsIds,
     sportsCookies,
   };
 }
 
-// ---------------- CHANNEL -> M3U ----------------
+// ---------------- CHANNEL ENTRY ----------------
 function createChannelEntry(
   channel,
   cookie
 ) {
-  const id = channel.id || "";
-  const name = channel.name || "";
-  const logo = channel.logo || "";
+  const id =
+    channel.id || "";
+
+  const name =
+    channel.name || "";
+
+  const logo =
+    channel.logo || "";
+
   const group =
     channel.category || "Other";
 
-  const url = channel.url || "";
+  const url =
+    channel.url || "";
 
-  const keyId = channel.keyId || "";
-  const key = channel.key || "";
+  const keyId =
+    channel.keyId || "";
+
+  const key =
+    channel.key || "";
 
   const lines = [];
 
@@ -145,25 +205,22 @@ async function generateM3U() {
     new Date().toISOString();
 
   const [
-    channelsRes,
+    channels,
     normalCookie,
     sportsData,
   ] = await Promise.all([
-    fetch(
-      `${CHANNELS_URL}?t=${Date.now()}`,
-      {
-        cf: {
-          cacheTtl: 0,
-          cacheEverything: false,
-        },
-      }
+    getJson(
+      CHANNELS_URL,
+      "CHANNELS"
     ),
     getNormalCookie(),
     getSportsData(),
   ]);
 
-  const channels =
-    await channelsRes.json();
+  console.log(
+    "TOTAL CHANNELS:",
+    channels.length
+  );
 
   const results = [];
 
@@ -194,12 +251,17 @@ async function generateM3U() {
       );
     } catch (e) {
       console.log(
-        "Channel Error:",
+        "CHANNEL ERROR:",
         channel.id,
-        e
+        e.toString()
       );
     }
   }
+
+  console.log(
+    "M3U CHANNELS GENERATED:",
+    results.length
+  );
 
   return [
     "#EXTM3U",
@@ -222,11 +284,17 @@ async function uploadToGitHub(
 
   let sha;
 
+  console.log(
+    "CHECKING EXISTING FILE..."
+  );
+
   const existing =
     await fetch(api, {
       headers: {
         Authorization:
           `Bearer ${env.GITHUB_TOKEN}`,
+        "User-Agent":
+          "Cloudflare-Worker",
       },
     });
 
@@ -234,9 +302,23 @@ async function uploadToGitHub(
     try {
       const json =
         await existing.json();
+
       sha = json.sha;
-    } catch {}
+
+      console.log(
+        "EXISTING SHA:",
+        sha
+      );
+    } catch (e) {
+      console.log(
+        "SHA READ FAILED"
+      );
+    }
   }
+
+  console.log(
+    "UPLOADING TO GITHUB..."
+  );
 
   const upload =
     await fetch(api, {
@@ -246,19 +328,40 @@ async function uploadToGitHub(
           `Bearer ${env.GITHUB_TOKEN}`,
         "Content-Type":
           "application/json",
+        "User-Agent":
+          "Cloudflare-Worker",
       },
       body: JSON.stringify({
         message:
-          "Auto update playlist",
+          `Auto update playlist ${new Date().toISOString()}`,
         content:
           toBase64(content),
         sha,
       }),
     });
 
+  const responseText =
+    await upload.text();
+
+  console.log(
+    "UPLOAD STATUS:",
+    upload.status
+  );
+
+  console.log(
+    "UPLOAD RESPONSE:"
+  );
+
+  console.log(
+    responseText.substring(
+      0,
+      1000
+    )
+  );
+
   if (!upload.ok) {
     throw new Error(
-      await upload.text()
+      responseText
     );
   }
 }
@@ -267,15 +370,40 @@ async function uploadToGitHub(
 export async function runJioTV(
   env
 ) {
-  const m3u =
-    await generateM3U();
+  try {
+    console.log(
+      "STARTING UPDATE..."
+    );
 
-  await uploadToGitHub(
-    m3u,
-    env
-  );
+    const m3u =
+      await generateM3U();
 
-  return {
-    success: true,
-  };
+    console.log(
+      "M3U SIZE:",
+      m3u.length
+    );
+
+    await uploadToGitHub(
+      m3u,
+      env
+    );
+
+    console.log(
+      "UPDATE SUCCESS"
+    );
+
+    return {
+      success: true,
+    };
+  } catch (e) {
+    console.log(
+      "FATAL ERROR:"
+    );
+
+    console.log(
+      e.toString()
+    );
+
+    throw e;
+  }
 }
