@@ -1,25 +1,11 @@
 const CHANNELS_URL =
-  "https://allinonereborn.online/jtv-fetch/jstr4web.json";
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/channel.json";
 
 const COOKIE_URL =
-  "https://allinonereborn.online/jstrweb2/cookies.json";
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/biscuit.json";
 
 const SPORTS_URL =
-  "https://allinonereborn.online/jtv-fetch/jstarcookie/cookie.json";
-
-// ---------------- HEADERS ----------------
-const FETCH_HEADERS = {
-  "User-Agent":
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/137.0.0.0 Safari/537.36",
-  "Accept":
-    "application/json,text/plain,*/*",
-  "Cache-Control":
-    "no-cache, no-store, must-revalidate",
-  "Pragma":
-    "no-cache",
-  "Expires":
-    "0",
-};
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/sportsbiscuit.json";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
@@ -35,56 +21,53 @@ function toBase64(str) {
 }
 
 // ---------------- JSON FETCHER ----------------
-async function getJson(url, name) {
-  console.log(`===== ${name} =====`);
+async function getJson(url) {
+  const freshUrl =
+    `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`;
 
-  const proxyUrl =
-    "https://api.allorigins.win/raw?url=" +
-    encodeURIComponent(
-      `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`
+  const response = await fetch(
+    freshUrl,
+    {
+      headers: {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+      },
+      cf: {
+        cacheTtl: 0,
+        cacheEverything: false,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch ${url}: ${response.status}`
     );
+  }
 
-  const response = await fetch(proxyUrl);
-
-  const text = await response.text();
-
-  console.log(`${name} STATUS:`, response.status);
-  console.log(text.substring(0, 1000));
-
-  return JSON.parse(text);
+  return response.json();
 }
 
 // ---------------- NORMAL COOKIE ----------------
 async function getNormalCookie() {
   const data = await getJson(
-    COOKIE_URL,
-    "COOKIE"
+    COOKIE_URL
   );
 
   const cookieObj = data.find(
     (x) => x.cookie
   );
 
-  const cookie =
-    cookieObj?.cookie || "";
-
-  console.log(
-    "NORMAL COOKIE FOUND:",
-    !!cookie
-  );
-
-  return cookie;
+  return cookieObj?.cookie || "";
 }
 
 // ---------------- SPORTS DATA ----------------
 async function getSportsData() {
   const data = await getJson(
-    SPORTS_URL,
-    "SPORTS"
+    SPORTS_URL
   );
 
   const sportsIds = new Set();
-
   const sportsCookies = {};
 
   const allChannels = [
@@ -112,11 +95,6 @@ async function getSportsData() {
         match[1];
     }
   }
-
-  console.log(
-    "SPORTS CHANNELS:",
-    sportsIds.size
-  );
 
   return {
     sportsIds,
@@ -187,58 +165,40 @@ async function generateM3U() {
     normalCookie,
     sportsData,
   ] = await Promise.all([
-    getJson(
-      CHANNELS_URL,
-      "CHANNELS"
-    ),
+    getJson(CHANNELS_URL),
     getNormalCookie(),
     getSportsData(),
   ]);
 
   console.log(
-    "TOTAL CHANNELS:",
-    channels.length
+    `Channels loaded: ${channels.length}`
   );
 
   const results = [];
 
   for (const channel of channels) {
-    try {
-      const channelId =
-        String(channel.id);
+    const channelId =
+      String(channel.id);
 
-      let cookie =
-        normalCookie;
-
-      if (
-        sportsData.sportsIds.has(
-          channelId
-        )
-      ) {
-        cookie =
-          sportsData.sportsCookies[
+    const cookie =
+      sportsData.sportsIds.has(
+        channelId
+      )
+        ? sportsData.sportsCookies[
             channelId
-          ] || normalCookie;
-      }
+          ] || normalCookie
+        : normalCookie;
 
-      results.push(
-        createChannelEntry(
-          channel,
-          cookie
-        )
-      );
-    } catch (e) {
-      console.log(
-        "CHANNEL ERROR:",
-        channel.id,
-        e.toString()
-      );
-    }
+    results.push(
+      createChannelEntry(
+        channel,
+        cookie
+      )
+    );
   }
 
   console.log(
-    "M3U CHANNELS GENERATED:",
-    results.length
+    `Channels generated: ${results.length}`
   );
 
   return [
@@ -262,10 +222,6 @@ async function uploadToGitHub(
 
   let sha;
 
-  console.log(
-    "CHECKING EXISTING FILE..."
-  );
-
   const existing =
     await fetch(api, {
       headers: {
@@ -273,6 +229,10 @@ async function uploadToGitHub(
           `Bearer ${env.GITHUB_TOKEN}`,
         "User-Agent":
           "Cloudflare-Worker",
+      },
+      cf: {
+        cacheTtl: 0,
+        cacheEverything: false,
       },
     });
 
@@ -282,21 +242,8 @@ async function uploadToGitHub(
         await existing.json();
 
       sha = json.sha;
-
-      console.log(
-        "EXISTING SHA:",
-        sha
-      );
-    } catch (e) {
-      console.log(
-        "SHA READ FAILED"
-      );
-    }
+    } catch {}
   }
-
-  console.log(
-    "UPLOADING TO GITHUB..."
-  );
 
   const upload =
     await fetch(api, {
@@ -318,70 +265,34 @@ async function uploadToGitHub(
       }),
     });
 
-  const responseText =
-    await upload.text();
-
-  console.log(
-    "UPLOAD STATUS:",
-    upload.status
-  );
-
-  console.log(
-    "UPLOAD RESPONSE:"
-  );
-
-  console.log(
-    responseText.substring(
-      0,
-      1000
-    )
-  );
-
   if (!upload.ok) {
     throw new Error(
-      responseText
+      await upload.text()
     );
   }
+
+  console.log(
+    `GitHub upload successful (${upload.status})`
+  );
 }
 
 // ---------------- MAIN ----------------
 export async function runJioTV(
   env
 ) {
-  try {
-    console.log(
-      "STARTING UPDATE..."
-    );
+  const m3u =
+    await generateM3U();
 
-    const m3u =
-      await generateM3U();
+  await uploadToGitHub(
+    m3u,
+    env
+  );
 
-    console.log(
-      "M3U SIZE:",
-      m3u.length
-    );
+  console.log(
+    "Playlist updated successfully"
+  );
 
-    await uploadToGitHub(
-      m3u,
-      env
-    );
-
-    console.log(
-      "UPDATE SUCCESS"
-    );
-
-    return {
-      success: true,
-    };
-  } catch (e) {
-    console.log(
-      "FATAL ERROR:"
-    );
-
-    console.log(
-      e.toString()
-    );
-
-    throw e;
-  }
+  return {
+    success: true,
+  };
 }
