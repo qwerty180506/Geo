@@ -1,4 +1,3 @@
-```javascript
 const CHANNELS_URL =
   "https://allinonereborn.online/jtv-fetch/jstr4web.json";
 
@@ -280,4 +279,3 @@ export async function runJioTV(
     success: true,
   };
 }
-```
