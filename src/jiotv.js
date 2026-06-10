@@ -38,29 +38,13 @@ function toBase64(str) {
 async function getJson(url, name) {
   console.log(`===== ${name} =====`);
 
-  const response = await fetch(
-    `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`,
-    {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/137.0.0.0 Safari/537.36",
-        "Accept":
-          "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
-        "Referer":
-          "https://allinonereborn.online/",
-        "Origin":
-          "https://allinonereborn.online",
-        "Cache-Control":
-          "no-cache, no-store, must-revalidate",
-        "Pragma":
-          "no-cache"
-      },
-      cf: {
-        cacheTtl: 0,
-        cacheEverything: false,
-      },
-    }
-  );
+  const proxyUrl =
+    "https://api.allorigins.win/raw?url=" +
+    encodeURIComponent(
+      `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`
+    );
+
+  const response = await fetch(proxyUrl);
 
   const text = await response.text();
 
