@@ -1,9 +1,18 @@
 #EXTM3U
-# Source Updated: 01:07:37 PM 10-06-2026
-# Generated At: 2026-06-10T07:47:46.472Z
+# Source Updated: 02:48:41 PM 10-06-2026
+# Generated At: 2026-06-10T09:26:24.288Z
 
-#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143157_6108_GG_AUB_FC-Web.png" group-title="Fancode",Cricket | Ghent Gladiators vs Akcel United Brussels (EUT20 Belgium, 2026)
-https://in-mc-fblive.fancode.com/mumbai/143157_english_hls_a00a093cc125624_1ta-di_h264/index.m3u8
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/142995_6094_MM_MPT_FC-WEB_1780318028370.jpg" group-title="Fancode",Cricket | Mumbai Marines vs MP Tigers (Big Cricket League Season 2)
+https://in-mc-fblive.fancode.com/mumbai/142995_english_hls_cf991e17d447156_1ta-di_h264/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Madhya-Pradesh-League-T20-Women's_fc-web.jpg" group-title="Fancode",Cricket | Gwalior Shernis vs Royal Nimar Eagles Women (Madhya Pradesh League T20 Women's 2026)
-https://in-mc-fblive.fancode.com/mumbai/143026_english_hls_1fbbf9fd2e88595_1ta-di_h264/index.m3u8
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143071_6102_IPP_RW_FC-WEB.jpg" group-title="Fancode",Cricket | Indore Pink Panthers vs Rewa Jaguars (Madhya Pradesh League T20, 2026)
+https://in-mc-fblive.fancode.com/mumbai/143071_english_hls_a9a502a7e275444_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143072_6102_BL_UJF_FC-WEB.jpg" group-title="Fancode",Cricket | Bhopal Leopards vs Ujjain Falcons (Madhya Pradesh League T20, 2026)
+https://in-mc-fblive.fancode.com/mumbai/143072_english_hls_5c005d49e31864_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ATP-Boss_Web-match-card.png" group-title="Fancode",Tennis | Day 3 - Centre Court vs Stuttgart, Germany (ATP 250 - BOSS OPEN 2026)
+https://in-mc-fblive.fancode.com/mumbai/143120_english_hls_07628292df62798_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Libema-Open,-ATP-250,-Grass-old.png" group-title="Fancode",Tennis | Day 3 - Court 1 vs Netherlands (ATP 250 - Libema Open)
+https://in-mc-fblive.fancode.com/mumbai/143387_english_hls_d586241b904972_1ta-di_h264/index.m3u8
