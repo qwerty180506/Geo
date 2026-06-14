@@ -1,5 +1,4 @@
-const JSON_URL =
-  "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
+const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
 
 // ---------------- BASE64 SAFE ----------------
 function toBase64(str) {
@@ -51,18 +50,32 @@ async function generateFancodeM3U() {
 
       if (!stream) continue;
 
-      const title =
-        match.title ||
-        match.match_name ||
-        "Unknown";
-
       const category =
         match.event_category || "Sports";
+
+      let displayTitle = match.title || match.match_name || "Unknown";
+
+      if (['Formula 1', 'Golf'].includes(category)) {
+        let primaryPart = match.match_name || '';
+        let secondaryPart = match.event_name || '';
+
+        if (primaryPart && secondaryPart && primaryPart !== secondaryPart) {
+            // Combine as "MatchName (EventName)", e.g., "Race (F1 MSC CRUISES GRAN PREMIO...)"
+            displayTitle = `${primaryPart} (${secondaryPart})`;
+        } else if (primaryPart) {
+            // If only match_name is available or it's the same as event_name, use it.
+            displayTitle = primaryPart;
+        } else if (secondaryPart) {
+            // If only event_name is available, use it.
+            displayTitle = secondaryPart;
+        }
+      }
+      // --- END CHANGES ---
 
       const logo = match.src || "";
 
       output.push(
-        `#EXTINF:-1 tvg-logo="${logo}" group-title="Fancode",${category} | ${title}`
+        `#EXTINF:-1 tvg-logo="${logo}" group-title="Fancode",${category} | ${displayTitle}`
       );
 
       output.push(stream);
