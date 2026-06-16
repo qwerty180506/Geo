@@ -4404,7 +4404,7 @@ https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_HD1_BTS/WDVLive/index.mpd?__
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=df20894ec30954d3b28097c138f4cfda:ff9b6292b1cddbd11a046029cb314634
-https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_1_BTS/WDVLive/index.mpd?__hdnea__=st=1781568607~exp=1781590207~acl=/bpk-tv/Star_Sports_1_BTS/WDVLive/*~hmac=f38696acf34ae40f9b4d2129c75b2fc6c38bc920498bcf88c43834b2787712bc
+https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_1_BTS/WDVLive/index.mpd?__hdnea__=st=1781590508~exp=1781612108~acl=/bpk-tv/Star_Sports_1_BTS/WDVLive/*~hmac=e43d6843cf97b94a6284a8a41b20864b1351bf9b515d9b69451e3d83df0c3b01
 
 #EXTINF:-1 tvg-id="1108" tvg-name="Star Sports 1 Hindi HD" tvg-logo="https://img.media.jio.com/tvpimages/5/6/301982_1749665314605_l_medium.jpg" group-title="Sports",Star Sports 1 Hindi HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -4422,7 +4422,7 @@ https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_1_Hindi_BTS/WDVLive/index.mp
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9457eb90129456fa8ea95e10ba4ac51e:e620a970cea474c491ac78ae71a4d764
-https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_HD2_BTS/WDVLive/index.mpd?__hdnea__=st=1781568007~exp=1781589607~acl=/bpk-tv/Star_Sports_HD2_BTS/WDVLive/*~hmac=3f98032653e53539e53f977cb094b72a1da240c1a00e13be83b1f6557f47c9c4
+https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_HD2_BTS/WDVLive/index.mpd?__hdnea__=st=1781589875~exp=1781611475~acl=/bpk-tv/Star_Sports_HD2_BTS/WDVLive/*~hmac=3dac8a7bb6b91dcc66831b0f2083e9176514df905e96cff1033ef9848564d429
 
 #EXTINF:-1 tvg-id="1141" tvg-name="Star Sports 2" tvg-logo="https://img.media.jio.com/tvpimages/11/30/302116_1749666029079_l_medium.jpg" group-title="Sports",Star Sports 2
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
