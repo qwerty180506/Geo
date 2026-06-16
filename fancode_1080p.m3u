@@ -1,9 +1,18 @@
 #EXTM3U
-# Source Updated: 02:36:42 PM 16-06-2026
-# Generated At: 2026-06-16T09:20:37.074Z
+# Source Updated: 02:46:48 PM 16-06-2026
+# Generated At: 2026-06-16T09:25:28.724Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143178_6109_HMU_GTP_FC-WEB.jpg" group-title="Fancode",Cricket | Stockholm United vs Gothenburg Phoenix (Nordic Smash T20 Cup, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143178_english_hls_b340d3320f12948_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143035_6095_LLI_PPA_fc-web.jpg" group-title="Fancode",Cricket | Ludhiana Lions vs Patiala Panthers (Punjab T10 2026)
 https://in-mc-fblive.fancode.com/mumbai/143035_english_hls_a6b8a9cc7028849_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143087_6102_IPP_RNG_FC-WEB.jpg" group-title="Fancode",Cricket | Indore Pink Panthers vs Royal Nimar Eagles (Madhya Pradesh League T20, 2026)
+https://in-mc-fblive.fancode.com/mumbai/143087_english_hls_1ea1e21f5e1227_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Terra-Wortmann-Open-ATP-500-Grass-old-.png" group-title="Fancode",Tennis | Day 2 - Schauinsland Reisen Court vs Halle, Germany (ATP 500 - Terra Wortmann Open 2026)
+https://in-mc-fblive.fancode.com/mumbai/143256_english_hls_afa8eaf6d566469_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Terra-Wortmann-Open-ATP-500-Grass-old-.png" group-title="Fancode",Tennis | Day 2 - World Feed vs Halle, Germany (ATP 500 - Terra Wortmann Open 2026)
+https://in-mc-fblive.fancode.com/mumbai/143255_english_hls_c6a679691185272_1ta-di_h264/index.m3u8
