@@ -103,11 +103,18 @@ function createChannelEntry(channel, cookie) {
     `#EXTINF:-1 tvg-id="${id}" tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
   );
 
-  lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
+  // Add Kodi DASH/DRM properties only for MPD streams
+  const isMPD = /\.mpd(\?|$)/i.test(url);
 
-  if (keyId && key) {
-    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
-    lines.push(`#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`);
+  if (isMPD) {
+    lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
+
+    if (keyId && key) {
+      lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
+      lines.push(
+        `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
+      );
+    }
   }
 
   lines.push(`${url}?${cookie}`);
