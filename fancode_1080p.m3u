@@ -1,9 +1,12 @@
 #EXTM3U
-# Source Updated: 11:57:04 AM 20-06-2026
-# Generated At: 2026-06-20T06:35:27.643Z
+# Source Updated: 12:07:13 PM 20-06-2026
+# Generated At: 2026-06-20T06:40:36.114Z
 
 #EXTINF:-1 tvg-logo="https://images.fancode.com/aig/match/v1781927698717/143043_CASACARDS_APP.png" group-title="Fancode",Cricket | Ludhiana Lions vs Jalandhar Jaguars (Punjab T10 2026)
 https://in-mc-fblive.fancode.com/mumbai/143043_english_hls_9b42356f1a31737_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Ferrari-Challenge-Series-2026-old.png" group-title="Fancode",Motorsports | Australasia - Race 1 vs Queensland (Ferrari Challenge Series 2026)
 https://in-mc-fblive.fancode.com/mumbai/143406_english_hls_8e382f3ead63719_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Mini-Match-Card1.png" group-title="Fancode",MotoGP | Day 2 vs BRNO (GRAND PRIX OF CZECHIA 2026)
+https://in-mc-fblive.fancode.com/mumbai/139952_english_hls_aac8a6af7c252_1ta-di_h264/index.m3u8
