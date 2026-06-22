@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 03:40:30 PM 22-06-2026
-# Generated At: 2026-06-22T10:20:38.765Z
+# Source Updated: 03:50:37 PM 22-06-2026
+# Generated At: 2026-06-22T10:25:28.409Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143419_6134_MW_HT_FC-WEB.jpg" group-title="Fancode",Cricket | Mysore Warriors vs Hubli Tigers (Maharaja T20 Trophy, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143419_english_hls_e5c2a5039534266_1ta-di_h264/index.m3u8
@@ -8,5 +8,11 @@ https://in-mc-fblive.fancode.com/mumbai/143419_english_hls_e5c2a5039534266_1ta-d
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143097_6102_RNG_BL_FC-WEB.jpg" group-title="Fancode",Cricket | Royal Nimar Eagles vs Bhopal Leopards (Madhya Pradesh League T20, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143097_english_hls_8ac0ad689e31608_1ta-di_h264/index.m3u8
 
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143544_6143_SIN_UZB_FC-Web.png" group-title="Fancode",Cricket | Singapore vs Uzbekistan (Asia Pacific Cricket Champions Trophy, 2026)
+https://in-mc-fblive.fancode.com/mumbai/143544_english_hls_695673f2e478269_1ta-di_h264/index.m3u8
+
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ATP-250---Lexus-Eastbourne-Open-2026_FC-WEB.jpg" group-title="Fancode",Tennis | Day 1 vs Eastbourne, Great Britain (ATP 250 - Lexus Eastbourne Open 2026)
 https://in-mc-fblive.fancode.com/mumbai/143277_english_hls_6d121c3ae03448_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ATP-Vanda-Pharma_Web-match-card.png" group-title="Fancode",Tennis | Day 2 vs Mallorca, Spain (ATP 250 - Vanda Pharma Mallorca Championships 2026)
+https://in-mc-fblive.fancode.com/mumbai/143271_english_hls_9c9798495d89178_1ta-di_h264/index.m3u8
