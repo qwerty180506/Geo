@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 05:07:14 PM 23-06-2026
-# Generated At: 2026-06-23T11:45:38.944Z
+# Source Updated: 05:17:22 PM 23-06-2026
+# Generated At: 2026-06-23T11:50:40.440Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143421_6134_GMY_SY_FC-WEB.jpg" group-title="Fancode",Cricket | Gulbarga Mystics vs Shivamogga Yodhas (Maharaja T20 Trophy, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143421_english_hls_e14d15b24a67195_1ta-di_h264/index.m3u8
@@ -10,6 +10,9 @@ https://in-mc-fblive.fancode.com/mumbai/143099_english_hls_57b3c5021536049_1ta-d
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143546_6143_TL_SIN_FC-Web.png" group-title="Fancode",Cricket | Thailand vs Singapore (Asia Pacific Cricket Champions Trophy, 2026)
 https://in-mc-fblive.fancode.com/mumbai/143546_english_hls_7a05f2037822563_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143319_6124_NAM_NIG_FC-WEB.jpg" group-title="Fancode",Cricket | Namibia vs Nigeria (Men's T20I Tri series in Namibia 2026)
+https://in-mc-fblive.fancode.com/mumbai/143319_english_hls_e5d7b238b697362_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ATP-250---Lexus-Eastbourne-Open-2026_FC-WEB.jpg" group-title="Fancode",Tennis | Day 2 vs Eastbourne, Great Britain (ATP 250 - Lexus Eastbourne Open 2026)
 https://in-mc-fblive.fancode.com/mumbai/143278_english_hls_14e6d5f7d97697_1ta-di_h264/index.m3u8
