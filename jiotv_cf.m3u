@@ -3525,7 +3525,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/TEST12_HD_MOB/WDVLive/index.mpd?__hdnea__
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=7a0d94be007c539e8a13b0e173f867e9:280f0d8523e9ee2d96a3eb009f8a127f
-https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsCineplexHD_MOB/WDVLive/index.mpd?__hdnea__=st=1782195192~exp=1782216792~acl=/*~hmac=289c1c936b7d30ee131e29156a20f50308dc28476e82ec8511786e35a2199ad0
+https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsCineplexHD_MOB/WDVLive/index.mpd?__hdnea__=st=1782213737~exp=1782235337~acl=/*~hmac=0a5cf865c21271480637e2539ddee722c23cf403528a7e23ac7168ab0c34649a
 
 #EXTINF:-1 tvg-id="1481" tvg-name="Argus News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Argus_TV.png" group-title="Odia",Argus News
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
