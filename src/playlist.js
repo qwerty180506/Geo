@@ -13,7 +13,7 @@ const SOURCE_URLS = {
 
 const PRIORITY_ORDER = [
   "jiotv",
-  "jiotvplus"
+  "jiotvplus",
   "sonyliv",
   "sunnxt",
   "times",
