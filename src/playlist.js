@@ -7,11 +7,13 @@ const SOURCE_URLS = {
   sonyliv: "https://raw.githubusercontent.com/hasanhabibmottakin/Sony-Liv-Channels/refs/heads/main/playlist.m3u",
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
+  jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
+  jiotv: "https://noisy-truth-6766.streamstar18.workers.dev/"
 };
 
 const PRIORITY_ORDER = [
   "jiotv",
+  "jiotvplus"
   "sonyliv",
   "sunnxt",
   "times",
@@ -20,19 +22,19 @@ const PRIORITY_ORDER = [
 const WANTED_MAP = {
   "Sun TV HD - Dolby Vision": ["Entertainment", "sunnxt"],
   "Sun News": ["News", "sunnxt"],
-  "Jaya TV HD": ["Entertainment", "jstar"],
-  "J Movies": ["Movies", "jstar"],
-  "Jaya Max": ["Music", "jstar"],
+  "Jaya TV HD": "Entertainment",
+  "J Movies": "Movies",
+  "Jaya Max": "Music",
   "Sun TV HD": ["Entertainment", "sunnxt"],
-  "Jaya Plus": ["News", "jstar"],
-  "Animal Planet HD Tamil": ["Infortainment", "jstar"],
-  "Cartoon Network Tamil": ["Kids", "jstar"],
+  "Jaya Plus": "News",
+  "Animal Planet HD Tamil": "Infortainment",
+  "Cartoon Network Tamil": "Kids",
   "Movies Now HD": ["Movies", "times"],
   "MNX HD": ["Movies", "times"],
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jiotv"],
   "Vijay Super HD": ["Movies", "jiotv"],
-  "Disney Channel": ["Kids", "jiotv"],
+  "Disney Channel": ["Kids", "jioplus"],
   "Sony Yay Tamil": "Kids",
   "Hungama": ["Kids", "jiotv"],
   "Cartoon Network HD+ Tamil": "Kids",
@@ -68,9 +70,9 @@ const WANTED_MAP = {
   "Isaiaruvi": ["Music", "tplay"],
   "MK Six": "Music",
   "Chutti TV": "Kids",
-  "Sonic Hindi": ["Kids", "jiotv"],
+  "Sonic Tamil": ["Kids", "jiotv"],
   "Discovery Kids Tamil": "Kids",
-  "Nick Hindi": ["Kids", "jiotv"],
+  "Nick Tamil": ["Kids", "jiotv"],
   "Pogo Tamil": "Kids",
   "DD Sports": "Sports",
   "Eurosport HD": "Sports",
@@ -111,12 +113,12 @@ const WANTED_MAP = {
   "Sony Sports Ten 3 HD": ["Sports", "sonyliv"],
   "Sony Sports Ten 4 HD": ["Sports", "sonyliv"],
   "Sony Sports Ten 4": ["Sports", "sonyliv"],
-  "Star Sports 1 Tamil HD": ["Sports", "jiotv"],
-  "Star Sports 2 Tamil HD": "Sports",
-  "Star Sports 1 HD": "Sports",
-  "Star Sports 2 HD": "Sports",
-  "Star Sports Select 1 HD": "Sports",
-  "Star Sports Select 2 HD": "Sports"
+  "Star Sports 1 Tamil HD": ["Sports", "jioplus"],
+  "Star Sports 2 Tamil HD": ["Sports", "jioplus"],
+  "Star Sports 1 HD": ["Sports", "jioplus"],
+  "Star Sports 2 HD": ["Sports", "jioplus"],
+  "Star Sports Select 1 HD": ["Sports", "jioplus"],
+  "Star Sports Select 2 HD": ["Sports", "jioplus"]
 };
 
 function escapeRegex(str) {
