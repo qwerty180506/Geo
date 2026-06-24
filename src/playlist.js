@@ -33,16 +33,16 @@ const WANTED_MAP = {
   "MNX HD": ["Movies", "times"],
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jiotv"],
-  "Vijay Super HD": ["Movies", "jiotv"],
+  "Vijay Super HD": ["Movies", "jiotvplus"],
   "Disney Channel": ["Kids", "jiotvplus"],
   "Sony Yay Tamil": "Kids",
   "Hungama": ["Kids", "jiotv"],
   "Cartoon Network HD+ Tamil": "Kids",
   "Colors Infinity HD": "Movies",
-  "Star Movies HD": "Movies",
-  "Star Movies Select HD": "Movies",
-  "Colors Tamil HD": ["Entertainment", "jiotv"],
-  "Star Vijay HD": ["Entertainment", "jiotv"],
+  "Star Movies HD": ["Movies","jiotvplus"],
+  "Star Movies Select HD": ["Movies","jiotvplus"],
+  "Colors Tamil HD": ["Entertainment", "jiotvplus"],
+  "Star Vijay HD": ["Entertainment", "jiotvplus"],
   "Thanthi One": ["Entertainment", "jiotv"],
   "Zee Tamil HD": "Entertainment",
   "Zee Thirai HD": "Movies",
@@ -59,7 +59,7 @@ const WANTED_MAP = {
   "Makkal TV": "Entertainment",
   "Suriya TV": "Entertainment",
   "Sirippoli": "Entertainment",
-  "KTV HD": "Movies",
+  "KTV HD": ["Movies","sunnxt"],
   "Roja Movies": "Movies",
   "Tata Play Tamil Classics": "Movies",
   "Sun Life": "Movies",
@@ -155,6 +155,26 @@ function parseM3U(content) {
       continue;
     }
 
+    let finalBuffer = [...buffer];
+
+    const hasMpdProp = finalBuffer.some(tag =>
+    tag.includes(
+      "inputstream.adaptive.manifest_type=mpd"
+      )
+    );
+
+    if ( 
+    hasMpdProp &&
+      !/\.mpd(\?|$)/i.test(line)
+      ) {
+        finalBuffer = finalBuffer.filter(
+        tag =>
+          !tag.startsWith(
+            "#KODIPROP:inputstream.adaptive."
+          )
+        );
+    }
+
     let name = null;
 
     for (const tag of buffer) {
@@ -170,9 +190,8 @@ function parseM3U(content) {
     }
 
     if (name) {
-      channels[name] = [...buffer, line].join("\n");
+      channels[name] = [...finalBuffer,line].join("\n");
     }
-
     buffer = [];
   }
 
