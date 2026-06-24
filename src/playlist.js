@@ -240,11 +240,13 @@ async function uploadToGist(content, env) {
   console.log(text);
 
   if (!response.ok) {
-    throw new Error(
-      `Gist upload failed: ${response.status}`
-    );
+  const errorData = await response.json().catch(() => ({}));
+  console.error("GitHub API error:", errorData);
+  throw new Error(
+    `Gist upload failed: ${response.status} - ${errorData.message || ''}`
+  );
   }
-}
+  }
 
 export async function runMerge(env) {
   console.log("Starting playlist merge...");
