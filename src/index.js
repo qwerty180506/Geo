@@ -1,15 +1,19 @@
 import { runJioTV } from "./jiotv.js";
 import { runFancode } from "./fancode.js";
+import { runMerge } from "./playlist.js";
 
 export default {
-  // ---------------- MANUAL URL TRIGGER ----------------
   async fetch(request, env) {
     try {
-      await runJioTV(env);
-      await runFancode(env);
+      await Promise.all([
+        runJioTV(env),
+        runFancode(env)
+      ]);
+
+      await runMerge(env);
 
       return new Response(
-        "Both playlists updated successfully"
+        "All playlists updated successfully"
       );
     } catch (e) {
       return new Response(
