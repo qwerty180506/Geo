@@ -177,17 +177,17 @@ function parseM3U(content) {
 
     let name = null;
 
-    for (const tag of buffer) {
-      if (
-        tag.startsWith("#EXTINF") &&
-        tag.includes(",")
+  for (const tag of finalBuffer) {
+    if (
+      tag.startsWith("#EXTINF") &&
+      tag.includes(",")
       ) {
-        name = tag.substring(
-          tag.indexOf(",") + 1
-        ).trim();
-        break;
-      }
+      name = tag.substring(
+        tag.indexOf(",") + 1
+      ).trim();
+      break;
     }
+  }
 
     if (name) {
       channels[name] = [...finalBuffer,line].join("\n");
@@ -282,11 +282,9 @@ async function uploadToGist(content, env) {
   console.log(text);
 
   if (!response.ok) {
-  const errorData = await response.json().catch(() => ({}));
-  console.error("GitHub API error:", errorData);
-  throw new Error(
-    `Gist upload failed: ${response.status} - ${errorData.message || ''}`
-  );
+    throw new Error(
+      `Gist upload failed: ${response.status} - ${text}`
+    );
   }
   }
 
@@ -462,6 +460,12 @@ export async function runMerge(env) {
     `Final playlist entries: ${values.length}`
   );
 
+  console.log(
+  "Playlist size:",
+  new TextEncoder().encode(playlist).length,
+  "bytes"
+  );
+  
   await uploadToGist(
     playlist,
     env
