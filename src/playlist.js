@@ -34,7 +34,7 @@ const WANTED_MAP = {
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jiotv"],
   "Vijay Super HD": ["Movies", "jiotv"],
-  "Disney Channel": ["Kids", "jioplus"],
+  "Disney Channel": ["Kids", "jiotvplus"],
   "Sony Yay Tamil": "Kids",
   "Hungama": ["Kids", "jiotv"],
   "Cartoon Network HD+ Tamil": "Kids",
@@ -67,7 +67,7 @@ const WANTED_MAP = {
   "Tunes 6": "Music",
   "Sun Music HD": "Music",
   "Raj Musix": "Music",
-  "Isaiaruvi": ["Music", "tplay"],
+  "Isaiaruvi": "Music",
   "MK Six": "Music",
   "Chutti TV": "Kids",
   "Sonic Tamil": ["Kids", "jiotv"],
@@ -113,12 +113,12 @@ const WANTED_MAP = {
   "Sony Sports Ten 3 HD": ["Sports", "sonyliv"],
   "Sony Sports Ten 4 HD": ["Sports", "sonyliv"],
   "Sony Sports Ten 4": ["Sports", "sonyliv"],
-  "Star Sports 1 Tamil HD": ["Sports", "jioplus"],
-  "Star Sports 2 Tamil HD": ["Sports", "jioplus"],
-  "Star Sports 1 HD": ["Sports", "jioplus"],
-  "Star Sports 2 HD": ["Sports", "jioplus"],
-  "Star Sports Select 1 HD": ["Sports", "jioplus"],
-  "Star Sports Select 2 HD": ["Sports", "jioplus"]
+  "Star Sports 1 Tamil HD": ["Sports", "jiotvplus"],
+  "Star Sports 2 Tamil HD": ["Sports", "jiotvplus"],
+  "Star Sports 1 HD": ["Sports", "jiotvplus"],
+  "Star Sports 2 HD": ["Sports", "jiotvplus"],
+  "Star Sports Select 1 HD": ["Sports", "jiotvplus"],
+  "Star Sports Select 2 HD": ["Sports", "jiotvplus"]
 };
 
 function escapeRegex(str) {
@@ -260,6 +260,7 @@ export async function runMerge(env) {
     sunnxt: parseM3U(files.sunnxt),
     times: parseM3U(files.times),
     jiotv: parseM3U(files.jiotv),
+    jiotvplus: parseM3U(files.jiotvplus),
     local: parseM3U(files.local),
   };
 
