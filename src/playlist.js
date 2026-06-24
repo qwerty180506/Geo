@@ -33,7 +33,7 @@ const WANTED_MAP = {
   "MNX HD": ["Movies", "times"],
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jiotv"],
-  "Vijay Super HD": ["Movies", "jiotvplus"],
+  "Vijay Super HD": "Movies",
   "Disney Channel": ["Kids", "jiotvplus"],
   "Sony Yay Tamil": "Kids",
   "Hungama": ["Kids", "jiotv"],
