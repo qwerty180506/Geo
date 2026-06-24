@@ -219,7 +219,7 @@ async function uploadToGist(content, env) {
     {
       method: "PATCH",
       headers: {
-        Authorization: `token ${env.GIST_TOKEN}`,
+        Authorization: `token ${env.GITHUB_TOKEN}`,
         Accept: "application/vnd.github+json",
         "Content-Type": "application/json",
         "User-Agent": "Cloudflare-Worker",
