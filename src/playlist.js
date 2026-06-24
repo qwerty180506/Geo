@@ -213,6 +213,12 @@ async function fetchSources() {
       });
 
       result[key] = await response.text();
+      if (key === "jiotv") {
+        result[key] = result[key].replace(
+          /\|User-Agent=@cloudplay&Cookie=/g,
+          "?"
+        );
+      }
 
       console.log(
         `Downloaded ${key}: ${response.status}`
