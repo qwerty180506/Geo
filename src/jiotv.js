@@ -1,11 +1,4 @@
-const CHANNELS_URL =
-  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/channels.json";
-
-const COOKIE_URL =
-  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/biscuit.json";
-
-const SPORTS_URL =
-  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/sportsbiscuit.json";
+const CHANNELS_URL = "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/Geoplus.json";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
@@ -44,80 +37,50 @@ async function getJson(url) {
 
 // ---------------- NORMAL COOKIE ----------------
 async function getNormalCookie() {
-  const data = await getJson(COOKIE_URL);
-
-  const cookieObj = data.find((x) => x.cookie);
-
-  return cookieObj?.cookie || "";
+  return "";
 }
 
 // ---------------- SPORTS DATA ----------------
 async function getSportsData() {
-  const data = await getJson(SPORTS_URL);
-
-  const sportsIds = new Set();
-  const sportsCookies = {};
-
-  const allChannels = [
-    ...(data.successful_results || []),
-    ...(data.failed_results || []),
-  ];
-
-  for (const item of allChannels) {
-    const channelId = String(item.channel_id);
-
-    sportsIds.add(channelId);
-
-    const finalUrl =
-      item?.url ||
-      item?.final_url ||
-      item?.error_details?.final_url ||
-      "";
-
-    const match = finalUrl.match(/\?(.*)$/);
-
-    if (match) {
-      sportsCookies[channelId] = match[1];
-    }
-  }
-
   return {
-    sportsIds,
-    sportsCookies,
+    sportsIds: new Set(),
+    sportsCookies: {},
   };
 }
 
 // ---------------- CHANNEL ENTRY ----------------
 function createChannelEntry(channel, cookie) {
-  const id = channel.id || "";
   const name = channel.name || "";
   const logo = channel.logo || "";
   const group = channel.category || "Other";
-  const url = channel.url || "";
-  const keyId = channel.keyId || "";
-  const key = channel.key || "";
+  const primary = channel.primary || {};
+  const url = primary.link || "";
+  const drmLicense = primary.drmLicense || "";
 
   const lines = [];
 
   lines.push(
-    `#EXTINF:-1 tvg-id="${id}" tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
+    `#EXTINF:-1 tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
   );
 
   // Add Kodi DASH/DRM properties only for MPD streams
   const isMPD = /\.mpd(\?|$)/i.test(url);
 
-  if (isMPD) {
+  if (isMPD && drmLicense) {
     lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
+    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
 
+    const [keyId, key] = drmLicense.split(":");
     if (keyId && key) {
-      lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
       lines.push(
         `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
       );
     }
   }
 
-  lines.push(`${url}?${cookie}`);
+  const finalUrl = url.includes("?") ? url : `${url}?${primary.cookie || ""}`;
+
+  lines.push(finalUrl);
 
   return lines.join("\n");
 }
@@ -133,18 +96,11 @@ async function generateM3U() {
   const results = [];
 
   for (const channel of channels) {
-    const channelId = String(channel.id);
-
-    const cookie = sportsData.sportsIds.has(channelId)
-      ? sportsData.sportsCookies[channelId] || normalCookie
-      : normalCookie;
-
-    results.push(createChannelEntry(channel, cookie));
+    results.push(createChannelEntry(channel, normalCookie));
   }
 
   console.log(`Channels generated: ${results.length}`);
 
-  // ❌ Removed Updated timestamp line
   return ["#EXTM3U", "", ...results].join("\n\n");
 }
 
