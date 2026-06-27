@@ -49,13 +49,13 @@ async function getSportsData() {
 }
 
 // ---------------- CHANNEL ENTRY ----------------
-function createChannelEntry(channel, cookie) {
+function createChannelEntry(channel) {
   const name = channel.name || "";
   const logo = channel.logo || "";
-  const group = channel.category || "Other";
-  const primary = channel.primary || {};
-  const url = primary.link || "";
-  const drmLicense = primary.drmLicense || "";
+  const group = channel.group || "Other";
+
+  const url = channel.mpd_url || "";
+  const cookie = channel.headers?.cookie || "";
 
   const lines = [];
 
@@ -63,22 +63,28 @@ function createChannelEntry(channel, cookie) {
     `#EXTINF:-1 tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
   );
 
-  // Add Kodi DASH/DRM properties only for MPD streams
-  const isMPD = /\.mpd(\?|$)/i.test(url);
+  const isMPD =
+    channel.type === "dash" ||
+    /\.mpd(\?|$)/i.test(url);
 
-  if (isMPD && drmLicense) {
+  if (isMPD) {
     lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
-    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
 
-    const [keyId, key] = drmLicense.split(":");
-    if (keyId && key) {
+    if (channel.clearkey && Object.keys(channel.clearkey).length) {
+      lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
+
+      const [keyId, key] = Object.entries(channel.clearkey)[0];
+
       lines.push(
         `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
       );
     }
   }
 
-  const finalUrl = url.includes("?") ? url : `${url}?${primary.cookie || ""}`;
+  // Append cookie as query parameter only if it exists
+  const finalUrl = cookie
+    ? `${url}${url.includes("?") ? "&" : "?"}${cookie}`
+    : url;
 
   lines.push(finalUrl);
 
