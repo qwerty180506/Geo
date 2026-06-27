@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 05:30:13 PM 27-06-2026
-# Generated At: 2026-06-27T12:10:33.035Z
+# Source Updated: 05:40:25 PM 27-06-2026
+# Generated At: 2026-06-27T12:15:32.246Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Mini-Match-Card_1782298949083.png" group-title="Fancode",Cricket | Namibia vs Nigeria (Nigeria tour of Namibia 2026)
 https://in-mc-fblive.fancode.com/mumbai/143321_english_hls_96db62182e40570_1ta-di_h264/index.m3u8
@@ -13,3 +13,6 @@ https://in-mc-fblive.fancode.com/mumbai/143557_english_hls_ae6fcdfae786940_1ta-d
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Tissot-Grand-Prix-of-the-Netherlands-old-match-card.png" group-title="Fancode",MotoGP | Day 2 vs ASSEN (GRAND PRIX OF NETHERLANDS 2026)
 https://in-mc-fblive.fancode.com/mumbai/139955_english_hls_1ac25133f375303_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/F2_Austria_Old_match-card.jpg" group-title="Fancode",Motorsports | Sprint Race vs Austria (F2 AUSTRIA 2026)
+https://in-mc-fblive.fancode.com/mumbai/139632_english_hls_7a334f4f2518200_1ta-di_h264/index.m3u8
