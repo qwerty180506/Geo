@@ -121,24 +121,12 @@ const WANTED_MAP = {
   "Star Sports Select 2 HD": ["Sports", "jiotvplus"]
 };
 
-function removeUnwantedTags(text) {
-  return text
-    .split(/\r?\n/)
-    .filter(
-      line =>
-        !line.startsWith("#EXT-X-DRM-ID") &&
-        !line.startsWith("#EXT-X-LICENSE-URL")
-    )
-    .join("\n");
-}
-
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function parseM3U(content) {
-  const lines = removeUnwantedTags(content)
-    .split(/\r?\n/);
+  const lines = content.split(/\r?\n/);
 
   const channels = {};
   let buffer = [];
@@ -232,13 +220,6 @@ async function fetchSources() {
       });
 
       result[key] = await response.text();
-      if (key === "jiotv") {
-        result[key] = result[key].replace(
-          /\|User-Agent=@cloudplay&Cookie=/g,
-          "?"
-        );
-      }
-
       console.log(
         `Downloaded ${key}: ${response.status}`
       );
@@ -453,7 +434,7 @@ export async function runMerge(env) {
   const values = Object.values(base).sort();
 
   for (const item of values) {
-    playlist += removeUnwantedTags(item) + "\n";
+    playlist += item + "\n";
   }
 
   console.log(
