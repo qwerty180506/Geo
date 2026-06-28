@@ -77,7 +77,7 @@ function processM3U(text) {
 
 // ---------------- GITHUB UPLOAD ----------------
 async function uploadToGitHub(content, env) {
-  const path = "jiotv_cf.m3u";
+  const path = "jiotv2.m3u";
 
   const api = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
 
