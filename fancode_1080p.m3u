@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 08:33:52 PM 02-07-2026
-# Generated At: 2026-07-02T15:10:32.481Z
+# Source Updated: 08:44:00 PM 02-07-2026
+# Generated At: 2026-07-02T15:15:28.828Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143628_6150_NAM_VID_fc-web.jpg" group-title="Fancode",Cricket | Namibia vs Vidarbha (Vidarbha Cricket Association tour of Namibia)
 https://in-mc-fblive.fancode.com/mumbai/143628_english_hls_4858d9f01888431_1ta-di_h264/index.m3u8
@@ -13,3 +13,6 @@ https://in-mc-fblive.fancode.com/mumbai/143665_english_hls_823e4baffa56364_1ta-d
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/d_1782469797601.png" group-title="Fancode",Golf | Day 1 (Hulencourt Women's Open 2026)
 https://in-mc-fblive.fancode.com/mumbai/143408_english_hls_965c0fd80d45502_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/143578_6147_PGA_LOC_fc-web.jpg" group-title="Fancode",Golf | Day 1 - AM (US Senior Open Championship 2026)
+https://in-mc-fblive.fancode.com/mumbai/143578_english_hls_a7c39b97b089896_1ta-di_h264/index.m3u8
