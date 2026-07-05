@@ -39,7 +39,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Bharat_BTS/WDVLive/index.mpd?__hdnea
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f5c58e6bf0a2deb018fe87a934a6a1d0:ebd37e936867596a868cc085070e4cd5
-https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1783264517~exp=1783286117~acl=/*~hmac=153f594f806f53839a45247d09038545a22ea1be932ae8439606b20c4b307021
+https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1783265114~exp=1783286714~acl=/*~hmac=31354b0ef6ba28c10b3e743198d7e85abf29063a16d0cc4713e79def16f475fa
 
 #EXTINF:-1 tvg-name="And TV HD" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/AndTVHD.png" group-title="Entertainment",And TV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
