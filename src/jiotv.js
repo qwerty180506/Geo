@@ -64,22 +64,28 @@ function createChannelEntry(channel) {
   );
 
   const isMPD =
-    channel.type === "dash" ||
-    /\.mpd(\?|$)/i.test(url);
+  channel.type === "dash" ||
+  /\.mpd(\?|$)/i.test(url);
 
-  if (isMPD) {
-    lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
+if (isMPD) {
+  lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
 
-    if (channel.clearkey && Object.keys(channel.clearkey).length) {
-      lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
+  if (channel.clearkey && Object.keys(channel.clearkey).length) {
+    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
 
-      const [keyId, key] = Object.entries(channel.clearkey)[0];
+    const [keyId, key] = Object.entries(channel.clearkey)[0];
 
-      lines.push(
-        `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
-      );
-    }
+    lines.push(
+      `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
+    );
   }
+  else if (channel.license_url) {
+    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
+    lines.push(
+      `#KODIPROP:inputstream.adaptive.license_key=${channel.license_url}`
+    );
+  }
+}
 
   // Append cookie as query parameter only if it exists
   const finalUrl = cookie
