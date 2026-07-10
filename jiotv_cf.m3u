@@ -35,11 +35,11 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Bharat_HD_BTS/WDVLive/index.mpd?__hd
 #KODIPROP:inputstream.adaptive.license_key=687cfa6d31645a91ba3c38a9acdfac7c:c035ca584ac0a2170b96e2fa4523f3be
 https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Bharat_BTS/WDVLive/index.mpd?__hdnea__=st=1783701049~exp=1783722649~acl=/bpk-tv/Star_Bharat_BTS/WDVLive/*~hmac=3fd5b32a3da134a4fb25bdbd06781781ddd91c47b0ccc6e3f3417be594074f09
 
-#EXTINF:-1 tvg-name="SET HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_HD.png" group-title="Entertainment",SET HD
+#EXTINF:-1 tvg-name="SET HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sony_HD.png" group-title="Entertainment",SET HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f5c58e6bf0a2deb018fe87a934a6a1d0:ebd37e936867596a868cc085070e4cd5
-https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1783708248~exp=1783729848~acl=/*~hmac=baf9ad2206b8eb3ec6b25ce02535c62bb024a77d0ef8c62a8c18a1e0cbf53ffb
+https://jiotvpllive.cdn.jio.com/bpk-tv/Sony_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1783701049~exp=1783722649~acl=/bpk-tv/Sony_HD_BTS/WDVLive/*~hmac=a84a65c58ebf07048bee6c2847f47d44638a992d2da84bcbbdf2cbf0c46a4559
 
 #EXTINF:-1 tvg-name="And TV HD" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/AndTVHD.png" group-title="Entertainment",And TV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
