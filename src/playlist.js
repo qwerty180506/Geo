@@ -69,7 +69,6 @@ const WANTED_MAP = {
   "Raj Musix": "Music",
   "Isaiaruvi": "Music",
   "MK Six": "Music",
-  "Chutti TV": "Kids",
   "Sonic Tamil": ["Kids", "jiotv"],
   "Discovery Kids Tamil": "Kids",
   "Nick Tamil": ["Kids", "jiotv"],
