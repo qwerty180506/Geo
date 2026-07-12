@@ -29,7 +29,7 @@ const WANTED_MAP = {
   "Jaya Plus": "News",
   "Animal Planet HD Tamil": "Infortainment",
   "Cartoon Network Tamil": "Kids",
-  "Chutti TV": ["Kids", "sunnxt"],
+  "Chutti TV": "Kids",
   "Disney Channel": ["Kids", "jiotvplus"],
   "Sony Yay": "Kids",
   "Hungama": ["Kids", "jiotv"],
