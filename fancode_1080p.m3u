@@ -1,9 +1,12 @@
 #EXTM3U
-# Source Updated: 02:07:54 PM 16-07-2026
-# Generated At: 2026-07-16T08:45:28.500Z
+# Source Updated: 02:18:02 PM 16-07-2026
+# Generated At: 2026-07-16T08:50:52.911Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/The-Open-Championship_fc-web.jpg" group-title="Fancode",Golf | Day 1 (The Open 2026)
 https://in-mc-fblive.fancode.com/mumbai/4246808_english_hls_cd63cc5f7314604_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/EFG-Swiss-Open-Gstaad_fc-Web.jpg" group-title="Fancode",Tennis | Day 4 - World Feed vs Switzerland (ATP 250 - EFG Swiss Open Gstaad 2026)
 https://in-mc-fblive.fancode.com/mumbai/143493_english_hls_b547409e2039401_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Nordea-Open_Web-match-card.png" group-title="Fancode",Tennis | Day 4 - World Feed vs Sweden (ATP 250 - Nordea Open 2026)
+https://in-mc-fblive.fancode.com/mumbai/143486_english_hls_3440f4b86a36375_1ta-di_h264/index.m3u8
