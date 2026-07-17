@@ -36,45 +36,84 @@ async function getM3U(url) {
 }
 
 // ---------------- PROCESS M3U ----------------
+// ---------------- PROCESS M3U ----------------
 function processM3U(text) {
   const lines = text.replace(/\r/g, "").split("\n");
   const output = [];
 
-  for (let line of lines) {
-    line = line.trim();
+  let extinf = null;
+  let licenseType = null;
+  let licenseKey = null;
+  let cookie = "";
 
-    if (!line) {
-      output.push("");
+  for (let rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) continue;
+
+    // Store metadata
+    if (line.startsWith("#EXTINF")) {
+      extinf = line;
       continue;
     }
 
-    // Remove unwanted DRM lines
-    if (line.startsWith("#EXT-X-DRM-ID:")) continue;
-    if (line.startsWith("#EXT-X-LICENSE-URL:")) continue;
+    if (line.startsWith("#KODIPROP:inputstream.adaptive.license_type=")) {
+      licenseType = line;
+      continue;
+    }
 
-    // Convert stream URL
+    if (line.startsWith("#KODIPROP:inputstream.adaptive.license_key=")) {
+      licenseKey = line;
+      continue;
+    }
+
+    // Ignore user-agent line
+    if (line.startsWith("#EXTVLCOPT:")) {
+      continue;
+    }
+
+    // Extract cookie from EXTHTTP
+    if (line.startsWith("#EXTHTTP:")) {
+      try {
+        const json = JSON.parse(line.substring(9));
+        cookie = json.cookie || "";
+      } catch {
+        cookie = "";
+      }
+      continue;
+    }
+
+    // Stream URL
     if (/^https?:\/\//i.test(line)) {
-      const [url, params] = line.split("|");
+      let url = line.replace(/\?$/, "");
 
-      let cookie = "";
-
-      if (params) {
-        const match = params.match(/Cookie=([^&]+)/i);
-        if (match) {
-          cookie = decodeURIComponent(match[1]);
-        }
+      if (cookie) {
+        url += `?${cookie}`;
       }
 
-      output.push(cookie ? `${url}?${cookie}` : url);
+      if (extinf) output.push(extinf);
+      if (licenseType) output.push(licenseType);
+      if (licenseKey) output.push(licenseKey);
+      output.push(url);
+      output.push("");
+
+      // Reset for next channel
+      extinf = null;
+      licenseType = null;
+      licenseKey = null;
+      cookie = "";
+
       continue;
     }
 
-    output.push(line);
+    // Preserve other playlist tags if needed
+    if (line.startsWith("#EXTM3U")) {
+      output.push(line);
+    }
   }
 
   return output.join("\n");
 }
-
 // ---------------- GITHUB UPLOAD ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv2.m3u";
