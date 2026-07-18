@@ -31,7 +31,7 @@ const WANTED_MAP = {
   "Cartoon Network Tamil": "Kids",
   "Chutti TV": "Kids",
   "Disney Channel": ["Kids", "jiotvplus"],
-  "Sony Yay": "Kids",
+  "Sony Yay": ["Kids","jiotvplus"],
   "Hungama": ["Kids", "jiotv"],
   "Cartoon Network HD+ Tamil": "Kids",
   "Sonic Tamil": ["Kids", "jiotv"],
