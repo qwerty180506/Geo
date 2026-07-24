@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 04:40:21 PM 24-07-2026
-# Generated At: 2026-07-24T11:20:18.732Z
+# Source Updated: 04:50:29 PM 24-07-2026
+# Generated At: 2026-07-24T11:25:13.041Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ISPS-Handa-Womens-Scottish-Open-2026-old-match-card.jpg" group-title="Fancode",Golf | Day 2 - World Feed (ISPS Handa Women's Scottish Open 2026)
 https://in-mc-pdlive.fancode.com/mumbai/4247418_english_hls_91bd793e2f64097_1ta-di_h264/index.m3u8
@@ -10,3 +10,6 @@ https://in-mc-pdlive.fancode.com/mumbai/143507_english_hls_829309fa7559979_1ta-d
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/104.png" group-title="Fancode",Tennis | Day 5 vs Portugal (ATP 250 - Millenium Estoril Open 2026)
 https://in-mc-pdlive.fancode.com/mumbai/143513_english_hls_3b01c8cfce63305_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Hungarian_GP_2026_web.jpg" group-title="Fancode",Formula 1 | Practice 1 (F1 AWS HUNGARIAN GRAND PRIX 2026)
+https://in-mc-pdlive.fancode.com/mumbai/139472_english_hls_a535b4b48330732_1ta-di_h264/index.m3u8
