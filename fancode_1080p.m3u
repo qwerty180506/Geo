@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 04:05:59 PM 25-07-2026
-# Generated At: 2026-07-25T10:45:18.180Z
+# Source Updated: 04:16:05 PM 25-07-2026
+# Generated At: 2026-07-25T10:50:18.366Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Sri-Lanka-vs-Pakistan-Womens-ODI-Series-Old-Match-card.jpg" group-title="Fancode",Cricket | Pakistan Women vs Sri Lanka Women (Pakistan Women's tour of Sri Lanka, 2026)
 https://in-mc-pdlive.fancode.com/mumbai/4247426_english_hls_65d82e3e4c86377_1ta-di_h264/index.m3u8
@@ -11,8 +11,11 @@ https://in-mc-pdlive.fancode.com/mumbai/4246705_english_hls_492297ca2b39793_1ta-
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4246722_52991_GG_KRL_FC-WEB_1784539180374.jpg" group-title="Fancode",Cricket | Galle Gallants vs Kandy Royals (Lanka Premier League, 2026)
 https://in-mc-pdlive.fancode.com/mumbai/4246722_english_hls_dbf98ca42d71277_1ta-di_h264/index.m3u8
 
-#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ZIM-vs-IND_T20Is_fc-web.jpg" group-title="Fancode",Cricket | Zimbabwe vs India (India tour of Zimbabwe, 2026)
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ZIM-vs-IND_T20Is_fc-web.jpg" group-title="Fancode",Cricket | India vs Zimbabwe (India tour of Zimbabwe, 2026)
 https://in-mc-pdlive.fancode.com/mumbai/143352_english_hls_cd4f806e1b92407_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Hungarian_GP_2026_web.jpg" group-title="Fancode",Formula 1 | Practice 3 (F1 AWS HUNGARIAN GRAND PRIX 2026)
 https://in-mc-pdlive.fancode.com/mumbai/139474_english_hls_cb09c4273596597_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/The-ATP250_fc-web.jpg" group-title="Fancode",Tennis | Day 6 vs Austria (ATP 250 - Generali Open 2026)
+https://in-mc-pdlive.fancode.com/mumbai/143508_english_hls_92168a39226791_1ta-di_h264/index.m3u8
