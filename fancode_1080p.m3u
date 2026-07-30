@@ -1,6 +1,6 @@
 #EXTM3U
-# Source Updated: 08:05:13 PM 30-07-2026
-# Generated At: 2026-07-30T14:45:18.664Z
+# Source Updated: 08:15:21 PM 30-07-2026
+# Generated At: 2026-07-30T14:50:18.857Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4248200_53019_SLO_AFP_fc-web.jpg" group-title="Fancode",Cricket | Sri Lankan Lions vs Afghanistan Pathans (Asian Legends League, 2026)
 https://livecf.fancode.com/4248200_english_hls_9780c44d6569459_1ta-di_h264/index.m3u8
@@ -10,3 +10,6 @@ https://livecf.fancode.com/4246720_english_hls_e5254c82f165480_1ta-di_h264/index
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Rocket-Classic_fc-web.jpg" group-title="Fancode",Golf | Main Feed - Day 1 (Rocket Classic 2026)
 https://livecf.fancode.com/4248044_english_hls_579a8a938f65205_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Mubadala_Web-match-card.png" group-title="Fancode",Tennis | World Feed vs Washington, United States (ATP 500 - Mubadala DC Open 2026)
+https://livecf.fancode.com/143646_english_hls_e40a35098075978_1ta-di_h264/index.m3u8
