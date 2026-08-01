@@ -1,9 +1,12 @@
 #EXTM3U
-# Source Updated: 02:53:18 PM 01-08-2026
-# Generated At: 2026-08-01T09:35:12.651Z
+# Source Updated: 03:03:27 PM 01-08-2026
+# Generated At: 2026-08-01T09:40:18.716Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4248189_53019_AFP_AS_fc-web.jpg" group-title="Fancode",Cricket | Afghanistan Pathans vs Asian Stars (Asian Legends League, 2026)
 https://in-ak-pdlive.akamaized.net/mumbai/4248189_english_hls_b5185fa4c162425_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/DPL-Mini.png" group-title="Fancode",Cricket | East Delhi Riders vs South Delhi Superstarz (Delhi Premier League, 2026)
 https://in-ak-pdlive.akamaized.net/mumbai/4247964_english_hls_3d48df153398151_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Chelsea-vs-Tottenham-Hotspu-old.png" group-title="Fancode",Football | Chelsea vs Tottenham Hotspur (Club Friendlies 2026)
+https://livecf.fancode.com/4248013_english_hls_8042da688643068_1ta-di_h264/index.m3u8
