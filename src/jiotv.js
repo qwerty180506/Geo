@@ -49,13 +49,22 @@ async function getSportsData() {
 }
 
 // ---------------- CHANNEL ENTRY ----------------
-function createChannelEntry(channel) {
+function createChannelEntry(channel, normalCookie = "") {
   const name = channel.name || "";
   const logo = channel.logo || "";
-  const group = channel.group || "Other";
+  const group = channel.group || channel.category || "Other";
 
-  const url = channel.mpd_url || "";
-  const cookie = channel.headers?.cookie || "";
+  // Support BOTH formats:
+  // "mpd" and "mpd_url"
+  const url = channel.mpd || channel.mpd_url || "";
+
+  // Support BOTH formats:
+  // "cookie" and "headers.cookie"
+  const cookie =
+    channel.cookie ||
+    channel.headers?.cookie ||
+    normalCookie ||
+    "";
 
   const lines = [];
 
@@ -63,31 +72,67 @@ function createChannelEntry(channel) {
     `#EXTINF:-1 tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
   );
 
+  // Detect DASH/MPD
   const isMPD =
-  channel.type === "dash" ||
-  /\.mpd(\?|$)/i.test(url);
+    channel.type === "dash" ||
+    /\.mpd(?:\?|$)/i.test(url);
 
-if (isMPD) {
-  lines.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
-
-  if (channel.clearkey && Object.keys(channel.clearkey).length) {
-    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
-
-    const [keyId, key] = Object.entries(channel.clearkey)[0];
-
+  if (isMPD) {
     lines.push(
-      `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
+      "#KODIPROP:inputstream.adaptive.manifest_type=mpd"
     );
-  }
-  else if (channel.license_url) {
-    lines.push("#KODIPROP:inputstream.adaptive.license_type=clearkey");
-    lines.push(
-      `#KODIPROP:inputstream.adaptive.license_key=${channel.license_url}`
-    );
-  }
-}
 
-  // Append cookie as query parameter only if it exists
+    // --------------------------------
+    // Clearkey format 1:
+    // keyId + key
+    // --------------------------------
+    if (channel.keyId && channel.key) {
+      lines.push(
+        "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+      );
+
+      lines.push(
+        `#KODIPROP:inputstream.adaptive.license_key=${channel.keyId}:${channel.key}`
+      );
+    }
+
+    // --------------------------------
+    // Clearkey format 2:
+    // clearkey: { "keyId": "key" }
+    // --------------------------------
+    else if (
+      channel.clearkey &&
+      typeof channel.clearkey === "object" &&
+      Object.keys(channel.clearkey).length
+    ) {
+      lines.push(
+        "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+      );
+
+      const [keyId, key] = Object.entries(channel.clearkey)[0];
+
+      lines.push(
+        `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
+      );
+    }
+
+    // --------------------------------
+    // License URL format
+    // --------------------------------
+    else if (channel.license_url) {
+      lines.push(
+        "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+      );
+
+      lines.push(
+        `#KODIPROP:inputstream.adaptive.license_key=${channel.license_url}`
+      );
+    }
+  }
+
+  // --------------------------------
+  // Add cookie to MPD URL
+  // --------------------------------
   const finalUrl = cookie
     ? `${url}${url.includes("?") ? "&" : "?"}${cookie}`
     : url;
@@ -96,6 +141,7 @@ if (isMPD) {
 
   return lines.join("\n");
 }
+
 
 // ---------------- GENERATE M3U ----------------
 async function generateM3U() {
@@ -108,14 +154,15 @@ async function generateM3U() {
   const results = [];
 
   for (const channel of channels) {
-    results.push(createChannelEntry(channel, normalCookie));
+    results.push(
+      createChannelEntry(channel, normalCookie)
+    );
   }
 
   console.log(`Channels generated: ${results.length}`);
 
   return ["#EXTM3U", "", ...results].join("\n\n");
 }
-
 // ---------------- GITHUB UPLOAD (ONLY IF CHANGED) ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv_cf.m3u";
