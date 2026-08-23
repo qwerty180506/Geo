@@ -132,7 +132,7 @@ function parseM3U(content) {
   let buffer = [];
 
   for (const raw of lines) {
-    const line = raw.trim();
+    let line = raw.trim();
 
     if (!line || line.startsWith("#EXTM3U")) {
       continue;
@@ -145,40 +145,46 @@ function parseM3U(content) {
 
     let finalBuffer = [...buffer];
 
+    // Extract stream headers (like Cookie) from KODIPROP tags
+    let cookieValue = null;
+    finalBuffer = finalBuffer.filter(tag => {
+      if (tag.startsWith("#KODIPROP:inputstream.adaptive.stream_headers=")) {
+        const headerContent = tag.replace("#KODIPROP:inputstream.adaptive.stream_headers=", "");
+        if (headerContent.startsWith("Cookie=")) {
+          cookieValue = headerContent.replace("Cookie=", "");
+        }
+        return false; // Remove stream_headers tag from buffer
+      }
+      return true;
+    });
+
+    // Append the token to the URL if a cookie header was found
+    if (cookieValue) {
+      const separator = line.includes("?") ? "&" : "?";
+      line = `${line}${separator}${cookieValue}`;
+    }
+
     const hasMpdProp = finalBuffer.some(tag =>
-    tag.includes(
-      "inputstream.adaptive.manifest_type=mpd"
-      )
+      tag.includes("inputstream.adaptive.manifest_type=mpd")
     );
 
-    if ( 
-    hasMpdProp &&
-      !/\.mpd(\?|$)/i.test(line)
-      ) {
-        finalBuffer = finalBuffer.filter(
-        tag =>
-          !tag.startsWith(
-            "#KODIPROP:inputstream.adaptive."
-          )
-        );
+    if (hasMpdProp && !/\.mpd(\?|$)/i.test(line)) {
+      finalBuffer = finalBuffer.filter(
+        tag => !tag.startsWith("#KODIPROP:inputstream.adaptive.")
+      );
     }
 
     let name = null;
 
-  for (const tag of finalBuffer) {
-    if (
-      tag.startsWith("#EXTINF") &&
-      tag.includes(",")
-      ) {
-      name = tag.substring(
-        tag.indexOf(",") + 1
-      ).trim();
-      break;
+    for (const tag of finalBuffer) {
+      if (tag.startsWith("#EXTINF") && tag.includes(",")) {
+        name = tag.substring(tag.indexOf(",") + 1).trim();
+        break;
+      }
     }
-  }
 
     if (name) {
-      channels[name] = [...finalBuffer,line].join("\n");
+      channels[name] = [...finalBuffer, line].join("\n");
     }
     buffer = [];
   }
