@@ -8,7 +8,7 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u"
+  jiotv: "https://sf-proxy.livetoons05.workers.dev/"
 };
 
 const PRIORITY_ORDER = [
@@ -212,12 +212,17 @@ async function fetchSources() {
 
   for (const [key, url] of Object.entries(SOURCE_URLS)) {
     try {
-      const response = await fetch(`${url}?t=${Date.now()}`, {
-        headers: {
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-        },
-      });
+      const headers = {
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+      };
+
+      if (key === "jiotv") {
+        headers["Referer"] = "https://sflexzio.pages.dev";
+        headers["Origin"] = "https://sflexzio.pages.dev";
+      }
+
+      const response = await fetch(`${url}?t=${Date.now()}`, { headers });
 
       result[key] = await response.text();
       console.log(
