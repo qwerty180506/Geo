@@ -1,4 +1,4 @@
-const M3U_URL = "https://mute-sunset-8225.streamstar18.workers.dev/";
+const M3U_URL = "https://mute-sunset-8225.streamstar18.workers.dev";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
