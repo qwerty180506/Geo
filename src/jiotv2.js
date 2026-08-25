@@ -1,4 +1,4 @@
-const M3U_URL = "https://go.streamstar18.workers.dev/";
+const M3U_URL = "https://mute-sunset-8225.streamstar18.workers.dev/";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
@@ -35,7 +35,6 @@ async function getM3U(url) {
   return response.text();
 }
 
-// ---------------- PROCESS M3U ----------------
 // ---------------- PROCESS M3U ----------------
 function processM3U(text) {
   const lines = text.replace(/\r/g, "").split("\n");
