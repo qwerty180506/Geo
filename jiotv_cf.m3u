@@ -456,7 +456,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_SAB_MOB/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=88295124db295a6b9f5027dc6049e294:641c40230a95cb76d1949125f9552fda
-https://jiotvpllive.cdn.jio.com/bpk-tv/AndTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1787854999~exp=1787858599~acl=/bpk-tv/AndTVHD_BTS/WDVLive/*~hmac=0775a279f0073aaf4b2ec8b5ad1af4efc6678b57a8fa39fe0ab3ee63ce5e90ab
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1787858589~exp=1787862189~acl=/bpk-tv/AndTVHD_BTS/WDVLive/*~hmac=e85b5522d657dd7ba0491032a1ca5dbb84ddb0ae4fa8e232efd6bbbfff64cc1e
 
 #EXTINF:-1 tvg-name="Anmol TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeAnmol.png" group-title="Entertainment",Anmol TV
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
