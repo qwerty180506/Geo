@@ -12,11 +12,11 @@ const SOURCE_URLS = {
 };
 
 const PRIORITY_ORDER = [
-  "jiotv",
   "jiotvplus",
   "sonyliv",
   "sunnxt",
   "times",
+  "jiotv"
 ];
 
 const WANTED_MAP = {
