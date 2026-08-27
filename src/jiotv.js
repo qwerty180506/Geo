@@ -46,11 +46,20 @@ async function getJson(url) {
 async function getNormalCookie() {
   const data = await getJson(COOKIE_URL);
 
-  const cookieEntry = data.find(
-    (item) => item && item.cookie
-  );
+  // biscuit.json contains the normal cookie
+  if (typeof data === "string") {
+    return data;
+  }
 
-  return cookieEntry?.cookie || "";
+  if (Array.isArray(data)) {
+    const item = data.find(
+      (item) => item && item.cookie
+    );
+
+    return item?.cookie || "";
+  }
+
+  return data.cookie || "";
 }
 
 // ---------------- SPORTS DATA ----------------
@@ -65,22 +74,18 @@ async function getSportsData() {
   ];
 
   for (const item of results) {
-    const channelId = item.channel_id;
-    const finalUrl = item.error_details?.final_url || item.final_url || "";
+    if (!item.channel_id) continue;
 
-    if (!channelId || !finalUrl) continue;
+    const finalUrl =
+      item.final_url ||
+      item.error_details?.final_url ||
+      "";
 
-    try {
-      const url = new URL(finalUrl);
+    if (!finalUrl) continue;
 
-      const cookie = url.searchParams.toString();
-
-      if (cookie) {
-        sportsCookies[String(channelId)] = cookie;
-      }
-    } catch {
-      // Ignore invalid URLs
-    }
+    // Store the COMPLETE URL.
+    // Do NOT extract or modify the cookie.
+    sportsCookies[String(item.channel_id)] = finalUrl;
   }
 
   return {
@@ -97,22 +102,26 @@ function createChannelEntry(
 ) {
   const name = channel.name || "";
   const logo = channel.logo || "";
-  const group = channel.group || channel.category || "Other";
+  const group =
+    channel.group ||
+    channel.category ||
+    "Other";
 
   // Support BOTH formats:
   // "mpd" and "mpd_url"
-  const url = channel.mpd || channel.mpd_url || "";
-
-  // ---------------- COOKIE PRIORITY ----------------
-  // 1. Channel-specific cookie from sportsbiscuit.json
-  // 2. Normal cookie from biscuit.json
-  // 3. Existing cookie from Geoplus.json
-  const cookie =
-    sportsCookies[String(channel.id)] ||
-    channel.cookie ||
-    channel.headers?.cookie ||
-    normalCookie ||
+  const url =
+    channel.mpd ||
+    channel.mpd_url ||
     "";
+
+  const channelId = String(channel.id || "");
+
+  // --------------------------------
+  // If sportsbiscuit.json has this ID,
+  // use its COMPLETE final_url.
+  // --------------------------------
+  const sportsUrl =
+    sportsCookies[channelId];
 
   const lines = [];
 
@@ -120,7 +129,9 @@ function createChannelEntry(
     `#EXTINF:-1 tvg-name="${name}" tvg-logo="${logo}" group-title="${group}",${name}`
   );
 
-  // Detect DASH/MPD
+  // --------------------------------
+  // DASH/MPD detection
+  // --------------------------------
   const isMPD =
     channel.type === "dash" ||
     /\.mpd(?:\?|$)/i.test(url);
@@ -157,7 +168,8 @@ function createChannelEntry(
         "#KODIPROP:inputstream.adaptive.license_type=clearkey"
       );
 
-      const [keyId, key] = Object.entries(channel.clearkey)[0];
+      const [keyId, key] =
+        Object.entries(channel.clearkey)[0];
 
       lines.push(
         `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
@@ -179,11 +191,20 @@ function createChannelEntry(
   }
 
   // --------------------------------
-  // Add cookie to MPD URL
+  // FINAL URL
   // --------------------------------
-  const finalUrl = cookie
-    ? `${url}${url.includes("?") ? "&" : "?"}${cookie}`
-    : url;
+  let finalUrl;
+
+  if (sportsUrl) {
+    // Third file has this channel.
+    // Use final_url AS-IS.
+    finalUrl = sportsUrl;
+  } else {
+    // Normal channel URL + normal cookie.
+    finalUrl = normalCookie
+      ? `${url}${url.includes("?") ? "&" : "?"}${normalCookie}`
+      : url;
+  }
 
   lines.push(finalUrl);
 
@@ -192,16 +213,17 @@ function createChannelEntry(
 
 // ---------------- GENERATE M3U ----------------
 async function generateM3U() {
-  // Fetch all 3 files
-  const [channels, normalCookie, sportsData] = await Promise.all([
-    getJson(CHANNELS_URL),
-    getNormalCookie(),
-    getSportsData(),
-  ]);
+  const [channels, normalCookie, sportsData] =
+    await Promise.all([
+      getJson(CHANNELS_URL),
+      getNormalCookie(),
+      getSportsData(),
+    ]);
 
   console.log(`Channels loaded: ${channels.length}`);
+
   console.log(
-    `Sports-specific cookies loaded: ${sportsData.sportsIds.size}`
+    `Sports-specific URLs loaded: ${sportsData.sportsIds.size}`
   );
 
   const results = [];
@@ -216,16 +238,23 @@ async function generateM3U() {
     );
   }
 
-  console.log(`Channels generated: ${results.length}`);
+  console.log(
+    `Channels generated: ${results.length}`
+  );
 
-  return ["#EXTM3U", "", ...results].join("\n\n");
+  return [
+    "#EXTM3U",
+    "",
+    ...results,
+  ].join("\n\n");
 }
 
 // ---------------- GITHUB UPLOAD (ONLY IF CHANGED) ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv_cf.m3u";
 
-  const api = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
+  const api =
+    `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
 
   let sha;
   let existingContent = "";
@@ -233,7 +262,8 @@ async function uploadToGitHub(content, env) {
   // 1. Fetch existing file
   const existing = await fetch(api, {
     headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      Authorization:
+        `Bearer ${env.GITHUB_TOKEN}`,
       "User-Agent": "Cloudflare-Worker",
     },
   });
@@ -243,7 +273,8 @@ async function uploadToGitHub(content, env) {
     sha = json.sha;
 
     if (json.content) {
-      existingContent = atob(json.content.replace(/\n/g, ""));
+      existingContent =
+        atob(json.content.replace(/\n/g, ""));
     }
   }
 
@@ -253,9 +284,12 @@ async function uploadToGitHub(content, env) {
 
   if (
     sha &&
-    normalize(existingContent) === normalize(content)
+    normalize(existingContent) ===
+      normalize(content)
   ) {
-    console.log("No changes detected. Skipping commit.");
+    console.log(
+      "No changes detected. Skipping commit."
+    );
     return;
   }
 
@@ -263,12 +297,16 @@ async function uploadToGitHub(content, env) {
   const upload = await fetch(api, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-      "User-Agent": "Cloudflare-Worker",
+      Authorization:
+        `Bearer ${env.GITHUB_TOKEN}`,
+      "Content-Type":
+        "application/json",
+      "User-Agent":
+        "Cloudflare-Worker",
     },
     body: JSON.stringify({
-      message: `Auto update playlist ${new Date().toISOString()}`,
+      message:
+        `Auto update playlist ${new Date().toISOString()}`,
       content: toBase64(content),
       sha,
     }),
@@ -278,7 +316,9 @@ async function uploadToGitHub(content, env) {
     throw new Error(await upload.text());
   }
 
-  console.log(`GitHub upload successful (${upload.status})`);
+  console.log(
+    `GitHub upload successful (${upload.status})`
+  );
 }
 
 // ---------------- MAIN ----------------
@@ -287,7 +327,9 @@ export async function runJioTV(env) {
 
   await uploadToGitHub(m3u, env);
 
-  console.log("Playlist updated successfully");
+  console.log(
+    "Playlist updated successfully"
+  );
 
   return {
     success: true,
