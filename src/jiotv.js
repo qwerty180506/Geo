@@ -1,4 +1,11 @@
-const CHANNELS_URL = "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/Geoplus.json";
+const CHANNELS_URL =
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/Geoplus.json";
+
+const COOKIE_URL =
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/biscuit.json";
+
+const SPORTS_COOKIE_URL =
+  "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/sportsbiscuit.json";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
@@ -37,19 +44,57 @@ async function getJson(url) {
 
 // ---------------- NORMAL COOKIE ----------------
 async function getNormalCookie() {
-  return "";
+  const data = await getJson(COOKIE_URL);
+
+  const cookieEntry = data.find(
+    (item) => item && item.cookie
+  );
+
+  return cookieEntry?.cookie || "";
 }
 
 // ---------------- SPORTS DATA ----------------
 async function getSportsData() {
+  const data = await getJson(SPORTS_COOKIE_URL);
+
+  const sportsCookies = {};
+
+  const results = [
+    ...(data.successful_results || []),
+    ...(data.failed_results || []),
+  ];
+
+  for (const item of results) {
+    const channelId = item.channel_id;
+    const finalUrl = item.error_details?.final_url || item.final_url || "";
+
+    if (!channelId || !finalUrl) continue;
+
+    try {
+      const url = new URL(finalUrl);
+
+      const cookie = url.searchParams.toString();
+
+      if (cookie) {
+        sportsCookies[String(channelId)] = cookie;
+      }
+    } catch {
+      // Ignore invalid URLs
+    }
+  }
+
   return {
-    sportsIds: new Set(),
-    sportsCookies: {},
+    sportsIds: new Set(Object.keys(sportsCookies)),
+    sportsCookies,
   };
 }
 
 // ---------------- CHANNEL ENTRY ----------------
-function createChannelEntry(channel, normalCookie = "") {
+function createChannelEntry(
+  channel,
+  normalCookie = "",
+  sportsCookies = {}
+) {
   const name = channel.name || "";
   const logo = channel.logo || "";
   const group = channel.group || channel.category || "Other";
@@ -58,9 +103,12 @@ function createChannelEntry(channel, normalCookie = "") {
   // "mpd" and "mpd_url"
   const url = channel.mpd || channel.mpd_url || "";
 
-  // Support BOTH formats:
-  // "cookie" and "headers.cookie"
+  // ---------------- COOKIE PRIORITY ----------------
+  // 1. Channel-specific cookie from sportsbiscuit.json
+  // 2. Normal cookie from biscuit.json
+  // 3. Existing cookie from Geoplus.json
   const cookie =
+    sportsCookies[String(channel.id)] ||
     channel.cookie ||
     channel.headers?.cookie ||
     normalCookie ||
@@ -142,20 +190,29 @@ function createChannelEntry(channel, normalCookie = "") {
   return lines.join("\n");
 }
 
-
 // ---------------- GENERATE M3U ----------------
 async function generateM3U() {
-  const channels = await getJson(CHANNELS_URL);
-  const normalCookie = await getNormalCookie();
-  const sportsData = await getSportsData();
+  // Fetch all 3 files
+  const [channels, normalCookie, sportsData] = await Promise.all([
+    getJson(CHANNELS_URL),
+    getNormalCookie(),
+    getSportsData(),
+  ]);
 
   console.log(`Channels loaded: ${channels.length}`);
+  console.log(
+    `Sports-specific cookies loaded: ${sportsData.sportsIds.size}`
+  );
 
   const results = [];
 
   for (const channel of channels) {
     results.push(
-      createChannelEntry(channel, normalCookie)
+      createChannelEntry(
+        channel,
+        normalCookie,
+        sportsData.sportsCookies
+      )
     );
   }
 
@@ -163,6 +220,7 @@ async function generateM3U() {
 
   return ["#EXTM3U", "", ...results].join("\n\n");
 }
+
 // ---------------- GITHUB UPLOAD (ONLY IF CHANGED) ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv_cf.m3u";
@@ -190,9 +248,13 @@ async function uploadToGitHub(content, env) {
   }
 
   // 2. Normalize and compare
-  const normalize = (str) => str.trim().replace(/\r/g, "");
+  const normalize = (str) =>
+    str.trim().replace(/\r/g, "");
 
-  if (sha && normalize(existingContent) === normalize(content)) {
+  if (
+    sha &&
+    normalize(existingContent) === normalize(content)
+  ) {
     console.log("No changes detected. Skipping commit.");
     return;
   }
