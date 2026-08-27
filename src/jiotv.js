@@ -46,7 +46,6 @@ async function getJson(url) {
 async function getNormalCookie() {
   const data = await getJson(COOKIE_URL);
 
-  // biscuit.json contains the normal cookie
   if (typeof data === "string") {
     return data;
   }
@@ -83,8 +82,7 @@ async function getSportsData() {
 
     if (!finalUrl) continue;
 
-    // Store the COMPLETE URL.
-    // Do NOT extract or modify the cookie.
+    // Store the COMPLETE final_url
     sportsCookies[String(item.channel_id)] = finalUrl;
   }
 
@@ -107,18 +105,15 @@ function createChannelEntry(
     channel.category ||
     "Other";
 
-  // Support BOTH formats:
-  // "mpd" and "mpd_url"
-  const url =
-    channel.mpd ||
-    channel.mpd_url ||
-    "";
+  // Geoplus.json uses "url"
+  const url = channel.url || "";
 
   const channelId = String(channel.id || "");
 
   // --------------------------------
-  // If sportsbiscuit.json has this ID,
-  // use its COMPLETE final_url.
+  // If sportsbiscuit.json contains
+  // this channel ID, use final_url
+  // directly.
   // --------------------------------
   const sportsUrl =
     sportsCookies[channelId];
@@ -130,7 +125,7 @@ function createChannelEntry(
   );
 
   // --------------------------------
-  // DASH/MPD detection
+  // Detect DASH/MPD
   // --------------------------------
   const isMPD =
     channel.type === "dash" ||
@@ -196,11 +191,16 @@ function createChannelEntry(
   let finalUrl;
 
   if (sportsUrl) {
-    // Third file has this channel.
-    // Use final_url AS-IS.
+    // Matching channel found in
+    // sportsbiscuit.json.
+    //
+    // Use final_url exactly as provided.
     finalUrl = sportsUrl;
   } else {
-    // Normal channel URL + normal cookie.
+    // No matching sports channel.
+    //
+    // Use Geoplus.json URL and append
+    // the normal biscuit cookie.
     finalUrl = normalCookie
       ? `${url}${url.includes("?") ? "&" : "?"}${normalCookie}`
       : url;
@@ -213,14 +213,19 @@ function createChannelEntry(
 
 // ---------------- GENERATE M3U ----------------
 async function generateM3U() {
-  const [channels, normalCookie, sportsData] =
-    await Promise.all([
-      getJson(CHANNELS_URL),
-      getNormalCookie(),
-      getSportsData(),
-    ]);
+  const [
+    channels,
+    normalCookie,
+    sportsData,
+  ] = await Promise.all([
+    getJson(CHANNELS_URL),
+    getNormalCookie(),
+    getSportsData(),
+  ]);
 
-  console.log(`Channels loaded: ${channels.length}`);
+  console.log(
+    `Channels loaded: ${channels.length}`
+  );
 
   console.log(
     `Sports-specific URLs loaded: ${sportsData.sportsIds.size}`
