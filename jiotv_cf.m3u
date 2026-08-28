@@ -2781,7 +2781,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Gold_Select_HD_MOB/WDVLive/index.mpd
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e705c9330a935a119021d97c7677ce62:dd306a57de1715b0e1256d5c1737f485
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Movies_BTS/WDVLive/index.mpd?__hdnea__=st=1787932617~exp=1787954217~acl=/bpk-tv/Star_Movies_BTS/WDVLive/*~hmac=2323d850ab8ac57b3372790c45d4a15c2ebd466bdc9ab15e98cb0fc82f43885f
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Movies_BTS/WDVLive/index.mpd?__hdnea__=st=1787954421~exp=1787976021~acl=/bpk-tv/Star_Movies_BTS/WDVLive/*~hmac=76c6eda38a327145040fde80974b0aa09552660ef8d326db6640cff3684105ae
 
 #EXTINF:-1 tvg-name="Suvarna" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Suvarna.png" group-title="Kannada",Suvarna
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -5937,7 +5937,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Vijay_Takkar_MOB/WDVLive/index.mpd?__hdne
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=4b7d579e28d45041ba78c3a92f0acc92:fbf33acfca489b1354955cbfb09570b5
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Movies_Select_BTS/WDVLive/index.mpd?__hdnea__=st=1787932640~exp=1787954240~acl=/bpk-tv/Star_Movies_Select_BTS/WDVLive/*~hmac=b2229ab6f4d792027e3e115c4ddbcb7fcc96a34eb2d251a4c52ab53047816349
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Movies_Select_BTS/WDVLive/index.mpd?__hdnea__=st=1787954428~exp=1787976028~acl=/bpk-tv/Star_Movies_Select_BTS/WDVLive/*~hmac=7ad2a853150753538a6d4b3b4561aea32d008edfc24916cac53b9329d2e50f2a
 
 #EXTINF:-1 tvg-name="OM TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/OM_TV.png" group-title="English",OM TV
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
