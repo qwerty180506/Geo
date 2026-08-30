@@ -5304,7 +5304,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/NDTV_Marathi_MOB/WDVLive/index.mpd?__hdne
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e6afa4754bc15dd28ab6806f417d319d:6a74ef2884813547109ee96098610387
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Gold_2_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1788097108~exp=1788100708~acl=/bpk-tv/Star_Gold_2_HD_BTS/WDVLive/*~hmac=4d9ce1849f4e89ac0c16c8bfb5ce4360f962e8e6f127187cb3e5dd0d2d3a0cd1
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Gold_2_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1788100647~exp=1788104247~acl=/bpk-tv/Star_Gold_2_HD_BTS/WDVLive/*~hmac=3f14aa5a144113a069ebf9e1e67964c10af5ad0c9f3c2bd1048b5f743c346c64
 
 #EXTINF:-1 tvg-name="Star Gold Romance" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Gold_Romance.png" group-title="Movies",Star Gold Romance
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
