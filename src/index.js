@@ -7,9 +7,9 @@ export default {
   async fetch(request, env) {
     try {
       await Promise.all([
+        runFancode(env),
         runJioTV(env),
-        runJioTV2(env),
-        runFancode(env)
+        runJioTV2(env)
       ]);
 
       await runMerge(env);
