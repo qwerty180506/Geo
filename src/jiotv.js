@@ -75,14 +75,24 @@ async function getSportsData() {
   for (const item of results) {
     if (!item.channel_id) continue;
 
-    const finalUrl =
+    let finalUrl =
       item.final_url ||
       item.error_details?.final_url ||
       "";
 
     if (!finalUrl) continue;
 
-    // Store the COMPLETE final_url
+    // --------------------------------
+    // Change /output/ to /WDVLive/
+    // while keeping the complete query
+    // string unchanged.
+    // --------------------------------
+    finalUrl = finalUrl.replace(
+      /\/output\//i,
+      "/WDVLive/"
+    );
+
+    // Store the modified COMPLETE final_url
     sportsCookies[String(item.channel_id)] = finalUrl;
   }
 
