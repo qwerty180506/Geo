@@ -8,11 +8,13 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u"
+  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
+  jioplus2: process.env.JIOPLUS2_URL
 };
 
 const PRIORITY_ORDER = [
   "jiotvplus",
+  "jioplus2",
   "sonyliv",
   "sunnxt",
   "times",
@@ -49,8 +51,8 @@ const WANTED_MAP = {
   "Colors Tamil HD": ["Entertainment", "jiotvplus"],
   "Star Vijay HD": ["Entertainment", "jiotvplus"],
   "Thanthi One": ["Entertainment", "jiotvplus"],
-  "Zee Tamil HD": "Entertainment",
-  "Zee Thirai HD": "Movies",
+  "Zee Tamil HD": ["Entertainment","jioplus2"],
+  "Zee Thirai HD": ["Movies","jioplus2"],
   "Sony PIX HD": "Movies",
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
@@ -76,7 +78,7 @@ const WANTED_MAP = {
   "MK Six": "Music",
   "DD Sports": "Sports",
   "Eurosport HD": "Sports",
-  "Star Sports Khel": "Sports",
+  "Star Sports Khel": ["Sports","jioplus2"],
   "Kalaignar Seithigal": "News",
   "News7 Tamil": ["News", "jiotvplus"],
   "News J": "News",
@@ -102,8 +104,8 @@ const WANTED_MAP = {
   "Discovery HD Tamil": "Infortainment",
   "D Tamil": "Infortainment",
   "History TV18 HD Tamil": ["Infortainment", "jiotvplus"],
-  "Nat Geo Wild HD": ["Infortainment", "jiotvplus"],
-  "National Geographic HD": ["Infortainment", "jiotvplus"],
+  "Nat Geo Wild HD": ["Infortainment", "jioplus2"],
+  "National Geographic HD": ["Infortainment", "jioplus2"],
   "Travelxp HD": "Infortainment",
   "Travelxp Tamil": "Infortainment",
   "Sony BBC Earth HD": "Infortainment",
@@ -118,7 +120,16 @@ const WANTED_MAP = {
   "Star Sports 1 HD": ["Sports", "jiotvplus"],
   "Star Sports 2 HD": ["Sports", "jiotvplus"],
   "Star Sports Select 1 HD": ["Sports", "jiotvplus"],
-  "Star Sports Select 2 HD": ["Sports", "jiotvplus"]
+  "Star Sports Select 2 HD": ["Sports", "jiotvplus"],
+  "Star Vijay Digital": "Entertainment",
+  "Vijay Super Digital" "Movies",
+  "Star Sports 1 Tamil Digital": ["Sports", "jioplus2"],
+  "Star Sports 2 Tamil Digital": ["Sports", "jioplus2"],
+  "Star Sports 1 Digital": ["Sports", "jioplus2"],
+  "Star Sports 2 Digital": ["Sports", "jioplus2"],
+  "Star Sports Select 1 Digital": ["Sports", "jioplus2"],
+  "Star Sports Select 2 Digital": ["Sports", "jioplus2"],
+  "Star Sports Khel Digital": ["Sports", "jioplus2"]
 };
 
 function escapeRegex(str) {
