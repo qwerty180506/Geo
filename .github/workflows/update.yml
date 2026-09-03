@@ -1,0 +1,2 @@
+env:
+  JIOPLUS2_URL: ${{ secrets.JIOPLUS2_URL }}
