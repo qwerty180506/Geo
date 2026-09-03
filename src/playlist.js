@@ -1,4 +1,5 @@
 // mergePlaylist.js
+
 const SOURCE_URLS = {
   gist: "https://gist.githubusercontent.com/Jaidev1805/fe6b7e724666e5ae0940104e22fe4872/raw/playlist.m3u",
   fancode: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/fancode_1080p.m3u",
@@ -8,9 +9,7 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
-  
-  jioplus2: env.JIOPLUS2_URL
+  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u"
 };
 
 const PRIORITY_ORDER = [
@@ -34,7 +33,7 @@ const WANTED_MAP = {
   "Cartoon Network Tamil": "Kids",
   "Chutti TV": "Kids",
   "Disney Channel": ["Kids", "jiotvplus"],
-  "Sony Yay": ["Kids","jiotvplus"],
+  "Sony Yay": ["Kids", "jiotvplus"],
   "Hungama": ["Kids", "jiotvplus"],
   "Cartoon Network HD+ Tamil": "Kids",
   "Sonic Tamil": ["Kids", "jiotvplus"],
@@ -47,13 +46,13 @@ const WANTED_MAP = {
   "Vijay Takkar": ["Music", "jiotvplus"],
   "Vijay Super HD": "Movies",
   "Colors Infinity HD": "Movies",
-  "Star Movies HD": ["Movies","jiotvplus"],
-  "Star Movies Select HD": ["Movies","jiotvplus"],
+  "Star Movies HD": ["Movies", "jiotvplus"],
+  "Star Movies Select HD": ["Movies", "jiotvplus"],
   "Colors Tamil HD": ["Entertainment", "jiotvplus"],
   "Star Vijay HD": ["Entertainment", "jiotvplus"],
   "Thanthi One": ["Entertainment", "jiotvplus"],
-  "Zee Tamil HD": ["Entertainment","jioplus2"],
-  "Zee Thirai HD": ["Movies","jioplus2"],
+  "Zee Tamil HD": ["Entertainment", "jioplus2"],
+  "Zee Thirai HD": ["Movies", "jioplus2"],
   "Sony PIX HD": "Movies",
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
@@ -67,7 +66,7 @@ const WANTED_MAP = {
   "Makkal TV": "Entertainment",
   "Suriya TV": "Entertainment",
   "Sirippoli": "Entertainment",
-  "KTV HD": ["Movies","sunnxt"],
+  "KTV HD": ["Movies", "sunnxt"],
   "Roja Movies": "Movies",
   "Tata Play Tamil Classics": "Movies",
   "Sun Life": "Movies",
@@ -79,7 +78,7 @@ const WANTED_MAP = {
   "MK Six": "Music",
   "DD Sports": "Sports",
   "Eurosport HD": "Sports",
-  "Star Sports Khel": ["Sports","jioplus2"],
+  "Star Sports Khel": ["Sports", "jioplus2"],
   "Kalaignar Seithigal": "News",
   "News7 Tamil": ["News", "jiotvplus"],
   "News J": "News",
@@ -133,9 +132,15 @@ const WANTED_MAP = {
   "Star Sports Khel Digital": ["Sports", "jioplus2"]
 };
 
+
+// ---------------- REGEX ----------------
+
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+
+
+// ---------------- M3U PARSER ----------------
 
 function parseM3U(content) {
   const lines = content.split(/\r?\n/);
@@ -159,14 +164,25 @@ function parseM3U(content) {
 
     // Extract stream headers (like Cookie) from KODIPROP tags
     let cookieValue = null;
+
     finalBuffer = finalBuffer.filter(tag => {
-      if (tag.startsWith("#KODIPROP:inputstream.adaptive.stream_headers=")) {
-        const headerContent = tag.replace("#KODIPROP:inputstream.adaptive.stream_headers=", "");
+      if (
+        tag.startsWith(
+          "#KODIPROP:inputstream.adaptive.stream_headers="
+        )
+      ) {
+        const headerContent = tag.replace(
+          "#KODIPROP:inputstream.adaptive.stream_headers=",
+          ""
+        );
+
         if (headerContent.startsWith("Cookie=")) {
           cookieValue = headerContent.replace("Cookie=", "");
         }
-        return false; // Remove stream_headers tag from buffer
+
+        return false;
       }
+
       return true;
     });
 
@@ -198,11 +214,15 @@ function parseM3U(content) {
     if (name) {
       channels[name] = [...finalBuffer, line].join("\n");
     }
+
     buffer = [];
   }
 
   return channels;
 }
+
+
+// ---------------- SAFE MATCH ----------------
 
 function safeMatch(requested, data) {
   for (const [key, value] of Object.entries(data)) {
@@ -225,10 +245,19 @@ function safeMatch(requested, data) {
   return null;
 }
 
-async function fetchSources() {
+
+// ---------------- FETCH SOURCES ----------------
+
+async function fetchSources(env) {
   const result = {};
 
-  for (const [key, url] of Object.entries(SOURCE_URLS)) {
+  // Add Cloudflare Worker secret here
+  const sourceUrls = {
+    ...SOURCE_URLS,
+    jioplus2: env.JIOPLUS2_URL
+  };
+
+  for (const [key, url] of Object.entries(sourceUrls)) {
     try {
       const headers = {
         "Cache-Control": "no-cache",
@@ -240,12 +269,17 @@ async function fetchSources() {
         headers["Origin"] = "https://sflexzio.pages.dev";
       }
 
-      const response = await fetch(`${url}?t=${Date.now()}`, { headers });
+      const response = await fetch(
+        `${url}?t=${Date.now()}`,
+        { headers }
+      );
 
       result[key] = await response.text();
+
       console.log(
         `Downloaded ${key}: ${response.status}`
       );
+
     } catch (err) {
       console.log(
         `Failed downloading ${key}:`,
@@ -259,17 +293,22 @@ async function fetchSources() {
   return result;
 }
 
+
+// ---------------- GIST UPLOAD ----------------
+
 async function uploadToGist(content, env) {
   const response = await fetch(
     `https://api.github.com/gists/${env.GIST_ID}`,
     {
       method: "PATCH",
+
       headers: {
         Authorization: `token ${env.GIST_TOKEN}`,
         Accept: "application/vnd.github+json",
         "Content-Type": "application/json",
         "User-Agent": "Cloudflare-Worker",
       },
+
       body: JSON.stringify({
         files: {
           "playlist.m3u": {
@@ -290,12 +329,16 @@ async function uploadToGist(content, env) {
       `Gist upload failed: ${response.status} - ${text}`
     );
   }
-  }
+}
+
+
+// ---------------- MERGE ----------------
 
 export async function runMerge(env) {
   console.log("Starting playlist merge...");
 
-  const files = await fetchSources();
+  // IMPORTANT: pass env here
+  const files = await fetchSources(env);
 
   const base = parseM3U(files.gist);
 
@@ -307,6 +350,10 @@ export async function runMerge(env) {
     times: parseM3U(files.times),
     jiotv: parseM3U(files.jiotv),
     jiotvplus: parseM3U(files.jiotvplus),
+
+    // IMPORTANT: parse jioplus2
+    jioplus2: parseM3U(files.jioplus2),
+
     local: parseM3U(files.local),
   };
 
@@ -314,6 +361,8 @@ export async function runMerge(env) {
     `Base playlist channels: ${Object.keys(base).length}`
   );
 
+
+  // ---------------- WANTED CHANNELS ----------------
 
   for (const [name, value] of Object.entries(WANTED_MAP)) {
     let category;
@@ -329,6 +378,7 @@ export async function runMerge(env) {
     let found = null;
     let foundSource = null;
 
+    // Try preferred source first
     if (
       preferred &&
       sources[preferred]
@@ -343,6 +393,7 @@ export async function runMerge(env) {
       }
     }
 
+    // Try priority sources
     if (!found) {
       for (const src of PRIORITY_ORDER) {
         found = safeMatch(
@@ -373,6 +424,7 @@ export async function runMerge(env) {
       console.log(
         `✓ ${name} -> ${foundSource}`
       );
+
     } else {
       console.log(
         `✗ ${name} -> NOT FOUND`
@@ -380,7 +432,9 @@ export async function runMerge(env) {
     }
   }
 
-  // Local channels
+
+  // ---------------- LOCAL CHANNELS ----------------
+
   for (const [name, content] of Object.entries(
     sources.local
   )) {
@@ -399,7 +453,9 @@ export async function runMerge(env) {
     `Added ${Object.keys(sources.local).length} local channels`
   );
 
-  // Fancode channels
+
+  // ---------------- FANCODE ----------------
+
   const fancodeLines = files.fancode
     .split(/\r?\n/)
     .map(x => x.trim())
@@ -432,7 +488,9 @@ export async function runMerge(env) {
 
   console.log("Added Fancode events");
 
-  // SonyLiv live events
+
+  // ---------------- SONYLIV LIVE EVENTS ----------------
+
   for (const [name, content] of Object.entries(
     sources.bexo
   )) {
@@ -452,6 +510,9 @@ export async function runMerge(env) {
     "Added SonyLiv live events"
   );
 
+
+  // ---------------- FINAL PLAYLIST ----------------
+
   let playlist = "#EXTM3U\n";
 
   const values = Object.values(base).sort();
@@ -465,11 +526,14 @@ export async function runMerge(env) {
   );
 
   console.log(
-  "Playlist size:",
-  new TextEncoder().encode(playlist).length,
-  "bytes"
+    "Playlist size:",
+    new TextEncoder().encode(playlist).length,
+    "bytes"
   );
-  
+
+
+  // ---------------- UPLOAD ----------------
+
   await uploadToGist(
     playlist,
     env
