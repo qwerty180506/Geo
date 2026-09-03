@@ -122,7 +122,7 @@ const WANTED_MAP = {
   "Star Sports Select 1 HD": ["Sports", "jiotvplus"],
   "Star Sports Select 2 HD": ["Sports", "jiotvplus"],
   "Star Vijay Digital": "Entertainment",
-  "Vijay Super Digital" "Movies",
+  "Vijay Super Digital": "Movies",
   "Star Sports 1 Tamil Digital": ["Sports", "jioplus2"],
   "Star Sports 2 Tamil Digital": ["Sports", "jioplus2"],
   "Star Sports 1 Digital": ["Sports", "jioplus2"],
