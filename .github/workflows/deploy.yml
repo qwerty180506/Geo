@@ -24,6 +24,12 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler
 
+      - name: Set JIOPLUS2 secret
+        run: echo "${{ secrets.JIOPLUS2_URL }}" | wrangler secret put JIOPLUS2_URL
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
       - name: Deploy Worker
         run: wrangler deploy
         env:
