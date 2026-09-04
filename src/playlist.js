@@ -43,7 +43,7 @@ const WANTED_MAP = {
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jiotvplus"],
   "Vijay Super HD": "Movies",
-  "Colors Infinity HD": "Movies",
+  "Colors Infinity HD": ["Movies","jioplus2"],
   "Star Movies HD": ["Movies", "jiotvplus"],
   "Star Movies Select HD": ["Movies", "jiotvplus"],
   "Colors Tamil HD": ["Entertainment", "jiotvplus"],
@@ -106,7 +106,7 @@ const WANTED_MAP = {
   "National Geographic HD": ["Infortainment", "jioplus2"],
   "Travelxp HD": "Infortainment",
   "Travelxp Tamil": "Infortainment",
-  "Sony BBC Earth HD": "Infortainment",
+  "Sony BBC Earth HD": ["Infortainment", "jioplus2"],
   "Sony Ten 1 HD": ["Sports", "sonyliv"],
   "Sony Ten 2 HD": ["Sports", "sonyliv"],
   "Sony Ten 3 HD": ["Sports", "sonyliv"],
@@ -129,7 +129,6 @@ const WANTED_MAP = {
   "Star Sports Select 2 Digital": ["Sports", "jioplus2"],
   "Star Sports Khel Digital": ["Sports", "jioplus2"]
 };
-
 
 // ---------------- REGEX ----------------
 
