@@ -140,74 +140,28 @@ function escapeRegex(str) {
 
 // ---------------- JIO URL NORMALIZER ----------------
 
-function normalizeJioUrl(line) {
-  /*
-   * Convert Jio's:
-   *
-   *   URL|User-Agent=...&Referer=...&Origin=...&Cookie=__hdnea__=...
-   *
-   * into:
-   *
-   *   URL?__hdnea__=...
-   *
-   * This removes the pipe-separated User-Agent,
-   * Referer and Origin parameters from the final URL.
-   */
+function normalizePipeUrl(line) {
+  const pipeIndex = line.indexOf("|");
+  if (pipeIndex === -1) return line;
 
-  const jioHeaderPrefix =
-    "|User-Agent=";
+  const baseUrl = line.substring(0, pipeIndex);
+  const pipeHeaders = line.substring(pipeIndex + 1);
 
-  const cookieMarker =
-    "&Cookie=";
+  // Extract Cookie/cookie value and remove the "Cookie=" / "cookie=" label
+  const cookieMatch = pipeHeaders.match(/(?:^|&)cookie=([^&]*)/i);
 
-  const pipeIndex =
-    line.indexOf(jioHeaderPrefix);
+  if (cookieMatch) {
+    const cookieValue = cookieMatch[1];
 
-  if (pipeIndex === -1) {
-    return line;
+    // Remove trailing ? or &
+    const cleanBaseUrl = baseUrl.replace(/[?&]$/, "");
+
+    return cleanBaseUrl + "?" + cookieValue;
   }
 
-  const cookieIndex =
-    line.indexOf(
-      cookieMarker,
-      pipeIndex
-    );
-
-  if (cookieIndex === -1) {
-    return line;
-  }
-
-  // Keep only the actual stream URL.
-  const streamUrl =
-    line.substring(
-      0,
-      pipeIndex
-    );
-
-  // Extract the Cookie value.
-  const cookieValue =
-    line.substring(
-      cookieIndex + cookieMarker.length
-    );
-
-  if (!cookieValue) {
-    return streamUrl;
-  }
-
-  // If the stream URL already has a query,
-  // use &, otherwise use ?.
-  const separator =
-    streamUrl.includes("?")
-      ? "&"
-      : "?";
-
-  return (
-    streamUrl +
-    separator +
-    cookieValue
-  );
+  // No cookie: remove everything after |
+  return baseUrl;
 }
-
 
 // ---------------- M3U PARSER ----------------
 
@@ -299,8 +253,7 @@ function parseM3U(content) {
     // URL?TOKEN
     // --------------------------------------------------
 
-    line =
-      normalizeJioUrl(line);
+    line = normalizePipeUrl(line);
 
 
     // --------------------------------------------------
