@@ -1,5 +1,3 @@
-// mergePlaylist.js
-
 const SOURCE_URLS = {
   gist: "https://gist.githubusercontent.com/Jaidev1805/fe6b7e724666e5ae0940104e22fe4872/raw/playlist.m3u",
   fancode: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/fancode_1080p.m3u",
@@ -140,83 +138,275 @@ function escapeRegex(str) {
 }
 
 
+// ---------------- JIO URL NORMALIZER ----------------
+
+function normalizeJioUrl(line) {
+  /*
+   * Convert Jio's:
+   *
+   *   URL|User-Agent=...&Referer=...&Origin=...&Cookie=__hdnea__=...
+   *
+   * into:
+   *
+   *   URL?__hdnea__=...
+   *
+   * This removes the pipe-separated User-Agent,
+   * Referer and Origin parameters from the final URL.
+   */
+
+  const jioHeaderPrefix =
+    "|User-Agent=";
+
+  const cookieMarker =
+    "&Cookie=";
+
+  const pipeIndex =
+    line.indexOf(jioHeaderPrefix);
+
+  if (pipeIndex === -1) {
+    return line;
+  }
+
+  const cookieIndex =
+    line.indexOf(
+      cookieMarker,
+      pipeIndex
+    );
+
+  if (cookieIndex === -1) {
+    return line;
+  }
+
+  // Keep only the actual stream URL.
+  const streamUrl =
+    line.substring(
+      0,
+      pipeIndex
+    );
+
+  // Extract the Cookie value.
+  const cookieValue =
+    line.substring(
+      cookieIndex + cookieMarker.length
+    );
+
+  if (!cookieValue) {
+    return streamUrl;
+  }
+
+  // If the stream URL already has a query,
+  // use &, otherwise use ?.
+  const separator =
+    streamUrl.includes("?")
+      ? "&"
+      : "?";
+
+  return (
+    streamUrl +
+    separator +
+    cookieValue
+  );
+}
+
+
 // ---------------- M3U PARSER ----------------
 
 function parseM3U(content) {
-  const lines = content.split(/\r?\n/);
+  const lines =
+    content.split(/\r?\n/);
 
   const channels = {};
+
   let buffer = [];
 
-  for (const raw of lines) {
-    let line = raw.trim();
 
-    if (!line || line.startsWith("#EXTM3U")) {
+  for (const raw of lines) {
+    let line =
+      raw.trim();
+
+
+    if (
+      !line ||
+      line.startsWith("#EXTM3U")
+    ) {
       continue;
     }
+
 
     if (line.startsWith("#")) {
       buffer.push(line);
       continue;
     }
 
-    let finalBuffer = [...buffer];
 
-    // Extract stream headers (like Cookie) from KODIPROP tags
-    let cookieValue = null;
+    let finalBuffer =
+      [...buffer];
 
-    finalBuffer = finalBuffer.filter(tag => {
-      if (
-        tag.startsWith(
-          "#KODIPROP:inputstream.adaptive.stream_headers="
-        )
-      ) {
-        const headerContent = tag.replace(
-          "#KODIPROP:inputstream.adaptive.stream_headers=",
-          ""
-        );
 
-        if (headerContent.startsWith("Cookie=")) {
-          cookieValue = headerContent.replace("Cookie=", "");
+    // --------------------------------------------------
+    // Extract Cookie from KODIPROP stream_headers.
+    // --------------------------------------------------
+
+    let cookieValue =
+      null;
+
+
+    finalBuffer =
+      finalBuffer.filter(tag => {
+
+        if (
+          tag.startsWith(
+            "#KODIPROP:inputstream.adaptive.stream_headers="
+          )
+        ) {
+          const headerContent =
+            tag.replace(
+              "#KODIPROP:inputstream.adaptive.stream_headers=",
+              ""
+            );
+
+
+          if (
+            headerContent.startsWith(
+              "Cookie="
+            )
+          ) {
+            cookieValue =
+              headerContent.replace(
+                "Cookie=",
+                ""
+              );
+          }
+
+
+          return false;
         }
 
-        return false;
-      }
 
-      return true;
-    });
+        return true;
+      });
 
-    // Append the token to the URL if a cookie header was found
+
+    // --------------------------------------------------
+    // Normalize pipe-style Jio URLs.
+    //
+    // Example:
+    //
+    // URL|User-Agent=...&Referer=...&Origin=...&Cookie=TOKEN
+    //
+    // becomes:
+    //
+    // URL?TOKEN
+    // --------------------------------------------------
+
+    line =
+      normalizeJioUrl(line);
+
+
+    // --------------------------------------------------
+    // If Cookie came from KODIPROP stream_headers,
+    // append it to the normalized URL.
+    // --------------------------------------------------
+
     if (cookieValue) {
-      const separator = line.includes("?") ? "&" : "?";
-      line = `${line}${separator}${cookieValue}`;
+      const separator =
+        line.includes("?")
+          ? "&"
+          : "?";
+
+      line =
+        `${line}${separator}${cookieValue}`;
     }
 
-    const hasMpdProp = finalBuffer.some(tag =>
-      tag.includes("inputstream.adaptive.manifest_type=mpd")
-    );
 
-    if (hasMpdProp && !/\.mpd(\?|$)/i.test(line)) {
-      finalBuffer = finalBuffer.filter(
-        tag => !tag.startsWith("#KODIPROP:inputstream.adaptive.")
+    // --------------------------------------------------
+    // Detect MPD correctly.
+    //
+    // Supports:
+    //
+    //   index.mpd
+    //   index.mpd?foo=bar
+    //   index.mpd|User-Agent=...
+    //
+    // The URL is normalized before this check, so the
+    // resulting URL normally becomes index.mpd?...
+    // --------------------------------------------------
+
+    const hasMpdProp =
+      finalBuffer.some(tag =>
+        tag.includes(
+          "inputstream.adaptive.manifest_type=mpd"
+        )
       );
+
+
+    const isMpdUrl =
+      /\.mpd(?:\?|[|]|$)/i.test(line);
+
+
+    // --------------------------------------------------
+    // Only remove adaptive KODIPROP tags if the source
+    // claims MPD but the actual URL isn't MPD.
+    //
+    // This preserves ClearKey configuration.
+    // --------------------------------------------------
+
+    if (
+      hasMpdProp &&
+      !isMpdUrl
+    ) {
+      finalBuffer =
+        finalBuffer.filter(
+          tag =>
+            !tag.startsWith(
+              "#KODIPROP:inputstream.adaptive."
+            )
+        );
     }
 
-    let name = null;
+
+    // --------------------------------------------------
+    // Extract channel name.
+    // --------------------------------------------------
+
+    let name =
+      null;
+
 
     for (const tag of finalBuffer) {
-      if (tag.startsWith("#EXTINF") && tag.includes(",")) {
-        name = tag.substring(tag.indexOf(",") + 1).trim();
+
+      if (
+        tag.startsWith("#EXTINF") &&
+        tag.includes(",")
+      ) {
+        name =
+          tag
+            .substring(
+              tag.indexOf(",") + 1
+            )
+            .trim();
+
         break;
       }
     }
 
+
+    // --------------------------------------------------
+    // Store channel.
+    // --------------------------------------------------
+
     if (name) {
-      channels[name] = [...finalBuffer, line].join("\n");
+      channels[name] =
+        [
+          ...finalBuffer,
+          line
+        ].join("\n");
     }
+
 
     buffer = [];
   }
+
 
   return channels;
 }
@@ -224,23 +414,41 @@ function parseM3U(content) {
 
 // ---------------- SAFE MATCH ----------------
 
-function safeMatch(requested, data) {
-  for (const [key, value] of Object.entries(data)) {
-    if (key.toLowerCase() === requested.toLowerCase()) {
+function safeMatch(
+  requested,
+  data
+) {
+  // Exact case-insensitive match.
+  for (
+    const [key, value]
+    of Object.entries(data)
+  ) {
+    if (
+      key.toLowerCase() ===
+      requested.toLowerCase()
+    ) {
       return value;
     }
   }
 
-  const regex = new RegExp(
-    `\\b${escapeRegex(requested)}\\b`,
-    "i"
-  );
 
-  for (const [key, value] of Object.entries(data)) {
+  // Word-boundary fallback.
+  const regex =
+    new RegExp(
+      `\\b${escapeRegex(requested)}\\b`,
+      "i"
+    );
+
+
+  for (
+    const [key, value]
+    of Object.entries(data)
+  ) {
     if (regex.test(key)) {
       return value;
     }
   }
+
 
   return null;
 }
@@ -251,44 +459,66 @@ function safeMatch(requested, data) {
 async function fetchSources(env) {
   const result = {};
 
-  // Add Cloudflare Worker secret here
+
+  // Add Cloudflare Worker secret here.
   const sourceUrls = {
     ...SOURCE_URLS,
     jioplus2: env.JIOPLUS2_URL
   };
 
-  for (const [key, url] of Object.entries(sourceUrls)) {
+
+  for (
+    const [key, url]
+    of Object.entries(sourceUrls)
+  ) {
     try {
+
       const headers = {
         "Cache-Control": "no-cache",
-        "Pragma": "no-cache",
+        "Pragma": "no-cache"
       };
 
+
       if (key === "jiotv") {
-        headers["Referer"] = "https://sflexzio.pages.dev";
-        headers["Origin"] = "https://sflexzio.pages.dev";
+        headers["Referer"] =
+          "https://sflexzio.pages.dev";
+
+        headers["Origin"] =
+          "https://sflexzio.pages.dev";
       }
 
-      const response = await fetch(
-        `${url}?t=${Date.now()}`,
-        { headers }
-      );
 
-      result[key] = await response.text();
+      const response =
+        await fetch(
+          `${url}?t=${Date.now()}`,
+          {
+            headers
+          }
+        );
+
+
+      result[key] =
+        await response.text();
+
 
       console.log(
         `Downloaded ${key}: ${response.status}`
       );
 
+
     } catch (err) {
+
       console.log(
         `Failed downloading ${key}:`,
         err.toString()
       );
 
-      result[key] = "";
+
+      result[key] =
+        "";
     }
   }
+
 
   return result;
 }
@@ -296,33 +526,53 @@ async function fetchSources(env) {
 
 // ---------------- GIST UPLOAD ----------------
 
-async function uploadToGist(content, env) {
-  const response = await fetch(
-    `https://api.github.com/gists/${env.GIST_ID}`,
-    {
-      method: "PATCH",
+async function uploadToGist(
+  content,
+  env
+) {
+  const response =
+    await fetch(
+      `https://api.github.com/gists/${env.GIST_ID}`,
+      {
+        method: "PATCH",
 
-      headers: {
-        Authorization: `token ${env.GIST_TOKEN}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "User-Agent": "Cloudflare-Worker",
-      },
+        headers: {
+          Authorization:
+            `token ${env.GIST_TOKEN}`,
 
-      body: JSON.stringify({
-        files: {
-          "playlist.m3u": {
-            content,
-          },
+          Accept:
+            "application/vnd.github+json",
+
+          "Content-Type":
+            "application/json",
+
+          "User-Agent":
+            "Cloudflare-Worker"
         },
-      }),
-    }
+
+        body: JSON.stringify({
+          files: {
+            "playlist.m3u": {
+              content
+            }
+          }
+        })
+      }
+    );
+
+
+  const text =
+    await response.text();
+
+
+  console.log(
+    "Gist Upload:",
+    response.status
   );
 
-  const text = await response.text();
 
-  console.log("Gist Upload:", response.status);
   console.log(text);
+
 
   if (!response.ok) {
     throw new Error(
@@ -335,27 +585,54 @@ async function uploadToGist(content, env) {
 // ---------------- MERGE ----------------
 
 export async function runMerge(env) {
-  console.log("Starting playlist merge...");
 
-  // IMPORTANT: pass env here
-  const files = await fetchSources(env);
+  console.log(
+    "Starting playlist merge..."
+  );
 
-  const base = parseM3U(files.gist);
 
+  // Fetch all sources.
+  const files =
+    await fetchSources(env);
+
+
+  // Parse base playlist.
+  const base =
+    parseM3U(files.gist);
+
+
+  // Parse all sources.
   const sources = {
-    fancode: parseM3U(files.fancode),
-    bexo: parseM3U(files.bexo),
-    sonyliv: parseM3U(files.sonyliv),
-    sunnxt: parseM3U(files.sunnxt),
-    times: parseM3U(files.times),
-    jiotv: parseM3U(files.jiotv),
-    jiotvplus: parseM3U(files.jiotvplus),
 
-    // IMPORTANT: parse jioplus2
-    jioplus2: parseM3U(files.jioplus2),
+    fancode:
+      parseM3U(files.fancode),
 
-    local: parseM3U(files.local),
+    bexo:
+      parseM3U(files.bexo),
+
+    sonyliv:
+      parseM3U(files.sonyliv),
+
+    sunnxt:
+      parseM3U(files.sunnxt),
+
+    times:
+      parseM3U(files.times),
+
+    jiotv:
+      parseM3U(files.jiotv),
+
+    jiotvplus:
+      parseM3U(files.jiotvplus),
+
+    // IMPORTANT: parse JioTV Plus 2.
+    jioplus2:
+      parseM3U(files.jioplus2),
+
+    local:
+      parseM3U(files.local)
   };
+
 
   console.log(
     `Base playlist channels: ${Object.keys(base).length}`
@@ -364,68 +641,115 @@ export async function runMerge(env) {
 
   // ---------------- WANTED CHANNELS ----------------
 
-  for (const [name, value] of Object.entries(WANTED_MAP)) {
+  for (
+    const [name, value]
+    of Object.entries(WANTED_MAP)
+  ) {
+
     let category;
     let preferred;
 
+
     if (Array.isArray(value)) {
-      [category, preferred] = value;
+      [category, preferred] =
+        value;
     } else {
-      category = value;
-      preferred = null;
+      category =
+        value;
+
+      preferred =
+        null;
     }
 
-    let found = null;
-    let foundSource = null;
 
-    // Try preferred source first
+    let found =
+      null;
+
+    let foundSource =
+      null;
+
+
+    // --------------------------------------------------
+    // Try preferred source first.
+    // --------------------------------------------------
+
     if (
       preferred &&
       sources[preferred]
     ) {
-      found = safeMatch(
-        name,
-        sources[preferred]
-      );
+      found =
+        safeMatch(
+          name,
+          sources[preferred]
+        );
+
 
       if (found) {
-        foundSource = preferred;
+        foundSource =
+          preferred;
       }
     }
 
-    // Try priority sources
+
+    // --------------------------------------------------
+    // Try priority sources.
+    // --------------------------------------------------
+
     if (!found) {
-      for (const src of PRIORITY_ORDER) {
-        found = safeMatch(
-          name,
-          sources[src]
-        );
+
+      for (
+        const src
+        of PRIORITY_ORDER
+      ) {
+
+        found =
+          safeMatch(
+            name,
+            sources[src]
+          );
+
 
         if (found) {
-          foundSource = src;
+          foundSource =
+            src;
+
           break;
         }
       }
     }
 
+
+    // --------------------------------------------------
+    // Add / replace channel.
+    // --------------------------------------------------
+
     if (found) {
-      const clean = found.replace(
-        /group-title="[^"]*"/g,
-        ""
-      );
 
-      const fixed = clean.replace(
-        "#EXTINF:-1",
-        `#EXTINF:-1 group-title="${category}"`
-      );
+      const clean =
+        found.replace(
+          /group-title="[^"]*"/g,
+          ""
+        );
 
-      base[name] = fixed;
+
+      const fixed =
+        clean.replace(
+          "#EXTINF:-1",
+          `#EXTINF:-1 group-title="${category}"`
+        );
+
+
+      base[name] =
+        fixed;
+
 
       console.log(
         `✓ ${name} -> ${foundSource}`
       );
 
+
     } else {
+
       console.log(
         `✗ ${name} -> NOT FOUND`
       );
@@ -435,19 +759,27 @@ export async function runMerge(env) {
 
   // ---------------- LOCAL CHANNELS ----------------
 
-  for (const [name, content] of Object.entries(
-    sources.local
-  )) {
-    const clean = content.replace(
-      /group-title="[^"]*"/g,
-      ""
-    );
+  for (
+    const [name, content]
+    of Object.entries(
+      sources.local
+    )
+  ) {
 
-    base[`Local_${name}`] = clean.replace(
-      "#EXTINF:-1",
-      '#EXTINF:-1 group-title="Local Channels"'
-    );
+    const clean =
+      content.replace(
+        /group-title="[^"]*"/g,
+        ""
+      );
+
+
+    base[`Local_${name}`] =
+      clean.replace(
+        "#EXTINF:-1",
+        '#EXTINF:-1 group-title="Local Channels"'
+      );
   }
+
 
   console.log(
     `Added ${Object.keys(sources.local).length} local channels`
@@ -456,48 +788,68 @@ export async function runMerge(env) {
 
   // ---------------- FANCODE ----------------
 
-  const fancodeLines = files.fancode
-    .split(/\r?\n/)
-    .map(x => x.trim())
-    .filter(Boolean);
+  const fancodeLines =
+    files.fancode
+      .split(/\r?\n/)
+      .map(x => x.trim())
+      .filter(Boolean);
+
 
   for (
     let i = 0;
     i < fancodeLines.length;
     i++
   ) {
-    const line = fancodeLines[i];
+
+    const line =
+      fancodeLines[i];
+
 
     if (
       line.startsWith("#EXTINF") &&
       i + 1 < fancodeLines.length
     ) {
+
       const urlLine =
         fancodeLines[i + 1];
+
 
       if (urlLine.startsWith("#")) {
         continue;
       }
 
+
       base[`Fancode_${i}`] =
-        line + "\n" + urlLine;
+        line +
+        "\n" +
+        urlLine;
+
 
       i++;
     }
   }
 
-  console.log("Added Fancode events");
+
+  console.log(
+    "Added Fancode events"
+  );
 
 
   // ---------------- SONYLIV LIVE EVENTS ----------------
 
-  for (const [name, content] of Object.entries(
-    sources.bexo
-  )) {
-    const clean = content.replace(
-      /group-title="[^"]*"/g,
-      ""
-    );
+  for (
+    const [name, content]
+    of Object.entries(
+      sources.bexo
+    )
+  ) {
+
+    const clean =
+      content.replace(
+        /group-title="[^"]*"/g,
+        ""
+      );
+
 
     base[`SonyLiv_${name}`] =
       clean.replace(
@@ -506,6 +858,7 @@ export async function runMerge(env) {
       );
   }
 
+
   console.log(
     "Added SonyLiv live events"
   );
@@ -513,21 +866,34 @@ export async function runMerge(env) {
 
   // ---------------- FINAL PLAYLIST ----------------
 
-  let playlist = "#EXTM3U\n";
+  let playlist =
+    "#EXTM3U\n";
 
-  const values = Object.values(base).sort();
 
-  for (const item of values) {
-    playlist += item + "\n";
+  const values =
+    Object.values(base).sort();
+
+
+  for (
+    const item
+    of values
+  ) {
+    playlist +=
+      item +
+      "\n";
   }
+
 
   console.log(
     `Final playlist entries: ${values.length}`
   );
 
+
   console.log(
     "Playlist size:",
-    new TextEncoder().encode(playlist).length,
+    new TextEncoder()
+      .encode(playlist)
+      .length,
     "bytes"
   );
 
@@ -538,6 +904,7 @@ export async function runMerge(env) {
     playlist,
     env
   );
+
 
   console.log(
     "Playlist merge completed successfully"
