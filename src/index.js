@@ -8,7 +8,7 @@ export default {
     try {
       await Promise.all([
         runFancode(env),
-        runJioTV(env),
+        //runJioTV(env),
         runJioTV2(env)
       ]);
 
