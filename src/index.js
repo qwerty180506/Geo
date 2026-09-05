@@ -1,6 +1,7 @@
 import { runJioTV } from "./jiotv.js";
 import { runJioTV2 } from "./jiotv2.js";
 import { runFancode } from "./fancode.js";
+import { runChannelFilter } from "./Hotstar.js";
 import { runMerge } from "./playlist.js";
 
 export default {
@@ -9,7 +10,8 @@ export default {
       await Promise.all([
         runFancode(env),
         //runJioTV(env),
-        runJioTV2(env)
+        runJioTV2(env),
+        runChannelFilter(env)
       ]);
 
       await runMerge(env);
