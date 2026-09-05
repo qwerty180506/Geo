@@ -1,7 +1,7 @@
 const PLAYLIST_URL = "https://premiumplugx.com/htt/hot.php?playlist=1";
 
 // GitHub output file
-const OUTPUT_PATH = "hotstar.m3u";
+const OUTPUT_PATH = "Hotstar.m3u";
 
 // ============================================================
 // EXACT CHANNELS TO KEEP
