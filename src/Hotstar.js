@@ -71,15 +71,16 @@ function parseM3U(text) {
       tvgName = tvgName.replace(/\s*by\s*@rtxcric/gi, '').trim();
 
       // Update the #EXTINF line to reflect the cleaned tvg-name
-      // Ensure the *last* comma-separated part (the channel name for display) is also cleaned
-      const commaIndex = line.lastIndexOf(',');
-      let updatedLine = line;
-      if (commaIndex !== -1) {
-          const preComma = line.substring(0, commaIndex + 1); // Including the comma
-          const postComma = line.substring(commaIndex + 1).replace(/\s*by\s*@rtxcric/gi, '').trim();
-          updatedLine = preComma + postComma;
+      let updatedLine = line.replace(/tvg-name="([^"]*)"/i, `tvg-name="${tvgName}"`);
+
+      // Also clean the channel display name (the part after the last comma)
+      const lastCommaIndex = updatedLine.lastIndexOf(',');
+      if (lastCommaIndex !== -1) {
+          const displayPart = updatedLine.substring(lastCommaIndex + 1);
+          const cleanedDisplayPart = displayPart.replace(/\s*by\s*@rtxcric/gi, '').trim();
+          updatedLine = updatedLine.substring(0, lastCommaIndex + 1) + cleanedDisplayPart;
       }
-      updatedLine = updatedLine.replace(/tvg-name="([^"]*)"/i, `tvg-name="${tvgName}"`);
+
 
       currentBlock = {
         tvgName, // The cleaned name
@@ -138,17 +139,10 @@ function cleanUrl(line) {
 
   // Only process if URL ends in .mpd
   if (url.endsWith(".mpd")) {
-    // Remove query parameters starting with '?'
-    // and pipe-based fragments starting with '|'
-    // The order matters: first remove '?' if it exists, then '|'
-    // E.g., 'url.mpd?param=val|fragment' -> 'url.mpd'
-    // E.g., 'url.mpd|fragment?param=val' -> 'url.mpd|fragment' (then second split gets it)
-    // E.g., 'url.mpd?|fragment' -> 'url.mpd' (this specific case for the user's input)
-
+    // Find the earliest index of '?' or '|'
     const questionMarkIndex = url.indexOf('?');
     const pipeIndex = url.indexOf('|');
 
-    // Find the earliest index of '?' or '|'
     let truncateIndex = -1;
     if (questionMarkIndex !== -1) {
         truncateIndex = questionMarkIndex;
@@ -165,6 +159,15 @@ function cleanUrl(line) {
   return url;
 }
 
+// Helper to remove "=https://www.hotstar.com" and variations
+function removeHotstarTrailer(value) {
+    // This regex looks for "=http(s)://(www.)?hotstar.com(/)?(any query/fragment)?" at the end
+    // and removes it. This handles variations and ensures only the base domain is matched.
+    const hotstarTrailerPattern = /=(https?:\/\/)?(www\.)?hotstar\.com(\/[^\s]*)?$/i;
+    return value.replace(hotstarTrailerPattern, '');
+}
+
+
 // ============================================================
 // NORMALIZE A CHANNEL
 // ============================================================
@@ -179,7 +182,7 @@ function normalizeChannel(channel) {
       continue;
     }
 
-    // #EXTINF: Cleaned tvg-name is already applied in parseM3U
+    // #EXTINF: Cleaned tvg-name and display name already applied in parseM3U
     if (line.startsWith("#EXTINF")) {
       output.push(cleanLine(line)); // Only apply basic line cleaning for escapes
       continue;
@@ -187,10 +190,10 @@ function normalizeChannel(channel) {
 
     // #KODIPROP processing
     if (line.startsWith("#KODIPROP")) {
-      const parts = line.split(":"); // Split by first colon to separate directive from content
+      const parts = line.split(":", 2); // Split only on the first colon
 
       if (parts[0] === "#KODIPROP") {
-        const propAndValue = parts.slice(1).join(":"); // Rejoin for properties that have colons in their value
+        const propAndValue = parts.length > 1 ? parts[1].trim() : "";
         if (!propAndValue) {
           output.push("#KODIPROP:inputstream=inputstream.adaptive");
         } else if (propAndValue === "inputstream") {
@@ -198,17 +201,11 @@ function normalizeChannel(channel) {
         } else if (propAndValue === "inputstream.adaptive") {
           output.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
         } else if (propAndValue.startsWith("inputstream.adaptive.license_type")) {
-          // Ensure specific license type is outputted
-          output.push("#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey");
+          // Keep the original license_type if specified, e.g., org.w3.clearkey or widevine
+          output.push(`#KODIPROP:${propAndValue}`);
         } else if (propAndValue.startsWith("inputstream.adaptive.license_key")) {
-          // For license_key, just ensure it's kept as is after the key
-          const keyMatch = propAndValue.match(/^inputstream\.adaptive\.license_key=(.*)/);
-          if (keyMatch && keyMatch[1]) {
-            output.push(`#KODIPROP:inputstream.adaptive.license_key=${keyMatch[1]}`);
-          } else {
-            // Fallback for unexpected format, keep the original cleaned line
-            output.push(cleanLine(line));
-          }
+          // Keep the original license_key as is
+          output.push(`#KODIPROP:${propAndValue}`);
         } else {
           // For other KODIPROP properties, keep them as they are after basic cleaning
           output.push(cleanLine(line));
@@ -228,23 +225,18 @@ function normalizeChannel(channel) {
       let propName = line.substring("#EXTVLCOPT:".length, equalIndex).trim().toLowerCase();
       let propValue = line.substring(equalIndex + 1).trim();
 
-      // Normalize Origin header
-      if (propName === "http-extra-headers" || propName === "origin" || propName.includes("origin")) {
-        output.push("#EXTVLCOPT:http-origin=https://www.hotstar.com");
-      }
-      // Normalize Referer header
-      else if (propName === "http-referrer" || propName === "http-referer") {
-        output.push("#EXTVLCOPT:http-referrer=https://www.hotstar.com");
-      }
-      // For other headers like user-agent or cookie, remove trailing "=https://www.hotstar.com" if present
-      else if (propValue.endsWith("=https://www.hotstar.com")) {
-        // Extract the actual value by removing the trailing part
-        propValue = propValue.substring(0, propValue.lastIndexOf("=https://www.hotstar.com"));
+      // First, remove the common trailing Hotstar URL from the value
+      propValue = removeHotstarTrailer(propValue);
+
+      // Apply specific normalizations
+      if (propName === "http-extra-headers") {
+        output.push(`#EXTVLCOPT:http-origin=https://www.hotstar.com`);
+      } else if (propName === "http-referrer" || propName === "http-referer") {
+        // Standardize http-referrer to a specific value
+        output.push(`#EXTVLCOPT:http-referrer=https://www.hotstar.com`);
+      } else {
+        // For other EXTVLCOPT lines (like user-agent, cookie), use the cleaned value
         output.push(`#EXTVLCOPT:${propName}=${propValue}`);
-      }
-      else {
-        // For any other EXTVLCOPT lines, keep them as is after basic cleaning
-        output.push(cleanLine(line));
       }
       continue;
     }
@@ -254,7 +246,7 @@ function normalizeChannel(channel) {
       continue; // Skip these lines entirely
     }
 
-    // Other M3U directives (including non-Hotstar specific ones)
+    // Other M3U directives
     if (line.startsWith("#")) {
       output.push(cleanLine(line));
       continue;
