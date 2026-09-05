@@ -125,7 +125,10 @@ function cleanUrl(line) {
   // Remove markdown format
   const markdownMatch = url.match(/^\[([^\]]+)\]\((.+)\)$/);
   if (markdownMatch) {
-    url = markdownMatch[1];
+    // --- FIX START ---
+    // Change markdownMatch[1] to markdownMatch[2] to extract the URL, not the name
+    url = markdownMatch[2];
+    // --- FIX END ---
   }
 
   // Only process if URL ends in .mpd
@@ -235,11 +238,9 @@ async function generateM3U() {
 
   const output = [
     "#EXTM3U",
-    // --- MODIFICATION START ---
     "# JHS Channels - Credits",
     "# Playlist Created By Premium Plug X",
     "# All Channels Sourced & Curated By @rtxcric",
-    // --- MODIFICATION END ---
     `# Generated At: ${now}`,
     "",
   ];
