@@ -1,3 +1,4 @@
+// Constants
 const PLAYLIST_URL = "https://premiumplugx.com/htt/hot.php?playlist=1";
 
 // GitHub output file
@@ -63,14 +64,8 @@ function parseM3U(text) {
       }
 
       // Extract tvg-name
-      const match = line.match(
-        /tvg-name="([^"]*)"/i
-      );
-
-      const tvgName = match
-        ? match[1].trim()
-        : "";
-
+      const match = line.match(/tvg-name="([^"]*)"/i);
+      const tvgName = match ? match[1].trim() : "";
       currentBlock = {
         tvgName,
         lines: [line],
@@ -85,7 +80,7 @@ function parseM3U(text) {
     }
   }
 
-  // Save final channel
+  // Save the final channel
   if (currentBlock) {
     channels.push(currentBlock);
   }
@@ -98,18 +93,14 @@ function parseM3U(text) {
 // ============================================================
 
 function isRequiredChannel(tvgName) {
-  const normalizedName =
-    tvgName.trim().toLowerCase();
-
-  return REQUIRED_CHANNELS.some(
-    (requiredName) =>
-      normalizedName ===
-      requiredName.trim().toLowerCase()
+  const normalizedName = tvgName.trim().toLowerCase();
+  return REQUIRED_CHANNELS.some((requiredName) =>
+    normalizedName === requiredName.trim().toLowerCase()
   );
 }
 
 // ============================================================
-// CLEAN M3U STRUCTURE
+// CLEAN M3U LINES
 // ============================================================
 
 function cleanLine(line) {
@@ -124,23 +115,19 @@ function cleanLine(line) {
 function cleanUrl(line) {
   let url = line.trim();
 
-  // Convert:
-  // [https://example.com/test.mpd](https://example.com/test.mpd)
-  //
-  // to:
-  // https://example.com/test.mpd
-
-  const markdownMatch =
-    url.match(/^\[([^\]]+)\]\((.+)\)$/);
-
+  // Remove markdown format
+  const markdownMatch = url.match(/^\[([^\]]+)\]\((.+)\)$/);
   if (markdownMatch) {
     url = markdownMatch[1];
   }
 
-  return url
-    .replace(/\\&/g, "&")
-    .replace(/\\\(/g, "(")
-    .replace(/\\\)/g, ")");
+  // Only process if URL ends in .mpd
+  if (url.endsWith(".mpd")) {
+    url = url.split("?")[0]; // Remove query parameters
+    url = url.split("|")[0];  // Remove pipe-based fragments
+  }
+
+  return url;
 }
 
 // ============================================================
@@ -163,21 +150,45 @@ function normalizeChannel(channel) {
       continue;
     }
 
-    // KODIPROP
+    // #KODIPROP processing
     if (line.startsWith("#KODIPROP")) {
-      output.push(cleanLine(line));
-      continue;
+      const parts = line.split(/:/);
+
+      if (parts[0] === "#KODIPROP") {
+        if (!parts[1]) {
+          output.push("#KODIPROP:inputstream=inputstream.adaptive");
+        } else if (parts[1] === "inputstream") {
+          output.push("#KODIPROP:inputstream=inputstream.adaptive");
+        } else if (parts[1] === "inputstream.adaptive") {
+          output.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
+        } else if (parts[1].includes("license_type")) {
+          output.push("#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey");
+        } else if (parts[1].includes("license_key")) {
+          const keyLine = cleanLine(line);
+          const keyParts = keyLine.split("=");
+          if (keyParts.length > 1) {
+            const value = keyParts[1];
+            output.push(`#KODIPROP:inputstream.adaptive.license_key=${value}`);
+          }
+        } else {
+          output.push(cleanLine(line));
+        }
+        continue;
+      }
     }
 
-    // EXTVLCOPT
+    // #EXTVLCOPT processing
     if (line.startsWith("#EXTVLCOPT")) {
-      output.push(cleanLine(line));
-      continue;
-    }
-
-    // EXTHTTP
-    if (line.startsWith("#EXTHTTP")) {
-      output.push(cleanLine(line));
+      const parts = line.split(":");
+      if (parts[0] === "#EXTVLCOPT") {
+        let prop = parts[1];
+        if (prop === "http-extra-headers") {
+          prop = "http-origin";
+        }
+        output.push(`#EXTVLCOPT:${prop}=https://www.hotstar.com`);
+      } else {
+        output.push(cleanLine(line));
+      }
       continue;
     }
 
@@ -201,29 +212,19 @@ function normalizeChannel(channel) {
 async function generateM3U() {
   const now = new Date().toISOString();
 
-  console.log(
-    "Generating filtered playlist:",
-    now
-  );
+  console.log("Generating filtered playlist:", now);
 
   const source = await fetchPlaylist();
 
   const channels = parseM3U(source);
 
-  console.log(
-    "Total source channels:",
-    channels.length
+  console.log("Total source channels:", channels.length);
+
+  const selected = channels.filter((channel) =>
+    isRequiredChannel(channel.tvgName)
   );
 
-  const selected = channels.filter(
-    (channel) =>
-      isRequiredChannel(channel.tvgName)
-  );
-
-  console.log(
-    "Selected channels:",
-    selected.length
-  );
+  console.log("Selected channels:", selected.length);
 
   const output = [
     "#EXTM3U",
@@ -232,10 +233,7 @@ async function generateM3U() {
   ];
 
   for (const channel of selected) {
-    output.push(
-      normalizeChannel(channel)
-    );
-
+    output.push(normalizeChannel(channel));
     output.push("");
   }
 
@@ -243,19 +241,15 @@ async function generateM3U() {
 }
 
 // ============================================================
-// BASE64
+// BASE64 Encoding
 // ============================================================
 
 function toBase64(str) {
-  const bytes =
-    new TextEncoder().encode(str);
-
+  const bytes = new TextEncoder().encode(str);
   let binary = "";
-
   for (const byte of bytes) {
     binary += String.fromCharCode(byte);
   }
-
   return btoa(binary);
 }
 
@@ -268,43 +262,27 @@ async function uploadToGitHub(content, env) {
 
   let sha;
 
-  // ----------------------------------------------------------
-  // GET EXISTING FILE
-  // ----------------------------------------------------------
-
+  // Get existing file to get SHA
   const oldFile = await fetch(api, {
     headers: {
-      Authorization:
-        `Bearer ${env.GITHUB_TOKEN}`,
-
-      "User-Agent":
-        "Cloudflare-Worker",
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "User-Agent": "Cloudflare-Worker",
     },
   });
 
   if (oldFile.ok) {
     try {
-      const oldJson =
-        await oldFile.json();
-
+      const oldJson = await oldFile.json();
       sha = oldJson.sha;
     } catch (e) {
-      console.log(
-        "Could not read existing SHA"
-      );
+      console.log("Could not read existing SHA");
     }
   }
 
-  // ----------------------------------------------------------
-  // UPLOAD NEW FILE
-  // ----------------------------------------------------------
-
+  // Upload new version
   const body = {
-    message:
-      "Auto update selected M3U channels",
-
-    content:
-      toBase64(content),
+    message: "Auto update selected M3U channels",
+    content: toBase64(content),
   };
 
   if (sha) {
@@ -313,35 +291,21 @@ async function uploadToGitHub(content, env) {
 
   const upload = await fetch(api, {
     method: "PUT",
-
     headers: {
-      Authorization:
-        `Bearer ${env.GITHUB_TOKEN}`,
-
-      "Content-Type":
-        "application/json",
-
-      "User-Agent":
-        "Cloudflare-Worker",
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "Content-Type": "application/json",
+      "User-Agent": "Cloudflare-Worker",
     },
-
     body: JSON.stringify(body),
   });
 
-  const result =
-    await upload.text();
+  const result = await upload.text();
 
-  console.log(
-    "GitHub Upload:",
-    upload.status
-  );
-
+  console.log("GitHub Upload:", upload.status);
   console.log(result);
 
   if (!upload.ok) {
-    throw new Error(
-      `GitHub upload failed: ${upload.status}`
-    );
+    throw new Error(`GitHub upload failed: ${upload.status}`);
   }
 }
 
@@ -350,14 +314,8 @@ async function uploadToGitHub(content, env) {
 // ============================================================
 
 export async function runChannelFilter(env) {
-  const m3u =
-    await generateM3U();
-
-  await uploadToGitHub(
-    m3u,
-    env
-  );
-
+  const m3u = await generateM3U();
+  await uploadToGitHub(m3u, env);
   return m3u;
 }
 
@@ -368,26 +326,19 @@ export async function runChannelFilter(env) {
 export default {
   async fetch(request, env) {
     try {
-      const m3u =
-        await runChannelFilter(env);
-
+      const m3u = await runChannelFilter(env);
       return new Response(
         m3u,
         {
           status: 200,
           headers: {
-            "Content-Type":
-              "application/x-mpegURL; charset=utf-8",
-
-            "Cache-Control":
-              "no-cache, no-store, must-revalidate",
+            "Content-Type": "application/x-mpegURL; charset=utf-8",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
           },
         }
       );
-
     } catch (error) {
       console.error(error);
-
       return new Response(
         JSON.stringify({
           error: error.message,
@@ -395,8 +346,7 @@ export default {
         {
           status: 500,
           headers: {
-            "Content-Type":
-              "application/json",
+            "Content-Type": "application/json",
           },
         }
       );
