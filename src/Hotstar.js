@@ -64,11 +64,18 @@ function parseM3U(text) {
       }
 
       // Extract tvg-name
-      const match = line.match(/tvg-name="([^"]*)"/i);
-      const tvgName = match ? match[1].trim() : "";
+      let match = line.match(/tvg-name="([^"]*)"/i);
+      let tvgName = match ? match[1].trim() : "";
+
+      // Remove " by @rtxcric" and any leading/trailing space around it
+      tvgName = tvgName.replace(/\s*by\s*@rtxcric/gi, '').trim();
+
+      // Update the #EXTINF line to reflect the cleaned tvg-name
+      const updatedLine = line.replace(/tvg-name="([^"]*)"/i, `tvg-name="${tvgName}"`);
+
       currentBlock = {
-        tvgName,
-        lines: [line],
+        tvgName, // The cleaned name
+        lines: [updatedLine], // The updated line with cleaned name
       };
 
       continue;
@@ -228,6 +235,11 @@ async function generateM3U() {
 
   const output = [
     "#EXTM3U",
+    // --- MODIFICATION START ---
+    "# JHS Channels - Credits",
+    "# Playlist Created By Premium Plug X",
+    "# All Channels Sourced & Curated By @rtxcric",
+    // --- MODIFICATION END ---
     `# Generated At: ${now}`,
     "",
   ];
