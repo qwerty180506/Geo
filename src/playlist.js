@@ -50,7 +50,7 @@ const WANTED_MAP = {
   "Star Vijay HD": ["Entertainment", "jioplus2"],
   "Thanthi One": ["Entertainment", "jioplus2"],
   "Zee Tamil HD": ["Entertainment", "jioplus2"],
-  "Zee Thirai HD": ["Movies", "jioplus2"],
+  //"Zee Thirai HD": ["Movies", "jioplus2"],
   "Sony PIX HD": "Movies",
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
