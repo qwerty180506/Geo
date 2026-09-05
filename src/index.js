@@ -11,7 +11,7 @@ export default {
         runFancode(env),
         //runJioTV(env),
         runJioTV2(env),
-        runChannelFilter(env)
+        //runChannelFilter(env)
       ]);
 
       await runMerge(env);
