@@ -264,11 +264,7 @@ function toBase64(str) {
 // ============================================================
 
 async function uploadToGitHub(content, env) {
-  const api =
-    `https://api.github.com/repos/` +
-    `${env.GITHUB_OWNER}/` +
-    `${env.GITHUB_REPO}/` +
-    `/contents/${OUTPUT_PATH}`;
+  const api = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${OUTPUT_PATH}`;
 
   let sha;
 
