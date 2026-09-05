@@ -4,6 +4,9 @@ const PLAYLIST_URL = "https://premiumplugx.com/htt/hot.php?playlist=1";
 // GitHub output file
 const OUTPUT_PATH = "Hotstar.m3u";
 
+// Enable/disable detailed logging for debugging
+const DEBUG_MODE = true; 
+
 // ============================================================
 // EXACT CHANNELS TO KEEP
 // ============================================================
@@ -134,26 +137,26 @@ function cleanUrl(line) {
   // Remove markdown format like [Channel Name](URL)
   const markdownMatch = url.match(/^\[([^\]]+)\]\((.+)\)$/);
   if (markdownMatch) {
-    url = markdownMatch[2]; // Correctly extract the URL part
+    url = markdownMatch[2];
   }
 
-  // Only process if URL ends in .mpd
+  if (DEBUG_MODE) {
+    console.log(`[cleanUrl] Before: ${url}`);
+  }
+
+  // If URL ends in .mpd, remove everything after the .mpd extension
+  // that looks like query parameters or pipe-separated options.
+  // This regex targets .mpd followed by ? or | and then anything else.
+  // It ensures the base URL up to .mpd is preserved.
   if (url.endsWith(".mpd")) {
-    // Find the earliest index of '?' or '|'
-    const questionMarkIndex = url.indexOf('?');
-    const pipeIndex = url.indexOf('|');
+    // This regex matches '.mpd' literally, then a '?' or '|' character,
+    // and then any characters until the end of the line.
+    // It replaces the matched part (from '?|' onwards) with just '.mpd'.
+    url = url.replace(/(\.mpd)[\?|].*$/, '$1');
+  }
 
-    let truncateIndex = -1;
-    if (questionMarkIndex !== -1) {
-        truncateIndex = questionMarkIndex;
-    }
-    if (pipeIndex !== -1 && (truncateIndex === -1 || pipeIndex < truncateIndex)) {
-        truncateIndex = pipeIndex;
-    }
-
-    if (truncateIndex !== -1) {
-        url = url.substring(0, truncateIndex);
-    }
+  if (DEBUG_MODE) {
+    console.log(`[cleanUrl] After: ${url}`);
   }
 
   return url;
@@ -180,6 +183,10 @@ function normalizeChannel(channel) {
 
     if (!line) {
       continue;
+    }
+
+    if (DEBUG_MODE) {
+      console.log(`[normalizeChannel] Processing line: ${line}`);
     }
 
     // #EXTINF: Cleaned tvg-name and display name already applied in parseM3U
@@ -243,6 +250,9 @@ function normalizeChannel(channel) {
 
     // #EXTHTTP: Remove completely as EXTVLCOPT should handle headers consistently
     if (line.startsWith("#EXTHTTP")) {
+      if (DEBUG_MODE) {
+        console.log(`[normalizeChannel] Skipping EXTHTTP line: ${line}`);
+      }
       continue; // Skip these lines entirely
     }
 
@@ -253,6 +263,9 @@ function normalizeChannel(channel) {
     }
 
     // Stream URL
+    if (DEBUG_MODE) {
+      console.log(`[normalizeChannel] Identifying as Stream URL, calling cleanUrl for: ${line}`);
+    }
     output.push(cleanUrl(line));
   }
 
