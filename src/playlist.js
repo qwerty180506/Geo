@@ -583,7 +583,10 @@ export async function runMerge(env) {
       parseM3U(files.jioplus2),
 
     local:
-      parseM3U(files.local)
+      parseM3U(files.local),
+
+    hotstar:
+      parseM3U(files.hotstar)
   };
 
 
