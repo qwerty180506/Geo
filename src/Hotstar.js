@@ -71,7 +71,15 @@ function parseM3U(text) {
       tvgName = tvgName.replace(/\s*by\s*@rtxcric/gi, '').trim();
 
       // Update the #EXTINF line to reflect the cleaned tvg-name
-      const updatedLine = line.replace(/tvg-name="([^"]*)"/i, `tvg-name="${tvgName}"`);
+      // Ensure the *last* comma-separated part (the channel name for display) is also cleaned
+      const commaIndex = line.lastIndexOf(',');
+      let updatedLine = line;
+      if (commaIndex !== -1) {
+          const preComma = line.substring(0, commaIndex + 1); // Including the comma
+          const postComma = line.substring(commaIndex + 1).replace(/\s*by\s*@rtxcric/gi, '').trim();
+          updatedLine = preComma + postComma;
+      }
+      updatedLine = updatedLine.replace(/tvg-name="([^"]*)"/i, `tvg-name="${tvgName}"`);
 
       currentBlock = {
         tvgName, // The cleaned name
@@ -122,17 +130,36 @@ function cleanLine(line) {
 function cleanUrl(line) {
   let url = line.trim();
 
-  // Remove markdown format
+  // Remove markdown format like [Channel Name](URL)
   const markdownMatch = url.match(/^\[([^\]]+)\]\((.+)\)$/);
   if (markdownMatch) {
-    // Correctly extract the URL from the markdown format
-    url = markdownMatch[2];
+    url = markdownMatch[2]; // Correctly extract the URL part
   }
 
   // Only process if URL ends in .mpd
   if (url.endsWith(".mpd")) {
-    url = url.split("?")[0]; // Remove query parameters
-    url = url.split("|")[0];  // Remove pipe-based fragments
+    // Remove query parameters starting with '?'
+    // and pipe-based fragments starting with '|'
+    // The order matters: first remove '?' if it exists, then '|'
+    // E.g., 'url.mpd?param=val|fragment' -> 'url.mpd'
+    // E.g., 'url.mpd|fragment?param=val' -> 'url.mpd|fragment' (then second split gets it)
+    // E.g., 'url.mpd?|fragment' -> 'url.mpd' (this specific case for the user's input)
+
+    const questionMarkIndex = url.indexOf('?');
+    const pipeIndex = url.indexOf('|');
+
+    // Find the earliest index of '?' or '|'
+    let truncateIndex = -1;
+    if (questionMarkIndex !== -1) {
+        truncateIndex = questionMarkIndex;
+    }
+    if (pipeIndex !== -1 && (truncateIndex === -1 || pipeIndex < truncateIndex)) {
+        truncateIndex = pipeIndex;
+    }
+
+    if (truncateIndex !== -1) {
+        url = url.substring(0, truncateIndex);
+    }
   }
 
   return url;
@@ -152,55 +179,82 @@ function normalizeChannel(channel) {
       continue;
     }
 
-    // #EXTINF
+    // #EXTINF: Cleaned tvg-name is already applied in parseM3U
     if (line.startsWith("#EXTINF")) {
-      output.push(cleanLine(line));
+      output.push(cleanLine(line)); // Only apply basic line cleaning for escapes
       continue;
     }
 
     // #KODIPROP processing
     if (line.startsWith("#KODIPROP")) {
-      const parts = line.split(/:/);
+      const parts = line.split(":"); // Split by first colon to separate directive from content
 
       if (parts[0] === "#KODIPROP") {
-        if (!parts[1]) {
+        const propAndValue = parts.slice(1).join(":"); // Rejoin for properties that have colons in their value
+        if (!propAndValue) {
           output.push("#KODIPROP:inputstream=inputstream.adaptive");
-        } else if (parts[1] === "inputstream") {
+        } else if (propAndValue === "inputstream") {
           output.push("#KODIPROP:inputstream=inputstream.adaptive");
-        } else if (parts[1] === "inputstream.adaptive") {
+        } else if (propAndValue === "inputstream.adaptive") {
           output.push("#KODIPROP:inputstream.adaptive.manifest_type=mpd");
-        } else if (parts[1].includes("license_type")) {
+        } else if (propAndValue.startsWith("inputstream.adaptive.license_type")) {
+          // Ensure specific license type is outputted
           output.push("#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey");
-        } else if (parts[1].includes("license_key")) {
-          const keyLine = cleanLine(line);
-          const keyParts = keyLine.split("=");
-          if (keyParts.length > 1) {
-            const value = keyParts[1];
-            output.push(`#KODIPROP:inputstream.adaptive.license_key=${value}`);
+        } else if (propAndValue.startsWith("inputstream.adaptive.license_key")) {
+          // For license_key, just ensure it's kept as is after the key
+          const keyMatch = propAndValue.match(/^inputstream\.adaptive\.license_key=(.*)/);
+          if (keyMatch && keyMatch[1]) {
+            output.push(`#KODIPROP:inputstream.adaptive.license_key=${keyMatch[1]}`);
+          } else {
+            // Fallback for unexpected format, keep the original cleaned line
+            output.push(cleanLine(line));
           }
         } else {
+          // For other KODIPROP properties, keep them as they are after basic cleaning
           output.push(cleanLine(line));
         }
-        continue;
       }
+      continue;
     }
 
     // #EXTVLCOPT processing
     if (line.startsWith("#EXTVLCOPT")) {
-      const parts = line.split(":");
-      if (parts[0] === "#EXTVLCOPT") {
-        let prop = parts[1];
-        if (prop === "http-extra-headers") {
-          prop = "http-origin";
-        }
-        output.push(`#EXTVLCOPT:${prop}=https://www.hotstar.com`);
-      } else {
+      const equalIndex = line.indexOf('=');
+      if (equalIndex === -1) {
+        output.push(cleanLine(line)); // Not a key=value pair (or unexpected format), just push
+        continue;
+      }
+
+      let propName = line.substring("#EXTVLCOPT:".length, equalIndex).trim().toLowerCase();
+      let propValue = line.substring(equalIndex + 1).trim();
+
+      // Normalize Origin header
+      if (propName === "http-extra-headers" || propName === "origin" || propName.includes("origin")) {
+        output.push("#EXTVLCOPT:http-origin=https://www.hotstar.com");
+      }
+      // Normalize Referer header
+      else if (propName === "http-referrer" || propName === "http-referer") {
+        output.push("#EXTVLCOPT:http-referrer=https://www.hotstar.com");
+      }
+      // For other headers like user-agent or cookie, remove trailing "=https://www.hotstar.com" if present
+      else if (propValue.endsWith("=https://www.hotstar.com")) {
+        // Extract the actual value by removing the trailing part
+        propValue = propValue.substring(0, propValue.lastIndexOf("=https://www.hotstar.com"));
+        output.push(`#EXTVLCOPT:${propName}=${propValue}`);
+      }
+      else {
+        // For any other EXTVLCOPT lines, keep them as is after basic cleaning
         output.push(cleanLine(line));
       }
       continue;
     }
 
-    // Other M3U directives
+    // #EXTHTTP: Remove completely as EXTVLCOPT should handle headers consistently
+    if (line.startsWith("#EXTHTTP")) {
+      continue; // Skip these lines entirely
+    }
+
+    // Other M3U directives (including non-Hotstar specific ones)
     if (line.startsWith("#")) {
       output.push(cleanLine(line));
       continue;
