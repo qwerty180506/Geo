@@ -7,7 +7,8 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u"
+  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
+  hotstar: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/Hotstar.m3u"
 };
 
 const PRIORITY_ORDER = [
@@ -16,7 +17,8 @@ const PRIORITY_ORDER = [
   "sunnxt",
   "times",
   "jiotvplus",
-  "jiotv"
+  "jiotv",
+  "hotstar"
 ];
 
 const WANTED_MAP = {
@@ -119,15 +121,15 @@ const WANTED_MAP = {
   "Star Sports 2 HD": ["Sports", "jioplus2"],
   "Star Sports Select 1 HD": ["Sports", "jioplus2"],
   "Star Sports Select 2 HD": ["Sports", "jioplus2"],
-  "Star Vijay Digital": "Entertainment",
-  "Vijay Super Digital": "Movies",
-  "Star Sports 1 Tamil Digital": ["Sports", "jioplus2"],
-  "Star Sports 2 Tamil Digital": ["Sports", "jioplus2"],
-  "Star Sports 1 Digital": ["Sports", "jioplus2"],
-  "Star Sports 2 Digital": ["Sports", "jioplus2"],
-  "Star Sports Select 1 Digital": ["Sports", "jioplus2"],
-  "Star Sports Select 2 Digital": ["Sports", "jioplus2"],
-  "Star Sports Khel Digital": ["Sports", "jioplus2"]
+  "Star Vijay Digital": ["Entertainment", "hotstar"],
+  "Vijay Super Digital": ["Movies", "hotstar"],
+  "Star Sports 1 Tamil Digital": ["Sports", "hotstar"],
+  "Star Sports 2 Tamil Digital": ["Sports", "hotstar"],
+  "Star Sports 1 Digital": ["Sports", "hotstar"],
+  "Star Sports 2 Digital": ["Sports", "hotstar"],
+  "Star Sports Select 1 Digital": ["Sports", "hotstar"],
+  "Star Sports Select 2 Digital": ["Sports", "hotstar"],
+  "Star Sports Khel Digital": ["Sports", "hotstar"]
 };
 
 // ---------------- REGEX ----------------
