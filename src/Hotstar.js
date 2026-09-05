@@ -125,10 +125,8 @@ function cleanUrl(line) {
   // Remove markdown format
   const markdownMatch = url.match(/^\[([^\]]+)\]\((.+)\)$/);
   if (markdownMatch) {
-    // --- FIX START ---
-    // Change markdownMatch[1] to markdownMatch[2] to extract the URL, not the name
+    // Correctly extract the URL from the markdown format
     url = markdownMatch[2];
-    // --- FIX END ---
   }
 
   // Only process if URL ends in .mpd
@@ -267,58 +265,98 @@ function toBase64(str) {
 }
 
 // ============================================================
-// GITHUB UPLOAD
+// GITHUB UPLOAD - ROBUSTIFIED
 // ============================================================
 
+/**
+ * Fetches the current SHA of a file from GitHub.
+ * @param {object} env - The Cloudflare Worker environment variables.
+ * @param {string} path - The path to the file on GitHub.
+ * @returns {Promise<string|null>} The SHA of the file, or null if not found.
+ * @throws {Error} If fetching SHA fails for reasons other than 404.
+ */
+async function getGitHubFileSha(env, path) {
+  const api = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
+  const response = await fetch(api, {
+    headers: {
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "User-Agent": "Cloudflare-Worker",
+    },
+  });
+
+  if (response.ok) {
+    const json = await response.json();
+    return json.sha;
+  } else if (response.status === 404) {
+    return null; // File does not exist, will be created
+  } else {
+    const errorBody = await response.text();
+    throw new Error(`Failed to get GitHub file SHA for ${path}: ${response.status} ${response.statusText}. Response: ${errorBody}`);
+  }
+}
+
+/**
+ * Uploads content to GitHub, with retry logic for conflicts and network errors.
+ * @param {string} content - The content to upload.
+ * @param {object} env - The Cloudflare Worker environment variables.
+ * @throws {Error} If upload fails after all retries.
+ */
 async function uploadToGitHub(content, env) {
   const api = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${OUTPUT_PATH}`;
+  const maxRetries = 3;
+  let currentDelay = 1000; // Start with 1 second delay
 
-  let sha;
-
-  // Get existing file to get SHA
-  const oldFile = await fetch(api, {
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      "User-Agent": "Cloudflare-Worker",
-    },
-  });
-
-  if (oldFile.ok) {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      const oldJson = await oldFile.json();
-      sha = oldJson.sha;
+      // Fetch the latest SHA before EACH attempt to ensure we have the most current version
+      const sha = await getGitHubFileSha(env, OUTPUT_PATH);
+
+      const body = {
+        message: `Auto update selected M3U channels (attempt ${attempt + 1})`,
+        content: toBase64(content),
+      };
+
+      if (sha) {
+        body.sha = sha; // Include SHA for updates to prevent 409 if file exists
+      }
+      // If sha is null, the file doesn't exist, and we proceed without sha to create it.
+
+      const uploadResponse = await fetch(api, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+          "Content-Type": "application/json",
+          "User-Agent": "Cloudflare-Worker",
+        },
+        body: JSON.stringify(body),
+      });
+
+      console.log(`GitHub Upload (Attempt ${attempt + 1}): Status ${uploadResponse.status}`);
+
+      if (uploadResponse.ok) {
+        const result = await uploadResponse.text();
+        console.log("GitHub Upload Success:", result);
+        return; // Success, exit the function
+      } else if (uploadResponse.status === 409 && attempt < maxRetries) {
+        // Conflict detected, retry
+        console.warn(`Conflict (409) detected on GitHub upload. Retrying in ${currentDelay / 1000}s...`);
+        await new Promise(resolve => setTimeout(resolve, currentDelay));
+        currentDelay *= 2; // Exponential backoff
+      } else {
+        // Other errors or max retries reached for 409
+        const errorResult = await uploadResponse.text();
+        throw new Error(`GitHub upload failed: ${uploadResponse.status} ${uploadResponse.statusText}. Response: ${errorResult}`);
+      }
     } catch (e) {
-      console.log("Could not read existing SHA");
+      if (attempt < maxRetries) {
+        // Catch network errors during fetch or JSON parsing errors
+        console.error(`Error during GitHub upload (Attempt ${attempt + 1}): ${e.message}. Retrying in ${currentDelay / 1000}s...`);
+        await new Promise(resolve => setTimeout(resolve, currentDelay));
+        currentDelay *= 2; // Exponential backoff
+      } else {
+        throw new Error(`Failed to upload to GitHub after ${maxRetries + 1} attempts: ${e.message}`);
+      }
     }
-  }
-
-  // Upload new version
-  const body = {
-    message: "Auto update selected M3U channels",
-    content: toBase64(content),
-  };
-
-  if (sha) {
-    body.sha = sha;
-  }
-
-  const upload = await fetch(api, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-      "User-Agent": "Cloudflare-Worker",
-    },
-    body: JSON.stringify(body),
-  });
-
-  const result = await upload.text();
-
-  console.log("GitHub Upload:", upload.status);
-  console.log(result);
-
-  if (!upload.ok) {
-    throw new Error(`GitHub upload failed: ${upload.status}`);
   }
 }
 
