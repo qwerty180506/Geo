@@ -144,15 +144,14 @@ function cleanUrl(line) {
     console.log(`[cleanUrl] Before: ${url}`);
   }
 
-  // If URL ends in .mpd, remove everything after the .mpd extension
-  // that looks like query parameters or pipe-separated options.
-  // This regex targets .mpd followed by ? or | and then anything else.
-  // It ensures the base URL up to .mpd is preserved.
-  if (url.endsWith(".mpd")) {
-    // This regex matches '.mpd' literally, then a '?' or '|' character,
-    // and then any characters until the end of the line.
-    // It replaces the matched part (from '?|' onwards) with just '.mpd'.
-    url = url.replace(/(\.mpd)[\?|].*$/, '$1');
+  // Regex to find ".mpd" followed by "?" or "|" and then anything else.
+  // The '$1' in the replacement ensures only the ".mpd" part is kept,
+  // effectively stripping everything after it.
+  const mpdParamsPattern = /(\.mpd)[\?|].*$/;
+  
+  // CRITICAL FIX: Check if the pattern exists in the URL, not if it ends with ".mpd"
+  if (mpdParamsPattern.test(url)) { 
+    url = url.replace(mpdParamsPattern, '$1');
   }
 
   if (DEBUG_MODE) {
