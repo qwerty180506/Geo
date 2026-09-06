@@ -29,7 +29,7 @@ const WANTED_MAP = {
   "Jaya Max": "Music",
   "Sun TV HD": ["Entertainment", "sunnxt"],
   "Jaya Plus": "News",
-  "Animal Planet HD Tamil": "Infortainment",
+  "Animal Planet HD Tamil": "Infotainment",
   "Cartoon Network Tamil": "Kids",
   "Chutti TV": "Kids",
   "Disney Channel": ["Kids", "jioplus2"],
@@ -45,7 +45,7 @@ const WANTED_MAP = {
   "MN+": ["Movies", "times"],
   "Vijay Takkar": ["Music", "jioplus2"],
   "Vijay Super HD": "Movies",
-  "Colors Infinity HD": ["Movies","jioplus2"],
+  "Colors Infinity HD": ["Movies", "jioplus2"],
   "Star Movies HD": ["Movies", "jioplus2"],
   "Star Movies Select HD": ["Movies", "jioplus2"],
   "Colors Tamil HD": ["Entertainment", "jioplus2"],
@@ -98,28 +98,32 @@ const WANTED_MAP = {
   "CNN": "News",
   "Times NOW": "News",
   "Wion": "News",
-  "Discovery Turbo": "Infortainment",
-  "Discovery Science English": "Infortainment",
-  "Discovery HD Tamil": "Infortainment",
-  "D Tamil": "Infortainment",
-  "History TV18 HD Tamil": ["Infortainment", "jioplus2"],
-  "Nat Geo Wild HD": ["Infortainment", "jioplus2"],
-  "National Geographic HD": ["Infortainment", "jioplus2"],
-  "Travelxp HD": "Infortainment",
-  "Travelxp Tamil": "Infortainment",
-  "Sony BBC Earth HD": ["Infortainment", "jioplus2"],
+
+  "Discovery Turbo": "Infotainment",
+  "Discovery Science English": "Infotainment",
+  "Discovery HD Tamil": "Infotainment",
+  "D Tamil": "Infotainment",
+  "History TV18 HD Tamil": ["Infotainment", "jioplus2"],
+  "Nat Geo Wild HD": ["Infotainment", "jioplus2"],
+  "National Geographic HD": ["Infotainment", "jioplus2"],
+  "Travelxp HD": "Infotainment",
+  "Travelxp Tamil": "Infotainment",
+  "Sony BBC Earth HD": ["Infotainment", "jioplus2"],
+
   "Sony Ten 1 HD": ["Sports", "sonyliv"],
   "Sony Ten 2 HD": ["Sports", "sonyliv"],
   "Sony Ten 3 HD": ["Sports", "sonyliv"],
   "Sony Ten 4 HD": ["Sports", "sonyliv"],
   "Sony Ten 4": ["Sports", "sonyliv"],
   "Sony Ten 5 HD": ["Sports", "sonyliv"],
+
   "Star Sports 1 Tamil HD": ["Sports", "jioplus2"],
   "Star Sports 2 Tamil HD": ["Sports", "jioplus2"],
   "Star Sports 1 HD": ["Sports", "jioplus2"],
   "Star Sports 2 HD": ["Sports", "jioplus2"],
   "Star Sports Select 1 HD": ["Sports", "jioplus2"],
   "Star Sports Select 2 HD": ["Sports", "jioplus2"],
+
   "Star Vijay Digital": ["Entertainment", "hotstar"],
   "Vijay Super Digital": ["Movies", "hotstar"],
   "Star Sports 1 Tamil Digital": ["Sports", "hotstar"],
@@ -130,6 +134,7 @@ const WANTED_MAP = {
   "Star Sports Select 2 Digital": ["Sports", "hotstar"],
   "Star Sports Khel Digital": ["Sports", "hotstar"]
 };
+
 
 // ---------------- REGEX ----------------
 
@@ -142,13 +147,18 @@ function escapeRegex(str) {
 
 function normalizePipeUrl(line) {
   const pipeIndex = line.indexOf("|");
-  if (pipeIndex === -1) return line;
+
+  if (pipeIndex === -1) {
+    return line;
+  }
 
   const baseUrl = line.substring(0, pipeIndex);
   const pipeHeaders = line.substring(pipeIndex + 1);
 
-  // Extract Cookie/cookie value and remove the "Cookie=" / "cookie=" label
-  const cookieMatch = pipeHeaders.match(/(?:^|&)cookie=([^&]*)/i);
+  // Extract Cookie/cookie value
+  const cookieMatch = pipeHeaders.match(
+    /(?:^|&)cookie=([^&]*)/i
+  );
 
   if (cookieMatch) {
     const cookieValue = cookieMatch[1];
@@ -163,21 +173,17 @@ function normalizePipeUrl(line) {
   return baseUrl;
 }
 
+
 // ---------------- M3U PARSER ----------------
 
 function parseM3U(content) {
-  const lines =
-    content.split(/\r?\n/);
-
+  const lines = content.split(/\r?\n/);
   const channels = {};
 
   let buffer = [];
 
-
   for (const raw of lines) {
-    let line =
-      raw.trim();
-
+    let line = raw.trim();
 
     if (
       !line ||
@@ -186,71 +192,52 @@ function parseM3U(content) {
       continue;
     }
 
-
     if (line.startsWith("#")) {
       buffer.push(line);
       continue;
     }
 
-
-    let finalBuffer =
-      [...buffer];
-
+    let finalBuffer = [...buffer];
 
     // --------------------------------------------------
     // Extract Cookie from KODIPROP stream_headers.
     // --------------------------------------------------
 
-    let cookieValue =
-      null;
+    let cookieValue = null;
 
+    finalBuffer = finalBuffer.filter(tag => {
 
-    finalBuffer =
-      finalBuffer.filter(tag => {
+      if (
+        tag.startsWith(
+          "#KODIPROP:inputstream.adaptive.stream_headers="
+        )
+      ) {
+
+        const headerContent =
+          tag.replace(
+            "#KODIPROP:inputstream.adaptive.stream_headers=",
+            ""
+          );
 
         if (
-          tag.startsWith(
-            "#KODIPROP:inputstream.adaptive.stream_headers="
-          )
+          headerContent.startsWith("Cookie=")
         ) {
-          const headerContent =
-            tag.replace(
-              "#KODIPROP:inputstream.adaptive.stream_headers=",
+          cookieValue =
+            headerContent.replace(
+              "Cookie=",
               ""
             );
-
-
-          if (
-            headerContent.startsWith(
-              "Cookie="
-            )
-          ) {
-            cookieValue =
-              headerContent.replace(
-                "Cookie=",
-                ""
-              );
-          }
-
-
-          return false;
         }
 
+        return false;
+      }
 
-        return true;
-      });
+      return true;
+    });
 
 
     // --------------------------------------------------
     // Normalize pipe-style Jio URLs.
-    //
-    // Example:
-    //
-    // URL|User-Agent=...&Referer=...&Origin=...&Cookie=TOKEN
-    //
-    // becomes:
-    //
-    // URL?TOKEN
     // --------------------------------------------------
 
     line = normalizePipeUrl(line);
@@ -274,15 +261,6 @@ function parseM3U(content) {
 
     // --------------------------------------------------
     // Detect MPD correctly.
-    //
-    // Supports:
-    //
-    //   index.mpd
-    //   index.mpd?foo=bar
-    //   index.mpd|User-Agent=...
-    //
-    // The URL is normalized before this check, so the
-    // resulting URL normally becomes index.mpd?...
     // --------------------------------------------------
 
     const hasMpdProp =
@@ -292,7 +270,6 @@ function parseM3U(content) {
         )
       );
 
-
     const isMpdUrl =
       /\.mpd(?:\?|[|]|$)/i.test(line);
 
@@ -300,8 +277,6 @@ function parseM3U(content) {
     // --------------------------------------------------
     // Only remove adaptive KODIPROP tags if the source
     // claims MPD but the actual URL isn't MPD.
-    //
-    // This preserves ClearKey configuration.
     // --------------------------------------------------
 
     if (
@@ -322,9 +297,7 @@ function parseM3U(content) {
     // Extract channel name.
     // --------------------------------------------------
 
-    let name =
-      null;
-
+    let name = null;
 
     for (const tag of finalBuffer) {
 
@@ -332,6 +305,7 @@ function parseM3U(content) {
         tag.startsWith("#EXTINF") &&
         tag.includes(",")
       ) {
+
         name =
           tag
             .substring(
@@ -356,10 +330,8 @@ function parseM3U(content) {
         ].join("\n");
     }
 
-
     buffer = [];
   }
-
 
   return channels;
 }
@@ -367,15 +339,14 @@ function parseM3U(content) {
 
 // ---------------- SAFE MATCH ----------------
 
-function safeMatch(
-  requested,
-  data
-) {
+function safeMatch(requested, data) {
+
   // Exact case-insensitive match.
   for (
     const [key, value]
     of Object.entries(data)
   ) {
+
     if (
       key.toLowerCase() ===
       requested.toLowerCase()
@@ -392,26 +363,65 @@ function safeMatch(
       "i"
     );
 
-
   for (
     const [key, value]
     of Object.entries(data)
   ) {
+
     if (regex.test(key)) {
       return value;
     }
   }
 
-
   return null;
+}
+
+
+// ---------------- GROUP TITLE FIX ----------------
+
+function setGroupTitle(content, category) {
+
+  return content.replace(
+    /^#EXTINF:[^\r\n]*/m,
+    (extinf) => {
+
+      let fixed = extinf;
+
+      // Remove existing double-quoted group-title
+      fixed = fixed.replace(
+        /\s+group-title\s*=\s*"[^"]*"/gi,
+        ""
+      );
+
+      // Remove existing single-quoted group-title
+      fixed = fixed.replace(
+        /\s+group-title\s*=\s*'[^']*'/gi,
+        ""
+      );
+
+      // Remove unquoted group-title if present
+      fixed = fixed.replace(
+        /\s+group-title\s*=\s*[^\s,]+/gi,
+        ""
+      );
+
+      // Add our mapped group
+      fixed = fixed.replace(
+        /^#EXTINF:-1/,
+        `#EXTINF:-1 group-title="${category}"`
+      );
+
+      return fixed;
+    }
+  );
 }
 
 
 // ---------------- FETCH SOURCES ----------------
 
 async function fetchSources(env) {
-  const result = {};
 
+  const result = {};
 
   // Add Cloudflare Worker secret here.
   const sourceUrls = {
@@ -424,6 +434,7 @@ async function fetchSources(env) {
     const [key, url]
     of Object.entries(sourceUrls)
   ) {
+
     try {
 
       const headers = {
@@ -433,6 +444,7 @@ async function fetchSources(env) {
 
 
       if (key === "jiotv") {
+
         headers["Referer"] =
           "https://sflexzio.pages.dev";
 
@@ -458,7 +470,6 @@ async function fetchSources(env) {
         `Downloaded ${key}: ${response.status}`
       );
 
-
     } catch (err) {
 
       console.log(
@@ -466,9 +477,7 @@ async function fetchSources(env) {
         err.toString()
       );
 
-
-      result[key] =
-        "";
+      result[key] = "";
     }
   }
 
@@ -483,6 +492,7 @@ async function uploadToGist(
   content,
   env
 ) {
+
   const response =
     await fetch(
       `https://api.github.com/gists/${env.GIST_ID}`,
@@ -528,6 +538,7 @@ async function uploadToGist(
 
 
   if (!response.ok) {
+
     throw new Error(
       `Gist upload failed: ${response.status} - ${text}`
     );
@@ -606,10 +617,21 @@ export async function runMerge(env) {
     let preferred;
 
 
+    // Mapping can be:
+    //
+    // "Channel": "Category"
+    //
+    // OR:
+    //
+    // "Channel": ["Category", "PreferredSource"]
+
     if (Array.isArray(value)) {
+
       [category, preferred] =
         value;
+
     } else {
+
       category =
         value;
 
@@ -618,11 +640,8 @@ export async function runMerge(env) {
     }
 
 
-    let found =
-      null;
-
-    let foundSource =
-      null;
+    let found = null;
+    let foundSource = null;
 
 
     // --------------------------------------------------
@@ -633,14 +652,15 @@ export async function runMerge(env) {
       preferred &&
       sources[preferred]
     ) {
+
       found =
         safeMatch(
           name,
           sources[preferred]
         );
 
-
       if (found) {
+
         foundSource =
           preferred;
       }
@@ -664,8 +684,8 @@ export async function runMerge(env) {
             sources[src]
           );
 
-
         if (found) {
+
           foundSource =
             src;
 
@@ -681,28 +701,22 @@ export async function runMerge(env) {
 
     if (found) {
 
-      const clean =
-        found.replace(
-          /group-title="[^"]*"/g,
-          ""
-        );
-
-
+      // FIX:
+      // Always remove the existing group-title and
+      // insert the mapped category.
       const fixed =
-        clean.replace(
-          "#EXTINF:-1",
-          `#EXTINF:-1 group-title="${category}"`
+        setGroupTitle(
+          found,
+          category
         );
-
 
       base[name] =
         fixed;
 
 
       console.log(
-        `✓ ${name} -> ${foundSource}`
+        `✓ ${name} -> ${foundSource} [${category}]`
       );
-
 
     } else {
 
@@ -834,6 +848,7 @@ export async function runMerge(env) {
     const item
     of values
   ) {
+
     playlist +=
       item +
       "\n";
