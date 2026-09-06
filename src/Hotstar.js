@@ -5,7 +5,7 @@ const PLAYLIST_URL = "https://premiumplugx.com/htt/hot.php?playlist=1";
 const OUTPUT_PATH = "Hotstar.m3u";
 
 // Enable/disable detailed logging for debugging
-const DEBUG_MODE = true; 
+const DEBUG_MODE = false; 
 
 // ============================================================
 // EXACT CHANNELS TO KEEP
