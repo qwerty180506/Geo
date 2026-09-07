@@ -381,6 +381,14 @@ function safeMatch(requested, data) {
 
 function setGroupTitle(content, category) {
 
+  // Remove ALL source #EXTGRP lines.
+  // They must never survive into the merged playlist because
+  // group assignment is controlled exclusively by WANTED_MAP.
+  content = content.replace(
+    /^#EXTGRP:[^\r\n]*(?:\r?\n|$)/gmi,
+    ""
+  );
+
   return content.replace(
     /^#EXTINF:[^\r\n]*/m,
     (extinf) => {
@@ -405,7 +413,7 @@ function setGroupTitle(content, category) {
         ""
       );
 
-      // Add our mapped group
+      // Add ONLY our mapped group
       fixed = fixed.replace(
         /^#EXTINF:-1/,
         `#EXTINF:-1 group-title="${category}"`
