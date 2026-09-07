@@ -2,12 +2,12 @@
 # JHS Channels - Credits
 # Playlist Created By Premium Plug X
 # All Channels Sourced & Curated By @rtxcric
-# Generated At: 2026-09-07T00:55:17.135Z
+# Generated At: 2026-09-07T01:00:48.562Z
 
 #EXTINF:-1 tvg-name="Star Sports Khel Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/270/1782998020270-h.jpg" group-title="Sports",Star Sports Khel Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c57bd6cb156c47c1bf86a6c4171d0000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -16,8 +16,8 @@ https://livetv.hotstar.com/mp2/gec-india-1540073624/4a56d383d1074f3d908a7f9b7a33
 
 #EXTINF:-1 tvg-name="Star Sports 1 Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7482/1782284567482-h.jpg" group-title="Sports",Star Sports 1 Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=e85897bf6e594d698b7c82646c8e0000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -26,8 +26,8 @@ https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb1
 
 #EXTINF:-1 tvg-name="Star Sports 2 Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7957/1783000567957-h.jpg" group-title="Sports",Star Sports 2 Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=14d0c8ee09944c32bafea44a987d0000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -36,8 +36,8 @@ https://livetv.hotstar.com/mp1/gec-india-1540068250/1d0752e2f605404886fec4ab49cc
 
 #EXTINF:-1 tvg-name="Star Sports 1 Tamil Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6839/1782284756839-h.jpg" group-title="Sports",Star Sports 1 Tamil Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=01cc63d414394296bb3e6cfaffee0000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -46,8 +46,8 @@ https://livetv.hotstar.com/mp2/gec-india-1540068334/3468fd902b12418598cabe63585e
 
 #EXTINF:-1 tvg-name="Star Sports 2 Tamil Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6676/1783000836676-h.jpg" group-title="Sports",Star Sports 2 Tamil Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=8cecd7ec1ee04eecb49ddbdc8c420000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -56,8 +56,8 @@ https://livetv.hotstar.com/mp2/gec-india-1540068337/9e957d4aa8054fdfa75a02de6c38
 
 #EXTINF:-1 tvg-name="Star Sports Select 1 Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1176/1783001141176-h.jpg" group-title="Sports",Star Sports Select 1 Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=ae3b1efc6eee47fa90e0360b16ad0000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -66,8 +66,8 @@ https://livetv.hotstar.com/mp1/gec-india-1540068723/bf078703201f419b89e87fedda08
 
 #EXTINF:-1 tvg-name="Star Sports Select 2 Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7266/1783001217266-h.jpg" group-title="Sports",Star Sports Select 2 Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=9bced3f4d794419e99012ad6c1090000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -76,8 +76,8 @@ https://livetv.hotstar.com/mp2/gec-india-1540068726/07582d46912e46cbb5f802923a02
 
 #EXTINF:-1 tvg-name="Star Vijay Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/698/1782289770698-h.jpg" group-title="Entertainment",Star Vijay Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=3d16a12b7fe0423d87e00c231d710000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
@@ -86,8 +86,8 @@ https://livetv.hotstar.com/mp1/gec-india-1540068331/e2defeea709d42799aee76fe0d59
 
 #EXTINF:-1 tvg-name="Vijay Super Digital" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1929/1782285031929-h.jpg" group-title="Entertainment",Vijay Super Digital
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=08e4a1c2f55d4ed4878110a640920000
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@PremiumPlugX(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com
 #EXTVLCOPT:http-origin=https://www.hotstar.com
