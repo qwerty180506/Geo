@@ -70,6 +70,7 @@ const WANTED_MAP = {
   "Tata Play Tamil Classics": "Movies",
   "Sun Life": "Movies",
   "Raj Digital Plus": "Movies",
+  "Zee Thirai HD": ["Movies","jioplus2"],
   "Tunes 6": "Music",
   "Sun Music HD": "Music",
   "Raj Musix": "Music",
