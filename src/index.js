@@ -10,8 +10,8 @@ export default {
       await Promise.all([
         runFancode(env),
         //runJioTV(env),
-        runJioTV2(env),
-        runChannelFilter(env)
+        runJioTV2(env)
+        //runChannelFilter(env)
       ]);
 
       await runMerge(env);
