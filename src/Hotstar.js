@@ -573,37 +573,42 @@ async function getGitHubFileSha(
 // GITHUB UPLOAD
 // ============================================================
 
-async function uploadToGitHub(
-  content,
-  env
-) {
+// ============================================================
+// GITHUB UPLOAD - ROBUST 409 HANDLING
+// ============================================================
+
+async function uploadToGitHub(content, env) {
 
   const api =
     `https://api.github.com/repos/` +
     `${env.GITHUB_OWNER}/` +
     `${env.GITHUB_REPO}/` +
-    `/contents/${OUTPUT_PATH}`;
+    `contents/${OUTPUT_PATH}`;
 
-
-  const maxRetries = 3;
+  const maxRetries = 5;
 
   let currentDelay = 1000;
 
 
   // ----------------------------------------------------------
-  // Retry loop
+  // RETRY LOOP
   // ----------------------------------------------------------
 
   for (
-    let attempt = 0;
+    let attempt = 1;
     attempt <= maxRetries;
     attempt++
   ) {
 
+    console.log(
+      `GitHub upload attempt ${attempt}/${maxRetries}`
+    );
+
+
     try {
 
       // ------------------------------------------------------
-      // Always get latest SHA
+      // GET THE LATEST FILE SHA
       // ------------------------------------------------------
 
       const sha =
@@ -613,32 +618,33 @@ async function uploadToGitHub(
         );
 
 
+      console.log(
+        "Current GitHub SHA:",
+        sha || "FILE DOES NOT EXIST"
+      );
+
+
       // ------------------------------------------------------
-      // GitHub request body
+      // BUILD REQUEST BODY
       // ------------------------------------------------------
 
       const body = {
-
         message:
-          `Auto update Hotstar M3U ` +
-          `(attempt ${attempt + 1})`,
+          `Auto update Hotstar M3U - attempt ${attempt}`,
 
         content:
           toBase64(content)
-
       };
 
 
-      // Existing file needs SHA
+      // Existing file
       if (sha) {
-
         body.sha = sha;
-
       }
 
 
       // ------------------------------------------------------
-      // Upload to GitHub
+      // UPLOAD TO GITHUB
       // ------------------------------------------------------
 
       const uploadResponse =
@@ -669,9 +675,7 @@ async function uploadToGitHub(
 
 
       console.log(
-        `GitHub Upload ` +
-        `(Attempt ${attempt + 1}): ` +
-        `Status ${uploadResponse.status}`
+        `GitHub Upload Status: ${uploadResponse.status}`
       );
 
 
@@ -681,105 +685,122 @@ async function uploadToGitHub(
 
       if (uploadResponse.ok) {
 
-        const result =
-          await uploadResponse.text();
-
-
         console.log(
-          "GitHub Upload Success:",
-          result
+          "GitHub upload successful."
         );
-
 
         return;
       }
 
 
       // ------------------------------------------------------
-      // 409 CONFLICT
+      // 409 SHA CONFLICT
       // ------------------------------------------------------
 
-      if (
-        uploadResponse.status === 409 &&
-        attempt < maxRetries
-      ) {
+      if (uploadResponse.status === 409) {
+
+        const errorBody =
+          await uploadResponse.text();
 
         console.warn(
-          `Conflict (409) detected on GitHub upload. ` +
-          `Retrying in ${currentDelay / 1000}s...`
+          `GitHub SHA conflict on attempt ${attempt}.`
+        );
+
+        console.warn(
+          `Response: ${errorBody}`
         );
 
 
-        await new Promise(
-          (resolve) =>
-            setTimeout(
-              resolve,
-              currentDelay
-            )
+        // If attempts remain, wait and then
+        // fetch a completely fresh SHA.
+        if (attempt < maxRetries) {
+
+          console.log(
+            `Retrying in ${currentDelay / 1000}s...`
+          );
+
+
+          await new Promise(
+            (resolve) =>
+              setTimeout(
+                resolve,
+                currentDelay
+              )
+          );
+
+
+          currentDelay *= 2;
+
+          continue;
+        }
+
+
+        throw new Error(
+          `GitHub upload failed after ${maxRetries} ` +
+          `attempts due to repeated SHA conflicts. ` +
+          `Last response: ${errorBody}`
         );
-
-
-        currentDelay *= 2;
-
-        continue;
       }
 
 
       // ------------------------------------------------------
-      // OTHER ERROR
+      // OTHER GITHUB ERROR
       // ------------------------------------------------------
 
-      const errorResult =
+      const errorBody =
         await uploadResponse.text();
 
 
       throw new Error(
         `GitHub upload failed: ` +
         `${uploadResponse.status} ` +
-        `${uploadResponse.statusText}. ` +
-        `Response: ${errorResult}`
+        `${errorBody}`
       );
+
 
     } catch (error) {
 
       // ------------------------------------------------------
-      // RETRY
+      // NETWORK / FETCH ERROR
+      //
+      // 409 errors are already handled above and continued.
+      // This catch is therefore mainly for actual exceptions.
       // ------------------------------------------------------
 
-      if (attempt < maxRetries) {
-
-        console.error(
-          `Error during GitHub upload ` +
-          `(Attempt ${attempt + 1}): ` +
-          `${error.message}. ` +
-          `Retrying in ${currentDelay / 1000}s...`
-        );
-
-
-        await new Promise(
-          (resolve) =>
-            setTimeout(
-              resolve,
-              currentDelay
-            )
-        );
-
-
-        currentDelay *= 2;
-
-      } else {
+      if (attempt >= maxRetries) {
 
         throw new Error(
           `Failed to upload to GitHub after ` +
-          `${maxRetries + 1} attempts: ` +
+          `${maxRetries} attempts: ` +
           `${error.message}`
         );
-
       }
+
+
+      console.error(
+        `GitHub upload error on attempt ${attempt}:`,
+        error.message
+      );
+
+
+      console.log(
+        `Retrying in ${currentDelay / 1000}s...`
+      );
+
+
+      await new Promise(
+        (resolve) =>
+          setTimeout(
+            resolve,
+            currentDelay
+          )
+      );
+
+
+      currentDelay *= 2;
     }
   }
 }
-
 
 // ============================================================
 // EXPORTED FUNCTION
