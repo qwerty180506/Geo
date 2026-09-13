@@ -324,7 +324,7 @@ function normalizeChannel(channel) {
     if (keyId && key) {
 
       output.push(
-        "#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey"
+        "#KODIPROP:inputstream.adaptive.license_type=clearkey"
       );
 
       output.push(
