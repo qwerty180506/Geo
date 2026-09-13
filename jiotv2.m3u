@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="" refresh="2026-09-13 17:25:50 IST"
+#EXTM3U url-tvg="" refresh="2026-09-13 17:31:28 IST"
 #EXTINF:-1 tvg-id="167" tvg-name="Zee TV HD" tvg-logo="https://img.media.jio.com/tvpimages/66/3/300378_1753869902174_l_medium.jpg" group-title="Entertainment",Zee TV HD
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -60,6 +60,14 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ColorsHD_BTS/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.license_key=6c589ac8b1715f698d5fac41fcc1840c:4eb71be4db9d348e21ba68f40cecc478
 #EXTVLCOPT:http-user-agent=JioTVPlus/2.8.4_2076/PlugX(PlugX;JioSTB) JioTvPlus-AndroidTv
 https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789298958~exp=1789320558~acl=/bpk-tv/AndPicturesHD_BTS/WDVLive/*~hmac=1d154216adc0649a107fb62a59b914539a70c4af091ae125ae58b3a719c2b59c
+
+#EXTINF:-1 tvg-id="1839" tvg-name="&Pictures" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/AndPictures.png" group-title="Movies",&Pictures
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d6f310b8bfe75a3ab8cd259262393222:b538ae8613ea5f95694df024ee7b91fd
+#EXTVLCOPT:http-user-agent=JioTVPlus/2.8.4_2076/PlugX(PlugX;JioSTB) JioTvPlus-AndroidTv
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789281716~exp=1789303316~acl=/bpk-tv/AndPictures_BTS/WDVLive/*~hmac=d446392cb2e1835d59869061f3677ef7f8c406d6e041297d7b2ef2cc37791d29
 
 #EXTINF:-1 tvg-id="143" tvg-name="CNBC TV18 Prime HD" tvg-logo="https://img.media.jio.com/tvpimages/35/90/300205_1774721803007_l_medium.jpg" group-title="Business News",CNBC TV18 Prime HD
 #KODIPROP:inputstream=inputstream.adaptive
