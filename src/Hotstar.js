@@ -573,6 +573,10 @@ async function getGitHubFileSha(
 // GITHUB UPLOAD
 // ============================================================
 
+// ============================================================
+// GITHUB UPLOAD - ROBUST 409 HANDLING
+// ============================================================
+
 async function uploadToGitHub(content, env) {
 
   const api =
@@ -581,61 +585,221 @@ async function uploadToGitHub(content, env) {
     `${env.GITHUB_REPO}/` +
     `contents/${OUTPUT_PATH}`;
 
-  // Get existing file SHA
-  const getResponse = await fetch(api, {
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      "User-Agent": "Cloudflare-Worker",
-      Accept: "application/vnd.github+json"
+  const maxRetries = 5;
+
+  let currentDelay = 1000;
+
+
+  // ----------------------------------------------------------
+  // RETRY LOOP
+  // ----------------------------------------------------------
+
+  for (
+    let attempt = 1;
+    attempt <= maxRetries;
+    attempt++
+  ) {
+
+    console.log(
+      `GitHub upload attempt ${attempt}/${maxRetries}`
+    );
+
+
+    try {
+
+      // ------------------------------------------------------
+      // GET THE LATEST FILE SHA
+      // ------------------------------------------------------
+
+      const sha =
+        await getGitHubFileSha(
+          env,
+          OUTPUT_PATH
+        );
+
+
+      console.log(
+        "Current GitHub SHA:",
+        sha || "FILE DOES NOT EXIST"
+      );
+
+
+      // ------------------------------------------------------
+      // BUILD REQUEST BODY
+      // ------------------------------------------------------
+
+      const body = {
+        message:
+          `Auto update Hotstar M3U - attempt ${attempt}`,
+
+        content:
+          toBase64(content)
+      };
+
+
+      // Existing file
+      if (sha) {
+        body.sha = sha;
+      }
+
+
+      // ------------------------------------------------------
+      // UPLOAD TO GITHUB
+      // ------------------------------------------------------
+
+      const uploadResponse =
+        await fetch(api, {
+
+          method: "PUT",
+
+          headers: {
+
+            Authorization:
+              `Bearer ${env.GITHUB_TOKEN}`,
+
+            "Content-Type":
+              "application/json",
+
+            "User-Agent":
+              "Cloudflare-Worker",
+
+            "Accept":
+              "application/vnd.github+json"
+
+          },
+
+          body:
+            JSON.stringify(body)
+
+        });
+
+
+      console.log(
+        `GitHub Upload Status: ${uploadResponse.status}`
+      );
+
+
+      // ------------------------------------------------------
+      // SUCCESS
+      // ------------------------------------------------------
+
+      if (uploadResponse.ok) {
+
+        console.log(
+          "GitHub upload successful."
+        );
+
+        return;
+      }
+
+
+      // ------------------------------------------------------
+      // 409 SHA CONFLICT
+      // ------------------------------------------------------
+
+      if (uploadResponse.status === 409) {
+
+        const errorBody =
+          await uploadResponse.text();
+
+        console.warn(
+          `GitHub SHA conflict on attempt ${attempt}.`
+        );
+
+        console.warn(
+          `Response: ${errorBody}`
+        );
+
+
+        // If attempts remain, wait and then
+        // fetch a completely fresh SHA.
+        if (attempt < maxRetries) {
+
+          console.log(
+            `Retrying in ${currentDelay / 1000}s...`
+          );
+
+
+          await new Promise(
+            (resolve) =>
+              setTimeout(
+                resolve,
+                currentDelay
+              )
+          );
+
+
+          currentDelay *= 2;
+
+          continue;
+        }
+
+
+        throw new Error(
+          `GitHub upload failed after ${maxRetries} ` +
+          `attempts due to repeated SHA conflicts. ` +
+          `Last response: ${errorBody}`
+        );
+      }
+
+
+      // ------------------------------------------------------
+      // OTHER GITHUB ERROR
+      // ------------------------------------------------------
+
+      const errorBody =
+        await uploadResponse.text();
+
+
+      throw new Error(
+        `GitHub upload failed: ` +
+        `${uploadResponse.status} ` +
+        `${errorBody}`
+      );
+
+
+    } catch (error) {
+
+      // ------------------------------------------------------
+      // NETWORK / FETCH ERROR
+      //
+      // 409 errors are already handled above and continued.
+      // This catch is therefore mainly for actual exceptions.
+      // ------------------------------------------------------
+
+      if (attempt >= maxRetries) {
+
+        throw new Error(
+          `Failed to upload to GitHub after ` +
+          `${maxRetries} attempts: ` +
+          `${error.message}`
+        );
+      }
+
+
+      console.error(
+        `GitHub upload error on attempt ${attempt}:`,
+        error.message
+      );
+
+
+      console.log(
+        `Retrying in ${currentDelay / 1000}s...`
+      );
+
+
+      await new Promise(
+        (resolve) =>
+          setTimeout(
+            resolve,
+            currentDelay
+          )
+      );
+
+
+      currentDelay *= 2;
     }
-  });
-
-  let sha = null;
-
-  if (getResponse.ok) {
-    const file = await getResponse.json();
-    sha = file.sha;
-  } else if (getResponse.status !== 404) {
-    throw new Error(
-      `GitHub GET failed: ${getResponse.status} ${getResponse.statusText}`
-    );
   }
-
-  // Upload/update file
-  const body = {
-    message: "Update Hotstar playlist",
-    content: toBase64(content)
-  };
-
-  if (sha) {
-    body.sha = sha;
-  }
-
-  const response = await fetch(api, {
-    method: "PUT",
-
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-      "User-Agent": "Cloudflare-Worker",
-      Accept: "application/vnd.github+json"
-    },
-
-    body: JSON.stringify(body)
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-
-    throw new Error(
-      `GitHub upload failed: ${response.status} ${error}`
-    );
-  }
-
-  const result = await response.json();
-
-  console.log("GitHub playlist updated successfully.");
-  console.log("Commit:", result.commit?.html_url || "unknown");
 }
 
 // ============================================================
