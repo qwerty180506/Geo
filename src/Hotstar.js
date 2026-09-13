@@ -27,7 +27,7 @@ const REQUIRED_CHANNELS = [
 async function fetchPlaylist() {
 
   const url =
-    `${PLAYLIST_URL}${PLAYLIST_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
+    `${PLAYLIST_URL}`;
 
   if (DEBUG_MODE) {
     console.log("Fetching:", url);
