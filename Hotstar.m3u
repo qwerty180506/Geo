@@ -1,67 +1,67 @@
 #EXTM3U
 # Hotstar Channels
 # Generated From Premium Plug X JSON
-# Generated At: 2026-09-13T09:38:24.198Z
+# Generated At: 2026-09-13T09:40:28.581Z
 
 #EXTINF:-1 tvg-name="Star Sports Khel Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/270/1782998020270-h.jpg",Star Sports Khel Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c57bd6cb156c47c1bf86a6c4171d0000:e75d26242c9944aeb91e055d0f29ee4b
 https://premiumplugx.com/js/hot.php/Star-Sports-Khel-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports 1 Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7482/1782284567482-h.jpg",Star Sports 1 Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a
 https://premiumplugx.com/js/hot.php/Star-Sports-1-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports 2 Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7957/1783000567957-h.jpg",Star Sports 2 Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=14d0c8ee09944c32bafea44a987d0000:74d35f4034b14854bd3ca83dd3aa2fb1
 https://premiumplugx.com/js/hot.php/Star-Sports-2-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports 1 Tamil Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6839/1782284756839-h.jpg",Star Sports 1 Tamil Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=01cc63d414394296bb3e6cfaffee0000:c1fba587fc8b4218ade5ace1e62e5aaf
 https://premiumplugx.com/js/hot.php/Star-Sports-1-Tamil-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports 2 Tamil Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6676/1783000836676-h.jpg",Star Sports 2 Tamil Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=8cecd7ec1ee04eecb49ddbdc8c420000:499ea72b59f14337a0acb057cd9dffc0
 https://premiumplugx.com/js/hot.php/Star-Sports-2-Tamil-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports Select 1 Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1176/1783001141176-h.jpg",Star Sports Select 1 Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=ae3b1efc6eee47fa90e0360b16ad0000:3c8be3ec7a4e4ab6994725420d95f971
 https://premiumplugx.com/js/hot.php/Star-Sports-Select-1-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Sports Select 2 Digital" group-title="Sports" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7266/1783001217266-h.jpg",Star Sports Select 2 Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9bced3f4d794419e99012ad6c1090000:c4c7f22fc71445c28ea15cb3fdb1b3be
 https://premiumplugx.com/js/hot.php/Star-Sports-Select-2-Digital.mpd
 
 #EXTINF:-1 tvg-name="Star Vijay Digital" group-title="Entertainment" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/698/1782289770698-h.jpg",Star Vijay Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=3d16a12b7fe0423d87e00c231d710000:f6aeb5898e5c4d8bab629a9de8befa12
 https://premiumplugx.com/js/hot.php/Star-Vijay-Digital.mpd
 
 #EXTINF:-1 tvg-name="Vijay Super Digital" group-title="Entertainment" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1929/1782285031929-h.jpg",Vijay Super Digital
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=08e4a1c2f55d4ed4878110a640920000:23dc3107bf284a0dbd93b1dc9f142459
 https://premiumplugx.com/js/hot.php/Vijay-Super-Digital.mpd
