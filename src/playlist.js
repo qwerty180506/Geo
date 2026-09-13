@@ -5,7 +5,6 @@ const SOURCE_URLS = {
   local: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/channels.m3u",
   sonyliv: "https://cloudplay-sonyliv.pages.dev/sony.m3u",
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
-  times: "https://raw.githubusercontent.com/SonyIPTV/Sony-IPTV-Live/refs/heads/main/Sony%20IPTV%20Live.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
   hotstar: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/Hotstar.m3u"
@@ -15,7 +14,6 @@ const PRIORITY_ORDER = [
   "jioplus2",
   "sonyliv",
   "sunnxt",
-  "times",
   "jiotvplus",
   "jiotv",
   "hotstar"
@@ -40,9 +38,9 @@ const WANTED_MAP = {
   "Discovery Kids Tamil": "Kids",
   "Nick Tamil": ["Kids", "jioplus2"],
   "Pogo Tamil": "Kids",
-  "Movies Now HD": ["Movies", "times"],
-  "MNX HD": ["Movies", "times"],
-  "MN+": ["Movies", "times"],
+  "Movies Now HD": "Movies",
+  "MNX HD": "Movies",
+  "MN+": "Movies",
   "Vijay Takkar": ["Music", "jioplus2"],
   "Vijay Super HD": "Movies",
   "Colors Infinity HD": ["Movies", "jioplus2"],
