@@ -1,9 +1,5 @@
 const PLAYLIST_URL = "https://premiumplugx.com/jhs/hotstar.json";
-
-// GitHub output file
 const OUTPUT_PATH = "Hotstar.m3u";
-
-// Enable/disable detailed logging for debugging
 const DEBUG_MODE = false;
 
 
