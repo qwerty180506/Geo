@@ -508,7 +508,7 @@ async function getGitHubFileSha(
     `https://api.github.com/repos/` +
     `${env.GITHUB_OWNER}/` +
     `${env.GITHUB_REPO}/` +
-    `/contents/${path}`;
+    `contents/${path}`;   // <-- fixed: removed the extra leading slash
 
 
   const response =
@@ -529,10 +529,6 @@ async function getGitHubFileSha(
     });
 
 
-  // ----------------------------------------------------------
-  // Existing file
-  // ----------------------------------------------------------
-
   if (response.ok) {
 
     const json =
@@ -542,19 +538,11 @@ async function getGitHubFileSha(
   }
 
 
-  // ----------------------------------------------------------
-  // File doesn't exist
-  // ----------------------------------------------------------
-
   if (response.status === 404) {
 
     return null;
   }
 
-
-  // ----------------------------------------------------------
-  // Other error
-  // ----------------------------------------------------------
 
   const errorBody =
     await response.text();
@@ -567,7 +555,6 @@ async function getGitHubFileSha(
     `Response: ${errorBody}`
   );
 }
-
 
 // ============================================================
 // GITHUB UPLOAD
