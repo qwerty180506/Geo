@@ -14,17 +14,14 @@ function toBase64(str) {
 
 // ---------------- FETCH M3U ----------------
 async function getM3U(url) {
-  const separator = url.includes("?") ? "&" : "?";
-  const fetchUrl = `${url}${separator}t=${Date.now()}`;
+  console.log("Fetching M3U:", url);
 
-  console.log("Fetching:", fetchUrl);
-
-  const response = await fetch(fetchUrl, {
+  const response = await fetch(url, {
     method: "GET",
     headers: {
+      "Accept": "*/*",
       "Cache-Control": "no-cache",
-      "Pragma": "no-cache",
-      "Accept": "*/*"
+      "Pragma": "no-cache"
     },
     cf: {
       cacheTtl: 0,
@@ -37,7 +34,7 @@ async function getM3U(url) {
   const body = await response.text();
 
   if (!response.ok) {
-    console.error("Upstream response:", body);
+    console.error("M3U response:", body);
     throw new Error(
       `Failed to fetch M3U: ${response.status} ${response.statusText}`
     );
