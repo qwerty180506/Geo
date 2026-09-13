@@ -18,17 +18,25 @@ async function getM3U(url) {
     `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`,
     {
       headers: {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "*/*",
         "Cache-Control": "no-cache",
-        Pragma: "no-cache",
+        "Pragma": "no-cache"
       },
       cf: {
         cacheTtl: 0,
-        cacheEverything: false,
-      },
+        cacheEverything: false
+      }
     }
   );
 
   if (!response.ok) {
+    const body = await response.text();
+
+    console.log("M3U status:", response.status);
+    console.log("M3U headers:", [...response.headers]);
+    console.log("M3U body:", body.substring(0, 1000));
+
     throw new Error(`Failed to fetch M3U: ${response.status}`);
   }
 
