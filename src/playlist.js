@@ -587,9 +587,6 @@ export async function runMerge(env) {
     sunnxt:
       parseM3U(files.sunnxt),
 
-    times:
-      parseM3U(files.times),
-
     jiotv:
       parseM3U(files.jiotv),
 
