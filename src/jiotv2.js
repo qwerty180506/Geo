@@ -14,33 +14,36 @@ function toBase64(str) {
 
 // ---------------- FETCH M3U ----------------
 async function getM3U(url) {
-  const response = await fetch(
-    `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`,
-    {
-      headers: {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "*/*",
-        "Cache-Control": "no-cache",
-        "Pragma": "no-cache"
-      },
-      cf: {
-        cacheTtl: 0,
-        cacheEverything: false
-      }
+  const separator = url.includes("?") ? "&" : "?";
+  const fetchUrl = `${url}${separator}t=${Date.now()}`;
+
+  console.log("Fetching:", fetchUrl);
+
+  const response = await fetch(fetchUrl, {
+    method: "GET",
+    headers: {
+      "Cache-Control": "no-cache",
+      "Pragma": "no-cache",
+      "Accept": "*/*"
+    },
+    cf: {
+      cacheTtl: 0,
+      cacheEverything: false
     }
-  );
+  });
+
+  console.log("M3U status:", response.status);
+
+  const body = await response.text();
 
   if (!response.ok) {
-    const body = await response.text();
-
-    console.log("M3U status:", response.status);
-    console.log("M3U headers:", [...response.headers]);
-    console.log("M3U body:", body.substring(0, 1000));
-
-    throw new Error(`Failed to fetch M3U: ${response.status}`);
+    console.error("Upstream response:", body);
+    throw new Error(
+      `Failed to fetch M3U: ${response.status} ${response.statusText}`
+    );
   }
 
-  return response.text();
+  return body;
 }
 
 // ---------------- PROCESS M3U ----------------
