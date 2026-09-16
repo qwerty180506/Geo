@@ -57,7 +57,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdn
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=d6f310b8bfe75a3ab8cd259262393222:b538ae8613ea5f95694df024ee7b91fd
-https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789561424~exp=1789583024~acl=/bpk-tv/AndPictures_BTS/WDVLive/*~hmac=7a15af8555dc129ecba63fa9ed345e1b82b5f577c54c851e28ffcf616ff9bec2
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndPictures_BTS/WDVLive/index.mpd?__hdnea__=st=1789561424~exp=1789583024~acl=/bpk-tv/AndPictures_BTS/WDVLive/*~hmac=7a15af8555dc129ecba63fa9ed345e1b82b5f577c54c851e28ffcf616ff9bec2
 
 #EXTINF:-1 tvg-id="143" tvg-name="CNBC TV18 Prime HD" tvg-logo="https://img.media.jio.com/tvpimages/35/90/300205_1774721803007_l_medium.jpg" group-title="Business News",CNBC TV18 Prime HD
 #KODIPROP:inputstream=inputstream.adaptive
