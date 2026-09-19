@@ -259,38 +259,38 @@ function parseM3U(content) {
 
 
     // --------------------------------------------------
-    // Detect MPD correctly.
-    // --------------------------------------------------
+// Detect MPD correctly.
+// --------------------------------------------------
 
-    const hasMpdProp =
-      finalBuffer.some(tag =>
-        tag.includes(
-          "inputstream.adaptive.manifest_type=mpd"
+const hasMpdProp =
+  finalBuffer.some(tag =>
+    tag.includes(
+      "inputstream.adaptive.manifest_type=mpd"
+    )
+  );
+
+const isMpdUrl =
+  /\.mpd(?:\?|[|]|$)/i.test(line) ||
+  /[?&]route=mpd(?:[&#|]|$)/i.test(line);
+
+
+// --------------------------------------------------
+// Only remove adaptive KODIPROP tags if the source
+// claims MPD but the actual URL isn't MPD.
+// --------------------------------------------------
+
+if (
+  hasMpdProp &&
+  !isMpdUrl
+) {
+  finalBuffer =
+    finalBuffer.filter(
+      tag =>
+        !tag.startsWith(
+          "#KODIPROP:inputstream.adaptive."
         )
-      );
-
-    const isMpdUrl =
-      /\.mpd(?:\?|[|]|$)/i.test(line);
-
-
-    // --------------------------------------------------
-    // Only remove adaptive KODIPROP tags if the source
-    // claims MPD but the actual URL isn't MPD.
-    // --------------------------------------------------
-
-    if (
-      hasMpdProp &&
-      !isMpdUrl
-    ) {
-      finalBuffer =
-        finalBuffer.filter(
-          tag =>
-            !tag.startsWith(
-              "#KODIPROP:inputstream.adaptive."
-            )
-        );
-    }
-
+    );
+}
 
     // --------------------------------------------------
     // Extract channel name.
