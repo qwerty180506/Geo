@@ -7,7 +7,7 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
-  hotstar: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/Hotstar.m3u"
+  hotstar: "https://premiumplugx.top/tivjh/playlist.php"
 };
 
 const PRIORITY_ORDER = [
