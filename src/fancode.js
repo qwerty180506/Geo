@@ -1,6 +1,6 @@
 const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
 
-// ---------------- BASE64 SAFE ----------------
+// ---------------- BASE64 SAFE -------------------
 function toBase64(str) {
   const bytes = new TextEncoder().encode(str);
 
