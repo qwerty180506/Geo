@@ -99,6 +99,9 @@ function processM3U(text) {
 
   const output = [];
 
+  // Always make sure the output starts with #EXTM3U
+  output.push("#EXTM3U");
+
   let extinf = null;
   let inputstream = null;
   let manifestType = null;
@@ -117,7 +120,7 @@ function processM3U(text) {
     // Playlist header
     // ------------------------------------------------
     if (line.startsWith("#EXTM3U")) {
-      output.push(line);
+      // Already added above, so don't add it again
       continue;
     }
 
@@ -213,39 +216,31 @@ function processM3U(text) {
     if (/^https?:\/\//i.test(line)) {
       const streamUrl = cleanStreamUrl(line);
 
-      // EXTINF
       if (extinf) {
         output.push(extinf);
       }
 
-      // Inputstream
       if (inputstream) {
         output.push(inputstream);
       }
 
-      // Manifest type
       if (manifestType) {
         output.push(manifestType);
       }
 
-      // License type
       if (licenseType) {
         output.push(licenseType);
       }
 
-      // License key
       if (licenseKey) {
         output.push(licenseKey);
       }
 
-      // User agent
       if (userAgent) {
         output.push(userAgent);
       }
 
-      // Final clean stream URL
       output.push(streamUrl);
-
       output.push("");
 
       // Reset channel data
@@ -259,14 +254,11 @@ function processM3U(text) {
       continue;
     }
 
-    // ------------------------------------------------
     // Ignore unknown comments/tags
-    // ------------------------------------------------
   }
 
   return output.join("\n").trim() + "\n";
 }
-
 // ---------------- GITHUB UPLOAD ----------------
 async function uploadToGitHub(content, env) {
   const path = "jiotv2.m3u";
