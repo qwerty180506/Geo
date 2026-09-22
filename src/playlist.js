@@ -81,7 +81,6 @@ const WANTED_MAP = {
   "News7 Tamil": ["News", "jioplus2"],
   "News J": "News",
   "Win TV": "News",
-  "News Tamil 24x7": "News",
   "Polimer News": "News",
   "Thanthi TV": ["News", "jioplus2"],
   "Malaimurasu Seithigal": "News",
