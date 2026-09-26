@@ -872,16 +872,24 @@ export async function runHotstarStream(
     );
 
   if (!upstream.ok) {
-    return new Response(
-      `Upstream manifest returned HTTP ${upstream.status}`,
-      {
-        status: upstream.status,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    );
-  }
+  return new Response(
+    JSON.stringify({
+      status: upstream.status,
+      streamURL: stream.url,
+      cookie: !!stream.cookie,
+      referer: stream.referer,
+      origin: stream.origin,
+      userAgent: stream.userAgent,
+    }, null, 2),
+    {
+      status: 502,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
 
   const contentType =
     upstream.headers.get(
