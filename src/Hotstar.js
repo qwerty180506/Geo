@@ -1,873 +1,432 @@
-const PLAYLIST_URL = "https://premiumplugx.com/jhs/hotstar.json";
-const OUTPUT_PATH = "Hotstar.m3u";
-const DEBUG_MODE = false;
+const SOURCE_M3U_URL = "https://premiumplugx.com/htt/hot.php?playlist=1";
 
-
-// ============================================================
-// EXACT CHANNELS TO KEEP
-// ============================================================
-
-const REQUIRED_CHANNELS = [
-  "Star Vijay Digital",
-  "Vijay Super Digital",
-  "Star Sports 1 Tamil Digital",
-  "Star Sports 2 Tamil Digital",
-  "Star Sports 1 Digital",
-  "Star Sports 2 Digital",
-  "Star Sports Select 1 Digital",
-  "Star Sports Select 2 Digital",
-  "Star Sports Khel Digital"
-];
-
+const SOURCE_CACHE_SECONDS = 30;
 
 // ============================================================
-// FETCH SOURCE JSON
+// FETCH SOURCE M3U
 // ============================================================
 
-async function fetchPlaylist() {
-
-  const url =
-    `${PLAYLIST_URL}`;
-
-  if (DEBUG_MODE) {
-    console.log("Fetching:", url);
-  }
-
-  const response = await fetch(url, {
-    headers: {
-      "Cache-Control": "no-cache",
-      "Pragma": "no-cache",
-      "Accept": "application/json"
+async function getSourceM3U() {
+  const response = await fetch(
+    `${SOURCE_M3U_URL}?t=${Date.now()}`,
+    {
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        "User-Agent": "Mozilla/5.0",
+      },
     }
-  });
+  );
 
   if (!response.ok) {
     throw new Error(
-      `JSON request failed: ${response.status} ${response.statusText}`
+      `Source M3U returned HTTP ${response.status}`
     );
   }
 
-  const text = await response.text();
-
-  if (!text.trim()) {
-    throw new Error("Source JSON is empty");
-  }
-
-  let data;
-
-  try {
-    data = JSON.parse(text);
-  } catch (error) {
-    throw new Error(
-      `Failed to parse source JSON: ${error.message}`
-    );
-  }
-
-  if (!Array.isArray(data)) {
-    throw new Error(
-      "Source JSON does not contain an array of channels"
-    );
-  }
-
-  return data;
+  return await response.text();
 }
 
-
 // ============================================================
-// EXACT CHANNEL MATCH
+// CREATE SLUG
 // ============================================================
 
-function isRequiredChannel(name) {
-
-  if (!name) {
-    return false;
-  }
-
-  const normalizedName = name
+function createSlug(name) {
+  return name
+    .toLowerCase()
     .trim()
-    .toLowerCase();
-
-  return REQUIRED_CHANNELS.some(
-    (requiredName) =>
-      normalizedName === requiredName.trim().toLowerCase()
-  );
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
-
 // ============================================================
-// CLEAN TEXT
-// ============================================================
-
-function cleanText(value) {
-
-  if (
-    value === null ||
-    value === undefined
-  ) {
-    return "";
-  }
-
-  return String(value)
-    .replace(/[\r\n]+/g, " ")
-    .replace(/\|/g, " / ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-
-// ============================================================
-// CLEAN M3U LINE
+// GET CHANNEL NAME
 // ============================================================
 
-function cleanLine(line) {
+function extractChannelName(extinf) {
+  const comma = extinf.indexOf(",");
 
-  return line
-    .trim()
-    .replace(/\\:/g, ":")
-    .replace(/\\\(/g, "(")
-    .replace(/\\\)/g, ")")
-    .replace(/\\&/g, "&")
-    .replace(/\|/g, " / ");
-}
-
-
-// ============================================================
-// CLEAN URL
-// ============================================================
-
-function cleanUrl(line) {
-
-  if (!line) {
-    return "";
-  }
-
-  let url = String(line).trim();
-
-  // ----------------------------------------------------------
-  // Remove markdown:
-  // [Channel Name](https://example.com/channel.m3u8)
-  // ----------------------------------------------------------
-
-  const markdownMatch =
-    url.match(/^\[([^\]]+)\]\((.+)\)$/);
-
-  if (markdownMatch) {
-    url = markdownMatch[2];
-  }
-
-
-  // ----------------------------------------------------------
-  // Remove whitespace
-  // ----------------------------------------------------------
-
-  url = url.replace(/\s+/g, "");
-
-
-  // ----------------------------------------------------------
-  // MPD cleanup
-  //
-  // If the MPD URL contains:
-  //
-  // https://example.com/live.mpd?something
-  //
-  // or:
-  //
-  // https://example.com/live.mpd|something
-  //
-  // keep only the .mpd URL.
-  // ----------------------------------------------------------
-
-  const mpdParamsPattern =
-    /(\.mpd)[\?|].*$/i;
-
-  if (mpdParamsPattern.test(url)) {
-    url = url.replace(
-      mpdParamsPattern,
-      "$1"
-    );
-  }
-
-
-  if (DEBUG_MODE) {
-    console.log(
-      `[cleanUrl] ${url}`
-    );
-  }
-
-  return url;
-}
-
-
-// ============================================================
-// ESCAPE M3U ATTRIBUTE
-// ============================================================
-
-function escapeAttribute(value) {
-
-  return cleanText(value)
-    .replace(/&/g, "&amp;")
-    .replace(/"/g, "&quot;");
-}
-
-
-// ============================================================
-// CREATE EXTINF
-// ============================================================
-
-function createExtinf(channel) {
-
-  const name =
-    cleanText(channel.name);
-
-  const logo =
-    cleanText(channel.logo);
-
-  const group =
-    cleanText(channel.group) ||
-    "Live Events";
-
-  let line =
-    `#EXTINF:-1 ` +
-    `tvg-name="${escapeAttribute(name)}" ` +
-    `group-title="${escapeAttribute(group)}"`;
-
-  if (logo) {
-    line +=
-      ` tvg-logo="${escapeAttribute(logo)}"`;
-  }
-
-  line += `,${name}`;
-
-  return cleanLine(line);
-}
-
-
-// ============================================================
-// NORMALIZE CHANNEL
-// ============================================================
-
-function normalizeChannel(channel) {
-
-  const output = [];
-
-  const name =
-    cleanText(channel.name);
-
-  const logo =
-    cleanText(channel.logo);
-
-  const group =
-    cleanText(channel.group);
-
-  const type =
-    cleanText(channel.type).toLowerCase();
-
-  const streamUrl =
-    cleanUrl(channel.streamUrl);
-
-
-  // ----------------------------------------------------------
-  // Validate channel
-  // ----------------------------------------------------------
-
-  if (!name) {
-    return "";
-  }
-
-  if (!streamUrl) {
-    return "";
-  }
-
-
-  // ----------------------------------------------------------
-  // EXTINF
-  // ----------------------------------------------------------
-
-  output.push(
-    createExtinf({
-      name,
-      logo,
-      group
-    })
-  );
-
-
-  // ==========================================================
-  // MPD / DASH
-  // ==========================================================
-
-  if (type === "mpd") {
-
-    // InputStream Adaptive
-    output.push(
-      "#KODIPROP:inputstream=inputstream.adaptive"
-    );
-
-
-    // Manifest type
-    output.push(
-      "#KODIPROP:inputstream.adaptive.manifest_type=mpd"
-    );
-
-
-    // --------------------------------------------------------
-    // ClearKey
-    // --------------------------------------------------------
-
-    const keyId =
-      cleanText(channel.keyId);
-
-    const key =
-      cleanText(channel.key);
-
-
-    if (keyId && key) {
-
-      output.push(
-        "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-      );
-
-      output.push(
-        `#KODIPROP:inputstream.adaptive.license_key=${keyId}:${key}`
-      );
-
-    } else {
-
-      if (DEBUG_MODE) {
-        console.warn(
-          `MPD channel has no keyId/key: ${name}`
-        );
-      }
-
-    }
-  }
-
-
-  // ==========================================================
-  // STREAM URL
-  // ==========================================================
-
-  output.push(streamUrl);
-
-
-  if (DEBUG_MODE) {
-    console.log(
-      `Generated channel: ${name} [${type}]`
-    );
-  }
-
-
-  return output.join("\n");
-}
-
-
-// ============================================================
-// GENERATE FILTERED M3U
-// ============================================================
-
-async function generateM3U() {
-
-  const now =
-    new Date().toISOString();
-
-
-  console.log(
-    "Generating filtered playlist:",
-    now
-  );
-
-
-  // ----------------------------------------------------------
-  // FETCH JSON
-  // ----------------------------------------------------------
-
-  const channels =
-    await fetchPlaylist();
-
-
-  console.log(
-    "Total source channels:",
-    channels.length
-  );
-
-
-  // ----------------------------------------------------------
-  // FILTER REQUIRED CHANNELS
-  // ----------------------------------------------------------
-
-  const selected =
-    channels.filter((channel) =>
-      isRequiredChannel(channel.name)
-    );
-
-
-  console.log(
-    "Selected channels:",
-    selected.length
-  );
-
-
-  // ----------------------------------------------------------
-  // CREATE M3U HEADER
-  // ----------------------------------------------------------
-
-  const output = [
-
-    "#EXTM3U",
-
-    "# Hotstar Channels",
-
-    "# Generated From Premium Plug X JSON",
-
-    `# Generated At: ${now}`,
-
-    ""
-
-  ];
-
-
-  // ----------------------------------------------------------
-  // ADD CHANNELS
-  // ----------------------------------------------------------
-
-  for (const channel of selected) {
-
-    const normalized =
-      normalizeChannel(channel);
-
-
-    if (!normalized) {
-
-      console.warn(
-        `Skipping invalid channel: ${
-          channel.name || "Unknown"
-        }`
-      );
-
-      continue;
-    }
-
-
-    output.push(normalized);
-
-    output.push("");
-  }
-
-
-  // ----------------------------------------------------------
-  // SAFETY CHECK
-  // ----------------------------------------------------------
-
-  if (selected.length === 0) {
-
-    throw new Error(
-      "No required channels were found in the source JSON."
-    );
-
-  }
-
-
-  // ----------------------------------------------------------
-  // RETURN COMPLETE M3U
-  // ----------------------------------------------------------
-
-  return output.join("\n");
-}
-
-
-// ============================================================
-// BASE64 ENCODING
-// ============================================================
-
-function toBase64(str) {
-
-  const bytes =
-    new TextEncoder().encode(str);
-
-  let binary = "";
-
-  for (const byte of bytes) {
-    binary +=
-      String.fromCharCode(byte);
-  }
-
-  return btoa(binary);
-}
-
-
-// ============================================================
-// GITHUB FILE SHA
-// ============================================================
-
-async function getGitHubFileSha(
-  env,
-  path
-) {
-
-  const api =
-    `https://api.github.com/repos/` +
-    `${env.GITHUB_OWNER}/` +
-    `${env.GITHUB_REPO}/` +
-    `contents/${path}`;   // <-- fixed: removed the extra leading slash
-
-
-  const response =
-    await fetch(api, {
-
-      headers: {
-
-        Authorization:
-          `Bearer ${env.GITHUB_TOKEN}`,
-
-        "User-Agent":
-          "Cloudflare-Worker",
-
-        "Accept":
-          "application/vnd.github+json"
-      }
-
-    });
-
-
-  if (response.ok) {
-
-    const json =
-      await response.json();
-
-    return json.sha;
-  }
-
-
-  if (response.status === 404) {
-
+  if (comma === -1) {
     return null;
   }
 
-
-  const errorBody =
-    await response.text();
-
-
-  throw new Error(
-    `Failed to get GitHub file SHA for ${path}: ` +
-    `${response.status} ` +
-    `${response.statusText}. ` +
-    `Response: ${errorBody}`
-  );
+  return extinf
+    .substring(comma + 1)
+    .trim();
 }
 
 // ============================================================
-// GITHUB UPLOAD
+// PARSE SOURCE URL
+//
+// Example:
+//
+// https://example.com/index.mpd?|cookie=xxx&referer=xxx
+//
+// Becomes:
+//
+// {
+//   url,
+//   cookie,
+//   referer,
+//   origin,
+//   userAgent
+// }
 // ============================================================
 
-// ============================================================
-// GITHUB UPLOAD - ROBUST 409 HANDLING
-// ============================================================
+function parseStreamURL(original) {
+  const marker = "?|";
 
-async function uploadToGitHub(content, env) {
+  const markerIndex = original.indexOf(marker);
 
-  const api =
-    `https://api.github.com/repos/` +
-    `${env.GITHUB_OWNER}/` +
-    `${env.GITHUB_REPO}/` +
-    `contents/${OUTPUT_PATH}`;
+  if (markerIndex === -1) {
+    return {
+      url: original,
+      cookie: null,
+      referer: null,
+      origin: null,
+      userAgent: null,
+    };
+  }
 
-  const maxRetries = 5;
+  const actualURL =
+    original.substring(0, markerIndex);
 
-  let currentDelay = 1000;
+  const headerString =
+    original.substring(markerIndex + 2);
 
+  const result = {
+    url: actualURL,
+    cookie: null,
+    referer: null,
+    origin: null,
+    userAgent: null,
+  };
 
-  // ----------------------------------------------------------
-  // RETRY LOOP
-  // ----------------------------------------------------------
-
-  for (
-    let attempt = 1;
-    attempt <= maxRetries;
-    attempt++
-  ) {
-
-    console.log(
-      `GitHub upload attempt ${attempt}/${maxRetries}`
+  const cookieMatch =
+    headerString.match(
+      /(?:^|&)cookie=([\s\S]*?)(?=&(?:referer|origin|user-agent)=|$)/i
     );
 
-
-    try {
-
-      // ------------------------------------------------------
-      // GET THE LATEST FILE SHA
-      // ------------------------------------------------------
-
-      const sha =
-        await getGitHubFileSha(
-          env,
-          OUTPUT_PATH
-        );
-
-
-      console.log(
-        "Current GitHub SHA:",
-        sha || "FILE DOES NOT EXIST"
-      );
-
-
-      // ------------------------------------------------------
-      // BUILD REQUEST BODY
-      // ------------------------------------------------------
-
-      const body = {
-        message:
-          `Auto update Hotstar M3U - attempt ${attempt}`,
-
-        content:
-          toBase64(content)
-      };
-
-
-      // Existing file
-      if (sha) {
-        body.sha = sha;
-      }
-
-
-      // ------------------------------------------------------
-      // UPLOAD TO GITHUB
-      // ------------------------------------------------------
-
-      const uploadResponse =
-        await fetch(api, {
-
-          method: "PUT",
-
-          headers: {
-
-            Authorization:
-              `Bearer ${env.GITHUB_TOKEN}`,
-
-            "Content-Type":
-              "application/json",
-
-            "User-Agent":
-              "Cloudflare-Worker",
-
-            "Accept":
-              "application/vnd.github+json"
-
-          },
-
-          body:
-            JSON.stringify(body)
-
-        });
-
-
-      console.log(
-        `GitHub Upload Status: ${uploadResponse.status}`
-      );
-
-
-      // ------------------------------------------------------
-      // SUCCESS
-      // ------------------------------------------------------
-
-      if (uploadResponse.ok) {
-
-        console.log(
-          "GitHub upload successful."
-        );
-
-        return;
-      }
-
-
-      // ------------------------------------------------------
-      // 409 SHA CONFLICT
-      // ------------------------------------------------------
-
-      if (uploadResponse.status === 409) {
-
-        const errorBody =
-          await uploadResponse.text();
-
-        console.warn(
-          `GitHub SHA conflict on attempt ${attempt}.`
-        );
-
-        console.warn(
-          `Response: ${errorBody}`
-        );
-
-
-        // If attempts remain, wait and then
-        // fetch a completely fresh SHA.
-        if (attempt < maxRetries) {
-
-          console.log(
-            `Retrying in ${currentDelay / 1000}s...`
-          );
-
-
-          await new Promise(
-            (resolve) =>
-              setTimeout(
-                resolve,
-                currentDelay
-              )
-          );
-
-
-          currentDelay *= 2;
-
-          continue;
-        }
-
-
-        throw new Error(
-          `GitHub upload failed after ${maxRetries} ` +
-          `attempts due to repeated SHA conflicts. ` +
-          `Last response: ${errorBody}`
-        );
-      }
-
-
-      // ------------------------------------------------------
-      // OTHER GITHUB ERROR
-      // ------------------------------------------------------
-
-      const errorBody =
-        await uploadResponse.text();
-
-
-      throw new Error(
-        `GitHub upload failed: ` +
-        `${uploadResponse.status} ` +
-        `${errorBody}`
-      );
-
-
-    } catch (error) {
-
-      // ------------------------------------------------------
-      // NETWORK / FETCH ERROR
-      //
-      // 409 errors are already handled above and continued.
-      // This catch is therefore mainly for actual exceptions.
-      // ------------------------------------------------------
-
-      if (attempt >= maxRetries) {
-
-        throw new Error(
-          `Failed to upload to GitHub after ` +
-          `${maxRetries} attempts: ` +
-          `${error.message}`
-        );
-      }
-
-
-      console.error(
-        `GitHub upload error on attempt ${attempt}:`,
-        error.message
-      );
-
-
-      console.log(
-        `Retrying in ${currentDelay / 1000}s...`
-      );
-
-
-      await new Promise(
-        (resolve) =>
-          setTimeout(
-            resolve,
-            currentDelay
-          )
-      );
-
-
-      currentDelay *= 2;
-    }
+  const refererMatch =
+    headerString.match(
+      /(?:^|&)referer=([\s\S]*?)(?=&(?:cookie|origin|user-agent)=|$)/i
+    );
+
+  const originMatch =
+    headerString.match(
+      /(?:^|&)origin=([\s\S]*?)(?=&(?:cookie|referer|user-agent)=|$)/i
+    );
+
+  const userAgentMatch =
+    headerString.match(
+      /(?:^|&)user-agent=([\s\S]*)$/i
+    );
+
+  if (cookieMatch) {
+    result.cookie =
+      decodeURIComponentSafe(cookieMatch[1]);
+  }
+
+  if (refererMatch) {
+    result.referer =
+      decodeURIComponentSafe(refererMatch[1]);
+  }
+
+  if (originMatch) {
+    result.origin =
+      decodeURIComponentSafe(originMatch[1]);
+  }
+
+  if (userAgentMatch) {
+    result.userAgent =
+      decodeURIComponentSafe(userAgentMatch[1]);
+  }
+
+  return result;
+}
+
+// ============================================================
+// SAFE URL DECODE
+// ============================================================
+
+function decodeURIComponentSafe(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
   }
 }
 
 // ============================================================
-// EXPORTED FUNCTION
+// FIND CHANNEL
+//
+// Returns:
+// - EXTINF
+// - KODIPROP lines
+// - original stream URL
+// - parsed headers
 // ============================================================
 
-export async function runChannelFilter(env) {
+function findChannel(playlist, requestedSlug) {
+  const lines = playlist.split(/\r?\n/);
 
-  const m3u =
-    await generateM3U();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
 
+    if (!line.startsWith("#EXTINF")) {
+      continue;
+    }
 
-  await uploadToGitHub(
-    m3u,
-    env
+    const channelName =
+      extractChannelName(line);
+
+    if (!channelName) {
+      continue;
+    }
+
+    const slug =
+      createSlug(channelName);
+
+    if (
+      slug.toLowerCase() !==
+      requestedSlug.toLowerCase()
+    ) {
+      continue;
+    }
+
+    const kodiprops = [];
+
+    let streamURL = null;
+
+    for (
+      let j = i + 1;
+      j < lines.length;
+      j++
+    ) {
+      const next = lines[j].trim();
+
+      if (!next) {
+        continue;
+      }
+
+      // Stop if another channel starts
+      if (next.startsWith("#EXTINF")) {
+        break;
+      }
+
+      // Copy Kodi DRM properties
+      if (
+        next.startsWith("#KODIPROP:")
+      ) {
+        kodiprops.push(next);
+        continue;
+      }
+
+      // Ignore other metadata
+      if (next.startsWith("#")) {
+        continue;
+      }
+
+      // First non-comment line = stream URL
+      streamURL = next;
+      break;
+    }
+
+    if (!streamURL) {
+      return null;
+    }
+
+    return {
+      channelName,
+      slug,
+      extinf: line,
+      kodiprops,
+      stream: parseStreamURL(streamURL),
+    };
+  }
+
+  return null;
+}
+
+// ============================================================
+// GENERATE CLEAN M3U
+//
+// Keeps:
+//
+// #EXTINF
+// #KODIPROP
+// Worker /stream URL
+//
+// Removes:
+//
+// Original Hotstar URL
+// EXTHTTP
+// EXTVLCOPT
+// Other source metadata
+// ============================================================
+
+async function generateHotstarM3U(workerBaseURL) {
+  const source = await getSourceM3U();
+
+  const lines =
+    source.split(/\r?\n/);
+
+  const output = [
+    "#EXTM3U",
+    "",
+  ];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (!line.startsWith("#EXTINF")) {
+      continue;
+    }
+
+    const channelName =
+      extractChannelName(line);
+
+    if (!channelName) {
+      continue;
+    }
+
+    const slug =
+      createSlug(channelName);
+
+    if (!slug) {
+      continue;
+    }
+
+    const kodiprops = [];
+
+    let streamURL = null;
+    let urlIndex = -1;
+
+    // Read everything belonging to this channel
+    for (
+      let j = i + 1;
+      j < lines.length;
+      j++
+    ) {
+      const next = lines[j].trim();
+
+      if (!next) {
+        continue;
+      }
+
+      // Next channel
+      if (next.startsWith("#EXTINF")) {
+        break;
+      }
+
+      // Keep KODIPROP lines
+      if (
+        next.startsWith("#KODIPROP:")
+      ) {
+        kodiprops.push(next);
+        continue;
+      }
+
+      // Ignore other #EXTVLCOPT / #EXTHTTP etc.
+      if (next.startsWith("#")) {
+        continue;
+      }
+
+      streamURL = next;
+      urlIndex = j;
+      break;
+    }
+
+    if (!streamURL) {
+      continue;
+    }
+
+    // --------------------------------------------
+    // EXTINF
+    // --------------------------------------------
+
+    output.push(line);
+
+    // --------------------------------------------
+    // COPY KODIPROP / CLEARKEY
+    // --------------------------------------------
+
+    for (const prop of kodiprops) {
+      output.push(prop);
+    }
+
+    // --------------------------------------------
+    // WORKER STREAM URL
+    // --------------------------------------------
+
+    const workerURL =
+      new URL("/stream", workerBaseURL);
+
+    workerURL.searchParams.set(
+      "channel",
+      slug
+    );
+
+    output.push(workerURL.href);
+
+    output.push("");
+
+    // Skip processed source lines
+    if (urlIndex !== -1) {
+      i = urlIndex;
+    }
+  }
+
+  return output.join("\n");
+}
+
+// ============================================================
+// STREAM LOOKUP
+//
+// Used by your existing /stream handler.
+//
+// Example:
+//
+// const channel = await getHotstarChannel(
+//   "star-sports-1-hd"
+// );
+//
+// ============================================================
+
+export async function getHotstarChannel(
+  channel
+) {
+  const source =
+    await getSourceM3U();
+
+  return findChannel(
+    source,
+    channel
   );
-
-
-  return m3u;
 }
 
-
 // ============================================================
-// CLOUDFLARE WORKER ENTRY POINT
+// GENERATE PLAYLIST
+//
+// Call this from your existing Worker:
+//
+// const m3u = await runHotstarPlaylist(
+//   request.url
+// );
+//
+// return new Response(m3u, {
+//   headers: {
+//     "Content-Type":
+//       "application/x-mpegURL",
+//   },
+// });
 // ============================================================
 
-export default {
-
-  async fetch(request, env) {
-
-    try {
-
-      const m3u =
-        await runChannelFilter(env);
-
-
-      return new Response(
-        m3u,
-
-        {
-
-          status: 200,
-
-          headers: {
-
-            "Content-Type":
-              "application/x-mpegURL; charset=utf-8",
-
-            "Cache-Control":
-              "no-cache, no-store, must-revalidate"
-
-          }
-
-        }
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      return new Response(
-
-        JSON.stringify({
-          error: error.message
-        }),
-
-        {
-
-          status: 500,
-
-          headers: {
-
-            "Content-Type":
-              "application/json"
-
-          }
-
-        }
-
-      );
-    }
-  }
-};
+export async function runHotstarPlaylist(
+  workerBaseURL
+) {
+  return await generateHotstarM3U(
+    workerBaseURL
+  );
+}
