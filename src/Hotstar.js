@@ -405,37 +405,41 @@ export async function runHotstarPlaylist(
 // CREATE UPSTREAM HEADERS
 // ============================================================
 
-function createUpstreamHeaders(
-  stream
-) {
-  const headers =
-    new Headers();
+function createUpstreamHeaders(stream) {
+  const headers = new Headers();
+
+  headers.set(
+    "User-Agent",
+    stream.userAgent ||
+      "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
+  );
+
+  headers.set(
+    "Accept",
+    "*/*"
+  );
+
+  headers.set(
+    "Accept-Language",
+    "en-US,en;q=0.9"
+  );
+
+  headers.set(
+    "Referer",
+    stream.referer ||
+      "https://www.hotstar.com/"
+  );
+
+  headers.set(
+    "Origin",
+    stream.origin ||
+      "https://www.hotstar.com"
+  );
 
   if (stream.cookie) {
     headers.set(
       "Cookie",
       stream.cookie
-    );
-  }
-
-  if (stream.referer) {
-    headers.set(
-      "Referer",
-      stream.referer
-    );
-  }
-
-  if (stream.origin) {
-    headers.set(
-      "Origin",
-      stream.origin
-    );
-  }
-
-  if (stream.userAgent) {
-    headers.set(
-      "User-Agent",
-      stream.userAgent
     );
   }
 
@@ -862,25 +866,48 @@ export async function runHotstarStream(
       stream
     );
 
-  const upstream =
-    await fetch(
-      stream.url,
-      {
-        method: "GET",
-        headers,
-      }
-    );
+const upstream = await fetch(
+  stream.url,
+  {
+    method: "GET",
+    headers,
+    redirect: "follow",
+  }
+);
 
   if (!upstream.ok) {
+  const errorBody = await upstream.text();
+
   return new Response(
-    JSON.stringify({
-      status: upstream.status,
-      streamURL: stream.url,
-      cookie: !!stream.cookie,
-      referer: stream.referer,
-      origin: stream.origin,
-      userAgent: stream.userAgent,
-    }, null, 2),
+    JSON.stringify(
+      {
+        status: upstream.status,
+        statusText: upstream.statusText,
+        url: stream.url,
+
+        headersSent: {
+          cookie: !!stream.cookie,
+          referer: stream.referer,
+          origin: stream.origin,
+          userAgent: stream.userAgent,
+        },
+
+        responseHeaders: {
+          contentType:
+            upstream.headers.get("content-type"),
+          server:
+            upstream.headers.get("server"),
+          via:
+            upstream.headers.get("via"),
+          location:
+            upstream.headers.get("location"),
+        },
+
+        body: errorBody.substring(0, 2000),
+      },
+      null,
+      2
+    ),
     {
       status: 502,
       headers: {
