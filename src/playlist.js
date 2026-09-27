@@ -273,25 +273,6 @@ const isMpdUrl =
   /\.mpd(?:\?|[|]|$)/i.test(line) ||
   /[?&]route=mpd(?:[&#|]|$)/i.test(line);
 
-
-// --------------------------------------------------
-// Only remove adaptive KODIPROP tags if the source
-// claims MPD but the actual URL isn't MPD.
-// --------------------------------------------------
-
-if (
-  hasMpdProp &&
-  !isMpdUrl
-) {
-  finalBuffer =
-    finalBuffer.filter(
-      tag =>
-        !tag.startsWith(
-          "#KODIPROP:inputstream.adaptive.manifest_type="
-        )
-    );
-}
-
     // --------------------------------------------------
     // Extract channel name.
     // --------------------------------------------------
