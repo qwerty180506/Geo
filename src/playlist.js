@@ -458,7 +458,7 @@ async function fetchSources(env) {
       }
 
       const fetchUrl =
-  key === "tivi"
+  key === "TIVI"
     ? url
     : `${url}?t=${Date.now()}`;
 
