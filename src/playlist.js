@@ -15,6 +15,7 @@ const PRIORITY_ORDER = [
   "sonyliv",
   "sunnxt",
   "jiotvplus",
+  "tivi",
   "jiotv",
   "hotstar"
 ];
@@ -40,17 +41,17 @@ const WANTED_MAP = {
   "Pogo Tamil": "Kids",
   "Movies Now HD": "Movies",
   "MNX HD": "Movies",
-  "MN+": "Movies",
+  "MN+ HD": "Movies",
   "Vijay Takkar": ["Music", "jioplus2"],
-  "Vijay Super HD": "Movies",
-  "Colors Infinity HD": ["Movies", "jioplus2"],
-  "Star Movies HD": ["Movies", "jioplus2"],
-  "Star Movies Select HD": ["Movies", "jioplus2"],
+  "Vijay Super HD": ["Movies","tivi"],
+  "Colors Infinity HD": ["Movies", "tivi"],
+  "Star Movies HD": ["Movies", "tivi"],
+  "Star Movies Select HD": ["Movies", "tivi"],
   "Colors Tamil HD": ["Entertainment", "jioplus2"],
-  "Star Vijay HD": ["Entertainment", "jioplus2"],
+  "Star Vijay HD": ["Entertainment", "tivi"],
   "Thanthi One": ["Entertainment", "jioplus2"],
-  "Zee Tamil HD": ["Entertainment", "jioplus2"],
-  "Sony PIX HD": "Movies",
+  "Zee Tamil HD": ["Entertainment", "tivi"],
+  "Sony PIX HD": ["Movies","tivi"],
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
   "Adithya TV": "Entertainment",
@@ -106,7 +107,7 @@ const WANTED_MAP = {
   "National Geographic HD": ["Infotainment", "jioplus2"],
   "Travelxp HD": "Infotainment",
   "Travelxp Tamil": "Infotainment",
-  "Sony BBC Earth HD": ["Infotainment", "jioplus2"],
+  "Sony BBC Earth HD": ["Infotainment", "tivi"],
 
   "Sony Ten 1 HD": ["Sports", "sonyliv"],
   "Sony Ten 2 HD": ["Sports", "sonyliv"],
@@ -429,12 +430,11 @@ async function fetchSources(env) {
 
   const result = {};
 
-  // Add Cloudflare Worker secret here.
   const sourceUrls = {
     ...SOURCE_URLS,
-    jioplus2: env.JIOPLUS2_URL
+    jioplus2: env.JIOPLUS2_URL,
+    tivi: env.tivi
   };
-
 
   for (
     const [key, url]
@@ -448,7 +448,6 @@ async function fetchSources(env) {
         "Pragma": "no-cache"
       };
 
-
       if (key === "jiotv") {
 
         headers["Referer"] =
@@ -458,7 +457,6 @@ async function fetchSources(env) {
           "https://sflexzio.pages.dev";
       }
 
-
       const response =
         await fetch(
           `${url}?t=${Date.now()}`,
@@ -467,10 +465,8 @@ async function fetchSources(env) {
           }
         );
 
-
       result[key] =
         await response.text();
-
 
       console.log(
         `Downloaded ${key}: ${response.status}`
@@ -487,10 +483,8 @@ async function fetchSources(env) {
     }
   }
 
-
   return result;
 }
-
 
 // ---------------- GIST UPLOAD ----------------
 
@@ -574,35 +568,36 @@ export async function runMerge(env) {
   // Parse all sources.
   const sources = {
 
-    fancode:
-      parseM3U(files.fancode),
+  fancode:
+    parseM3U(files.fancode),
 
-    bexo:
-      parseM3U(files.bexo),
+  bexo:
+    parseM3U(files.bexo),
 
-    sonyliv:
-      parseM3U(files.sonyliv),
+  sonyliv:
+    parseM3U(files.sonyliv),
 
-    sunnxt:
-      parseM3U(files.sunnxt),
+  sunnxt:
+    parseM3U(files.sunnxt),
 
-    jiotv:
-      parseM3U(files.jiotv),
+  jiotv:
+    parseM3U(files.jiotv),
 
-    jiotvplus:
-      parseM3U(files.jiotvplus),
+  jiotvplus:
+    parseM3U(files.jiotvplus),
 
-    // IMPORTANT: parse JioTV Plus 2.
-    jioplus2:
-      parseM3U(files.jioplus2),
+  jioplus2:
+    parseM3U(files.jioplus2),
 
-    local:
-      parseM3U(files.local),
+  tivi:
+    parseM3U(files.tivi),
 
-    hotstar:
-      parseM3U(files.hotstar)
-  };
+  local:
+    parseM3U(files.local),
 
+  hotstar:
+    parseM3U(files.hotstar)
+};
 
   console.log(
     `Base playlist channels: ${Object.keys(base).length}`
