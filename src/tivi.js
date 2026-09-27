@@ -26,43 +26,60 @@ async function getM3U() {
 // ============================================================
 
 function findChannel(m3u, channelId) {
-  const lines = m3u.split(/\r?\n/);
+  const lines =
+    m3u.split(/\r?\n/);
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
+  for (
+    let i = 0;
+    i < lines.length;
+    i++
+  ) {
+    const line =
+      lines[i].trim();
 
-    if (!line.startsWith("#EXTINF")) {
+    if (
+      !line.startsWith("#EXTINF")
+    ) {
       continue;
     }
 
-    const match = line.match(
-      /tvg-id="([^"]+)"/i
-    );
+    const match =
+      line.match(
+        /tvg-id="([^"]+)"/i
+      );
 
     if (!match) {
       continue;
     }
 
-    if (match[1] !== channelId) {
+    const tvgId = match[1];
+
+    if (tvgId !== channelId) {
       continue;
     }
 
+    // Find URL belonging to this channel
     for (
       let j = i + 1;
       j < lines.length;
       j++
     ) {
-      const next = lines[j].trim();
+      const next =
+        lines[j].trim();
 
       if (!next) {
         continue;
       }
 
-      if (next.startsWith("#EXTINF")) {
+      if (
+        next.startsWith("#EXTINF")
+      ) {
         break;
       }
 
-      if (next.startsWith("#")) {
+      if (
+        next.startsWith("#")
+      ) {
         continue;
       }
 
@@ -92,8 +109,11 @@ function findChannel(m3u, channelId) {
 // CHANNEL REDIRECT
 // ============================================================
 
-export async function runJioTV2Redirect(request) {
-  const url = new URL(request.url);
+export async function runTiviRedirect(
+  request
+) {
+  const url =
+    new URL(request.url);
 
   const channelId =
     url.pathname.substring(1);
@@ -101,12 +121,15 @@ export async function runJioTV2Redirect(request) {
   if (!channelId) {
     return new Response(
       "Missing channel ID",
-      { status: 400 }
+      {
+        status: 400,
+      }
     );
   }
 
   try {
-    const m3u = await getM3U();
+    const m3u =
+      await getM3U();
 
     const channel =
       findChannel(
@@ -132,6 +155,7 @@ export async function runJioTV2Redirect(request) {
       );
     }
 
+    // Redirect directly to the real JioTV URL
     return Response.redirect(
       channel.url,
       302
@@ -149,14 +173,15 @@ export async function runJioTV2Redirect(request) {
 }
 
 // ============================================================
-// PLAYLIST
+// GENERATE PLAYLIST
 // ============================================================
 
-export async function runJioTV2Playlist(
+export async function runTiviPlaylist(
   request
 ) {
   try {
-    const m3u = await getM3U();
+    const m3u =
+      await getM3U();
 
     const lines =
       m3u.split(/\r?\n/);
@@ -171,10 +196,14 @@ export async function runJioTV2Playlist(
       i < lines.length;
       i++
     ) {
-      const line = lines[i];
+      const line =
+        lines[i];
 
+      // Keep normal lines
       if (
-        !line.trim().startsWith("#EXTINF")
+        !line.trim().startsWith(
+          "#EXTINF"
+        )
       ) {
         output.push(line);
         continue;
@@ -185,7 +214,7 @@ export async function runJioTV2Playlist(
           /tvg-id="([^"]+)"/i
         );
 
-      // No tvg-id → leave entry alone
+      // If no tvg-id, preserve entry
       if (!match) {
         output.push(line);
         continue;
@@ -197,28 +226,36 @@ export async function runJioTV2Playlist(
       // Add EXTINF
       output.push(line);
 
-      // Copy everything until original URL
+      // Process channel metadata + URL
       for (
         let j = i + 1;
         j < lines.length;
         j++
       ) {
-        const next = lines[j];
+        const next =
+          lines[j];
 
+        const trimmed =
+          next.trim();
+
+        // Next channel
         if (
-          next.trim().startsWith("#EXTINF")
+          trimmed.startsWith(
+            "#EXTINF"
+          )
         ) {
           break;
         }
 
-        if (!next.trim()) {
+        // Preserve blank lines
+        if (!trimmed) {
           output.push(next);
           continue;
         }
 
         // Preserve KODIPROP
         if (
-          next.trim().startsWith(
+          trimmed.startsWith(
             "#KODIPROP:"
           )
         ) {
@@ -226,9 +263,9 @@ export async function runJioTV2Playlist(
           continue;
         }
 
-        // Preserve other tags
+        // Preserve other M3U tags
         if (
-          next.trim().startsWith("#")
+          trimmed.startsWith("#")
         ) {
           output.push(next);
           continue;
@@ -236,11 +273,10 @@ export async function runJioTV2Playlist(
 
         // Replace original URL
         output.push(
-          `${workerBase}/${encodeURIComponent(
-            channelId
-          )}`
+          `${workerBase}/${encodeURIComponent(channelId)}`
         );
 
+        // Skip original URL
         i = j;
 
         break;
