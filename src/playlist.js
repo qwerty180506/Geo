@@ -15,7 +15,7 @@ const PRIORITY_ORDER = [
   "sonyliv",
   "sunnxt",
   "jiotvplus",
-  "tivi",
+  "TIVI",
   "jiotv",
   "hotstar"
 ];
@@ -43,15 +43,15 @@ const WANTED_MAP = {
   "MNX HD": "Movies",
   "MN+ HD": "Movies",
   "Vijay Takkar": ["Music", "jioplus2"],
-  "Vijay Super HD": ["Movies","tivi"],
-  "Colors Infinity HD": ["Movies", "tivi"],
-  "Star Movies HD": ["Movies", "tivi"],
-  "Star Movies Select HD": ["Movies", "tivi"],
+  "Vijay Super HD": ["Movies","TIVI"],
+  "Colors Infinity HD": ["Movies", "TIVI"],
+  "Star Movies HD": ["Movies", "TIVI"],
+  "Star Movies Select HD": ["Movies", "TIVI"],
   "Colors Tamil HD": ["Entertainment", "jioplus2"],
-  "Star Vijay HD": ["Entertainment", "tivi"],
+  "Star Vijay HD": ["Entertainment", "TIVI"],
   "Thanthi One": ["Entertainment", "jioplus2"],
-  "Zee Tamil HD": ["Entertainment", "tivi"],
-  "Sony PIX HD": ["Movies","tivi"],
+  "Zee Tamil HD": ["Entertainment", "TIVI"],
+  "Sony PIX HD": ["Movies","TIVI"],
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
   "Adithya TV": "Entertainment",
@@ -107,7 +107,7 @@ const WANTED_MAP = {
   "National Geographic HD": ["Infotainment", "jioplus2"],
   "Travelxp HD": "Infotainment",
   "Travelxp Tamil": "Infotainment",
-  "Sony BBC Earth HD": ["Infotainment", "tivi"],
+  "Sony BBC Earth HD": ["Infotainment", "TIVI"],
 
   "Sony Ten 1 HD": ["Sports", "sonyliv"],
   "Sony Ten 2 HD": ["Sports", "sonyliv"],
@@ -433,7 +433,7 @@ async function fetchSources(env) {
   const sourceUrls = {
     ...SOURCE_URLS,
     jioplus2: env.JIOPLUS2_URL,
-    tivi: env.tivi
+    TIVI: env.TIVI
   };
 
   for (
@@ -589,8 +589,8 @@ export async function runMerge(env) {
   jioplus2:
     parseM3U(files.jioplus2),
 
-  tivi:
-    parseM3U(files.tivi),
+  TIVI:
+    parseM3U(files.TIVI),
 
   local:
     parseM3U(files.local),
