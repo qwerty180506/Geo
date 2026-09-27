@@ -29,7 +29,7 @@ export default {
       await runMerge(env);
 
       return new Response(
-        "All playlists updated successfully"
+        "All playlists updated successfully!!!"
       );
 
     } catch (e) {
