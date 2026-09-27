@@ -457,13 +457,18 @@ async function fetchSources(env) {
           "https://sflexzio.pages.dev";
       }
 
-      const response =
-        await fetch(
-          `${url}?t=${Date.now()}`,
-          {
-            headers
-          }
-        );
+      const fetchUrl =
+  key === "tivi"
+    ? url
+    : `${url}?t=${Date.now()}`;
+
+const response =
+  await fetch(
+    fetchUrl,
+    {
+      headers
+    }
+  );
 
       result[key] =
         await response.text();
