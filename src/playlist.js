@@ -287,7 +287,7 @@ if (
     finalBuffer.filter(
       tag =>
         !tag.startsWith(
-          "#KODIPROP:inputstream.adaptive."
+          "#KODIPROP:inputstream.adaptive.manifest_type="
         )
     );
 }
