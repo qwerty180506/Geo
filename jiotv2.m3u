@@ -51,14 +51,14 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ColorsHD_BTS/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=6c589ac8b1715f698d5fac41fcc1840c:4eb71be4db9d348e21ba68f40cecc478
-https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1790682935~exp=1790704535~acl=/bpk-tv/AndPicturesHD_BTS/WDVLive/*~hmac=867fb07b478f7771d55c60ec86eedd82aa93f9bd02a930949657f549c1266f5b
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1790682935~exp=1790704535~acl=/bpk-tv/AndPictures_BTS/WDVLive/*~hmac=6aa630ae24accd62b5cd0a5585519d3800a306815f0472c3a080dee9f369431b
 
 #EXTINF:-1 tvg-id="1839" tvg-name="&Pictures" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/AndPictures.png" group-title="Movies",&Pictures
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=d6f310b8bfe75a3ab8cd259262393222:b538ae8613ea5f95694df024ee7b91fd
-https://jiotvpllive.cdn.jio.com/bpk-tv/AndPictures_BTS/WDVLive/index.mpd?__hdnea__=st=1789252803~exp=1789274403~acl=/bpk-tv/AndPicturesHD_BTS/WDVLive/*~hmac=8f583fd3dad88aab57effae998732b234bacfce7e79cb434188745c997fee8c2
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndPictures_BTS/WDVLive/index.mpd?__hdnea__=st=1790682935~exp=1790704535~acl=/bpk-tv/AndPicturesHD_BTS/WDVLive/*~hmac=867fb07b478f7771d55c60ec86eedd82aa93f9bd02a930949657f549c1266f5b
 
 #EXTINF:-1 tvg-id="143" tvg-name="CNBC TV18 Prime HD" tvg-logo="https://img.media.jio.com/tvpimages/35/90/300205_1774721803007_l_medium.jpg" group-title="Business News",CNBC TV18 Prime HD
 #KODIPROP:inputstream=inputstream.adaptive
