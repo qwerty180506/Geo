@@ -16,7 +16,7 @@ const PRIORITY_ORDER = [
   "sonyliv",
   "sunnxt",
   "jiotv",
-  "hotstar"
+  "hotstar",
   "jioplus2",
 ];
 
