@@ -203,12 +203,22 @@ function processM3U(text) {
       continue;
     }
 
-    // ------------------------------------------------
-    // Remove EXTHTTP completely
-    // ------------------------------------------------
-    if (line.startsWith("#EXTHTTP:")) {
-      continue;
+    // ---------------- EXTHTTP ----------------
+  if (line.startsWith("#EXTHTTP:")) {
+  try {
+    const headers = JSON.parse(line.substring("#EXTHTTP:".length));
+    const cookie = headers.cookie || "";
+
+    if (cookie) {
+      console.log("Cookie extracted successfully");
     }
+  } catch (error) {
+    console.error("Invalid EXTHTTP JSON:", error);
+  }
+
+  // Strip EXTHTTP from output
+  continue;
+}
 
     // ------------------------------------------------
     // Stream URL
