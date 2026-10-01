@@ -225,7 +225,12 @@ if (line.startsWith("#EXTHTTP:")) {
     // Stream URL
     // ------------------------------------------------
     if (/^https?:\/\//i.test(line)) {
-      const streamUrl = cleanStreamUrl(line);
+    let streamUrl = cleanStreamUrl(line);
+
+      if (!streamUrl.includes("?__hdnea__") && extHttpCookie) {
+        const cookie = extHttpCookie.startsWith("?") ? extHttpCookie.slice(1) : extHttpCookie;
+        streamUrl = streamUrl + "?" + cookie;
+      }
 
       if (extinf) {
         output.push(extinf);
