@@ -11,11 +11,11 @@ const SOURCE_URLS = {
 };
 
 const PRIORITY_ORDER = [
+  "TIVI",
   "jioplus2",
   "sonyliv",
   "sunnxt",
   "jiotvplus",
-  "TIVI",
   "jiotv",
   "hotstar"
 ];
