@@ -93,6 +93,7 @@ function cleanStreamUrl(line) {
 
 // ---------------- PROCESS M3U ----------------
 function processM3U(text) {
+  let extHttpCookie = null;
   const lines = text
     .replace(/\r/g, "")
     .split("\n");
@@ -204,14 +205,13 @@ function processM3U(text) {
     }
 
     // ---------------- EXTHTTP ----------------
-  if (line.startsWith("#EXTHTTP:")) {
+if (line.startsWith("#EXTHTTP:")) {
   try {
-    const headers = JSON.parse(line.substring("#EXTHTTP:".length));
-    const cookie = headers.cookie || "";
+    const headers = JSON.parse(
+      line.substring("#EXTHTTP:".length)
+    );
 
-    if (cookie) {
-      console.log("Cookie extracted successfully");
-    }
+    extHttpCookie = headers.cookie || null;
   } catch (error) {
     console.error("Invalid EXTHTTP JSON:", error);
   }
@@ -219,6 +219,7 @@ function processM3U(text) {
   // Strip EXTHTTP from output
   continue;
 }
+  
 
     // ------------------------------------------------
     // Stream URL
@@ -260,6 +261,7 @@ function processM3U(text) {
       licenseType = null;
       licenseKey = null;
       userAgent = null;
+      extHttpCookie = null;
 
       continue;
     }
