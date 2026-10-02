@@ -572,8 +572,8 @@ export async function runMerge(env) {
   jiotvplus:
     parseM3U(files.jiotvplus),
 
-  jioplus2:
-    parseM3U(files.jioplus2),
+  //jioplus2:
+    //parseM3U(files.jioplus2),
 
   TIVI:
     parseM3U(files.TIVI),
