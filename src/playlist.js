@@ -16,8 +16,8 @@ const PRIORITY_ORDER = [
   "sonyliv",
   "sunnxt",
   "jiotv",
-  "hotstar",
-  "jioplus2",
+  "hotstar"
+  //"jioplus2",
 ];
 
 const WANTED_MAP = {
