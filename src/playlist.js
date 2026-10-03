@@ -11,13 +11,13 @@ const SOURCE_URLS = {
 };
 
 const PRIORITY_ORDER = [
+  "jioplus2",
   "TIVI",
   "jiotvplus",
   "sonyliv",
   "sunnxt",
   "jiotv",
   "hotstar"
-  //"jioplus2",
 ];
 
 const WANTED_MAP = {
@@ -572,8 +572,8 @@ export async function runMerge(env) {
   jiotvplus:
     parseM3U(files.jiotvplus),
 
-  //jioplus2:
-    //parseM3U(files.jioplus2),
+  jioplus2:
+    parseM3U(files.jioplus2),
 
   TIVI:
     parseM3U(files.TIVI),
