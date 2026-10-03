@@ -7,7 +7,8 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
-  hotstar: "https://premiumplugx.top/tivjh/playlist.php"
+  hotstar: "https://premiumplugx.top/tivjh/playlist.php",
+  jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u"
 };
 
 const PRIORITY_ORDER = [
@@ -43,7 +44,7 @@ const WANTED_MAP = {
   "MNX HD": "Movies",
   "MN+ HD": "Movies",
   "Vijay Takkar": ["Music", "jioplus2"],
-  "Vijay Super HD": ["Movies","TIVI"],
+  "Vijay Super HD": ["Movies", "TIVI"],
   "Colors Infinity HD": ["Movies", "TIVI"],
   "Star Movies HD": ["Movies", "TIVI"],
   "Star Movies Select HD": ["Movies", "TIVI"],
@@ -51,7 +52,7 @@ const WANTED_MAP = {
   "Star Vijay HD": ["Entertainment", "TIVI"],
   "Thanthi One": ["Entertainment", "jioplus2"],
   "Zee Tamil HD": ["Entertainment", "TIVI"],
-  "Sony PIX HD": ["Movies","TIVI"],
+  "Sony PIX HD": ["Movies", "TIVI"],
   "Kalaignar TV": "Entertainment",
   "Raj TV": "Entertainment",
   "Adithya TV": "Entertainment",
@@ -69,7 +70,7 @@ const WANTED_MAP = {
   "Tata Play Tamil Classics": "Movies",
   "Sun Life": "Movies",
   "Raj Digital Plus": "Movies",
-  "Zee Thirai HD": ["Movies","jioplus2"],
+  "Zee Thirai HD": ["Movies", "jioplus2"],
   "Tunes 6": "Music",
   "Sun Music HD": "Music",
   "Raj Musix": "Music",
@@ -259,19 +260,19 @@ function parseM3U(content) {
 
 
     // --------------------------------------------------
-// Detect MPD correctly.
-// --------------------------------------------------
+    // Detect MPD correctly.
+    // --------------------------------------------------
 
-const hasMpdProp =
-  finalBuffer.some(tag =>
-    tag.includes(
-      "inputstream.adaptive.manifest_type=mpd"
-    )
-  );
+    const hasMpdProp =
+      finalBuffer.some(tag =>
+        tag.includes(
+          "inputstream.adaptive.manifest_type=mpd"
+        )
+      );
 
-const isMpdUrl =
-  /\.mpd(?:\?|[|]|$)/i.test(line) ||
-  /[?&]route=mpd(?:[&#|]|$)/i.test(line);
+    const isMpdUrl =
+      /\.mpd(?:\?|[|]|$)/i.test(line) ||
+      /[?&]route=mpd(?:[&#|]|$)/i.test(line);
 
     // --------------------------------------------------
     // Extract channel name.
@@ -308,6 +309,87 @@ const isMpdUrl =
           ...finalBuffer,
           line
         ].join("\n");
+    }
+
+    buffer = [];
+  }
+
+  return channels;
+}
+
+
+// ---------------- JIOHOTSTAR LIVE EVENTS PARSER ----------------
+
+function parseJioHotstarEvents(content) {
+  const lines = content.split(/\r?\n/);
+  const channels = {};
+  let buffer = [];
+
+  for (const raw of lines) {
+    const line = raw.trim();
+
+    if (!line || line.startsWith("#EXTM3U")) {
+      continue;
+    }
+
+    if (line.startsWith("#")) {
+      buffer.push(line);
+      continue;
+    }
+
+    let originalGroup = "";
+    let originalName = "";
+    let extinfIndex = -1;
+
+    for (let i = 0; i < buffer.length; i++) {
+      const tag = buffer[i];
+      if (tag.startsWith("#EXTINF")) {
+        extinfIndex = i;
+
+        // Extract original group-title if present
+        const groupMatch = tag.match(/group-title="([^"]*)"/i);
+        if (groupMatch) {
+          originalGroup = groupMatch[1].trim();
+        }
+
+        // Extract original channel name (after comma)
+        const commaIndex = tag.lastIndexOf(",");
+        if (commaIndex !== -1) {
+          originalName = tag.substring(commaIndex + 1).trim();
+        }
+
+        break;
+      }
+    }
+
+    if (originalName) {
+      // Build new channel name: "GROUP_TITLE | CHANNEL_NAME"
+      const newName = originalGroup
+        ? `${originalGroup} | ${originalName}`
+        : originalName;
+
+      if (extinfIndex !== -1) {
+        let extinf = buffer[extinfIndex];
+
+        // Remove existing group-title attribute
+        extinf = extinf.replace(/\s*group-title="[^"]*"/gi, "");
+
+        // Set group-title="JioHotstar Live Events" right after #EXTINF:-1
+        extinf = extinf.replace(
+          /^#EXTINF:-1/,
+          `#EXTINF:-1 group-title="JioHotstar Live Events"`
+        );
+
+        // Update the channel name after the last comma
+        const lastCommaIndex = extinf.lastIndexOf(",");
+        if (lastCommaIndex !== -1) {
+          extinf = extinf.substring(0, lastCommaIndex + 1) + " " + newName;
+        }
+
+        buffer[extinfIndex] = extinf;
+      }
+
+      channels[`JioHotstar_${newName}`] = [...buffer, line].join("\n");
     }
 
     buffer = [];
@@ -362,8 +444,6 @@ function safeMatch(requested, data) {
 function setGroupTitle(content, category) {
 
   // Remove ALL source #EXTGRP lines.
-  // They must never survive into the merged playlist because
-  // group assignment is controlled exclusively by WANTED_MAP.
   content = content.replace(
     /^#EXTGRP:[^\r\n]*(?:\r?\n|$)/gmi,
     ""
@@ -414,13 +494,16 @@ async function fetchSources(env) {
   const sourceUrls = {
     ...SOURCE_URLS,
     jioplus2: env.JIOPLUS2_URL,
-    TIVI: env.TIVI
+    TIVI: env.TIVI,
+    jiohotstar_events: env.JIOHOTSTAR_EVENTS_URL || SOURCE_URLS.jiohotstar_events
   };
 
   for (
     const [key, url]
     of Object.entries(sourceUrls)
   ) {
+
+    if (!url) continue;
 
     try {
 
@@ -439,17 +522,17 @@ async function fetchSources(env) {
       }
 
       const fetchUrl =
-  key === "TIVI"
-    ? url
-    : `${url}?t=${Date.now()}`;
+        key === "TIVI"
+          ? url
+          : `${url}?t=${Date.now()}`;
 
-const response =
-  await fetch(
-    fetchUrl,
-    {
-      headers
-    }
-  );
+      const response =
+        await fetch(
+          fetchUrl,
+          {
+            headers
+          }
+        );
 
       result[key] =
         await response.text();
@@ -554,36 +637,36 @@ export async function runMerge(env) {
   // Parse all sources.
   const sources = {
 
-  fancode:
-    parseM3U(files.fancode),
+    fancode:
+      parseM3U(files.fancode || ""),
 
-  bexo:
-    parseM3U(files.bexo),
+    bexo:
+      parseM3U(files.bexo || ""),
 
-  sonyliv:
-    parseM3U(files.sonyliv),
+    sonyliv:
+      parseM3U(files.sonyliv || ""),
 
-  sunnxt:
-    parseM3U(files.sunnxt),
+    sunnxt:
+      parseM3U(files.sunnxt || ""),
 
-  jiotv:
-    parseM3U(files.jiotv),
+    jiotv:
+      parseM3U(files.jiotv || ""),
 
-  jiotvplus:
-    parseM3U(files.jiotvplus),
+    jiotvplus:
+      parseM3U(files.jiotvplus || ""),
 
-  jioplus2:
-    parseM3U(files.jioplus2),
+    jioplus2:
+      parseM3U(files.jioplus2 || ""),
 
-  TIVI:
-    parseM3U(files.TIVI),
+    TIVI:
+      parseM3U(files.TIVI || ""),
 
-  local:
-    parseM3U(files.local),
+    local:
+      parseM3U(files.local || ""),
 
-  hotstar:
-    parseM3U(files.hotstar)
-};
+    hotstar:
+      parseM3U(files.hotstar || "")
+  };
 
   console.log(
     `Base playlist channels: ${Object.keys(base).length}`
@@ -599,15 +682,6 @@ export async function runMerge(env) {
 
     let category;
     let preferred;
-
-
-    // Mapping can be:
-    //
-    // "Channel": "Category"
-    //
-    // OR:
-    //
-    // "Channel": ["Category", "PreferredSource"]
 
     if (Array.isArray(value)) {
 
@@ -685,9 +759,6 @@ export async function runMerge(env) {
 
     if (found) {
 
-      // FIX:
-      // Always remove the existing group-title and
-      // insert the mapped category.
       const fixed =
         setGroupTitle(
           found,
@@ -713,109 +784,130 @@ export async function runMerge(env) {
 
   // ---------------- LOCAL CHANNELS ----------------
 
-  for (
-    const [name, content]
-    of Object.entries(
-      sources.local
-    )
-  ) {
+  if (sources.local) {
+    for (
+      const [name, content]
+      of Object.entries(
+        sources.local
+      )
+    ) {
 
-    const clean =
-      content.replace(
-        /group-title="[^"]*"/g,
-        ""
-      );
+      const clean =
+        content.replace(
+          /group-title="[^"]*"/g,
+          ""
+        );
 
 
-    base[`Local_${name}`] =
-      clean.replace(
-        "#EXTINF:-1",
-        '#EXTINF:-1 group-title="Local Channels"'
-      );
+      base[`Local_${name}`] =
+        clean.replace(
+          "#EXTINF:-1",
+          '#EXTINF:-1 group-title="Local Channels"'
+        );
+    }
+
+    console.log(
+      `Added ${Object.keys(sources.local).length} local channels`
+    );
   }
-
-
-  console.log(
-    `Added ${Object.keys(sources.local).length} local channels`
-  );
 
 
   // ---------------- FANCODE ----------------
 
-  const fancodeLines =
-    files.fancode
-      .split(/\r?\n/)
-      .map(x => x.trim())
-      .filter(Boolean);
+  if (files.fancode) {
+    const fancodeLines =
+      files.fancode
+        .split(/\r?\n/)
+        .map(x => x.trim())
+        .filter(Boolean);
 
 
-  for (
-    let i = 0;
-    i < fancodeLines.length;
-    i++
-  ) {
-
-    const line =
-      fancodeLines[i];
-
-
-    if (
-      line.startsWith("#EXTINF") &&
-      i + 1 < fancodeLines.length
+    for (
+      let i = 0;
+      i < fancodeLines.length;
+      i++
     ) {
 
-      const urlLine =
-        fancodeLines[i + 1];
+      const line =
+        fancodeLines[i];
 
 
-      if (urlLine.startsWith("#")) {
-        continue;
+      if (
+        line.startsWith("#EXTINF") &&
+        i + 1 < fancodeLines.length
+      ) {
+
+        const urlLine =
+          fancodeLines[i + 1];
+
+
+        if (urlLine.startsWith("#")) {
+          continue;
+        }
+
+
+        base[`Fancode_${i}`] =
+          line +
+          "\n" +
+          urlLine;
+
+
+        i++;
       }
-
-
-      base[`Fancode_${i}`] =
-        line +
-        "\n" +
-        urlLine;
-
-
-      i++;
     }
+
+    console.log(
+      "Added Fancode events"
+    );
   }
-
-
-  console.log(
-    "Added Fancode events"
-  );
 
 
   // ---------------- SONYLIV LIVE EVENTS ----------------
 
-  for (
-    const [name, content]
-    of Object.entries(
-      sources.bexo
-    )
-  ) {
+  if (sources.bexo) {
+    for (
+      const [name, content]
+      of Object.entries(
+        sources.bexo
+      )
+    ) {
 
-    const clean =
-      content.replace(
-        /group-title="[^"]*"/g,
-        ""
-      );
+      const clean =
+        content.replace(
+          /group-title="[^"]*"/g,
+          ""
+        );
 
 
-    base[`SonyLiv_${name}`] =
-      clean.replace(
-        "#EXTINF:-1",
-        '#EXTINF:-1 group-title="SonyLiv Live Events"'
-      );
+      base[`SonyLiv_${name}`] =
+        clean.replace(
+          "#EXTINF:-1",
+          '#EXTINF:-1 group-title="SonyLiv Live Events"'
+        );
+    }
+
+    console.log(
+      "Added SonyLiv live events"
+    );
   }
 
 
-  console.log(
-    "Added SonyLiv live events"
-  );
+  // ---------------- JIOHOTSTAR LIVE EVENTS ----------------
+
+  if (files.jiohotstar_events) {
+    const jioHotstarChannels = parseJioHotstarEvents(files.jiohotstar_events);
+
+    for (
+      const [name, content]
+      of Object.entries(jioHotstarChannels)
+    ) {
+      base[name] = content;
+    }
+
+    console.log(
+      `Added ${Object.keys(jioHotstarChannels).length} JioHotstar Live Events`
+    );
+  }
 
 
   // ---------------- FINAL PLAYLIST ----------------
