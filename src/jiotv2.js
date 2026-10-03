@@ -1,4 +1,4 @@
-const M3U_URL = "https://m3u.cloudplay.qzz.io/jtvx.m3u";
+const M3U_URL = "https://premiumplugx.top/jiostb/mjelo.php?view=raw";
 
 // ---------------- BASE64 ----------------
 function toBase64(str) {
