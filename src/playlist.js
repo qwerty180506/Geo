@@ -185,7 +185,10 @@ function parseM3U(content) {
   for (const raw of lines) {
     let line = raw.trim();
 
-    if (!line || line.startsWith("#EXTM3U")) {
+    if (
+      !line ||
+      line.startsWith("#EXTM3U")
+    ) {
       continue;
     }
 
@@ -194,47 +197,44 @@ function parseM3U(content) {
       continue;
     }
 
-    let finalBuffer = [];
+    let finalBuffer = [...buffer];
+
+    // --------------------------------------------------
+    // Extract Cookie from KODIPROP stream_headers.
+    // --------------------------------------------------
+
     let cookieValue = null;
 
-    for (let tag of buffer) {
-      // 1. Filter out unwanted headers/opt tags
-      if (
-        tag.startsWith("#EXTVLCOPT:") ||
-        tag.startsWith("#EXTHTTP:") ||
-        tag.startsWith("#KODIPROP:inputstream.adaptive.manifest_headers=")
-      ) {
-        continue; // Skip these lines completely
-      }
+    finalBuffer = finalBuffer.filter(tag => {
 
-      // 2. Extract Cookie from KODIPROP stream_headers
       if (
-        tag.startsWith("#KODIPROP:inputstream.adaptive.stream_headers=")
+        tag.startsWith(
+          "#KODIPROP:inputstream.adaptive.stream_headers="
+        )
       ) {
-        const headerContent = tag.replace(
-          "#KODIPROP:inputstream.adaptive.stream_headers=",
-          ""
-        );
 
-        if (headerContent.startsWith("Cookie=")) {
-          cookieValue = headerContent.replace("Cookie=", "");
+        const headerContent =
+          tag.replace(
+            "#KODIPROP:inputstream.adaptive.stream_headers=",
+            ""
+          );
+
+        if (
+          headerContent.startsWith("Cookie=")
+        ) {
+          cookieValue =
+            headerContent.replace(
+              "Cookie=",
+              ""
+            );
         }
-        // Retain or skip stream_headers as per original requirement
-        continue;
+
+        return false;
       }
 
-      // 3. Clean up license_key line by removing everything from '|' onwards
-      if (
-        tag.startsWith("#KODIPROP:inputstream.adaptive.license_key=")
-      ) {
-        const pipeIdx = tag.indexOf("|");
-        if (pipeIdx !== -1) {
-          tag = tag.substring(0, pipeIdx);
-        }
-      }
+      return true;
+    });
 
-      finalBuffer.push(tag);
-    }
 
     // --------------------------------------------------
     // Normalize pipe-style Jio URLs.
@@ -242,15 +242,37 @@ function parseM3U(content) {
 
     line = normalizePipeUrl(line);
 
+
     // --------------------------------------------------
     // If Cookie came from KODIPROP stream_headers,
     // append it to the normalized URL.
     // --------------------------------------------------
 
     if (cookieValue) {
-      const separator = line.includes("?") ? "&" : "?";
-      line = `${line}${separator}${cookieValue}`;
+      const separator =
+        line.includes("?")
+          ? "&"
+          : "?";
+
+      line =
+        `${line}${separator}${cookieValue}`;
     }
+
+
+    // --------------------------------------------------
+    // Detect MPD correctly.
+    // --------------------------------------------------
+
+    const hasMpdProp =
+      finalBuffer.some(tag =>
+        tag.includes(
+          "inputstream.adaptive.manifest_type=mpd"
+        )
+      );
+
+    const isMpdUrl =
+      /\.mpd(?:\?|[|]|$)/i.test(line) ||
+      /[?&]route=mpd(?:[&#|]|$)/i.test(line);
 
     // --------------------------------------------------
     // Extract channel name.
@@ -259,18 +281,34 @@ function parseM3U(content) {
     let name = null;
 
     for (const tag of finalBuffer) {
-      if (tag.startsWith("#EXTINF") && tag.includes(",")) {
-        name = tag.substring(tag.indexOf(",") + 1).trim();
+
+      if (
+        tag.startsWith("#EXTINF") &&
+        tag.includes(",")
+      ) {
+
+        name =
+          tag
+            .substring(
+              tag.indexOf(",") + 1
+            )
+            .trim();
+
         break;
       }
     }
+
 
     // --------------------------------------------------
     // Store channel.
     // --------------------------------------------------
 
     if (name) {
-      channels[name] = [...finalBuffer, line].join("\n");
+      channels[name] =
+        [
+          ...finalBuffer,
+          line
+        ].join("\n");
     }
 
     buffer = [];
@@ -278,6 +316,7 @@ function parseM3U(content) {
 
   return channels;
 }
+
 
 // ---------------- JIOHOTSTAR LIVE EVENTS PARSER ----------------
 
