@@ -185,10 +185,7 @@ function parseM3U(content) {
   for (const raw of lines) {
     let line = raw.trim();
 
-    if (
-      !line ||
-      line.startsWith("#EXTM3U")
-    ) {
+    if (!line || line.startsWith("#EXTM3U")) {
       continue;
     }
 
@@ -197,44 +194,90 @@ function parseM3U(content) {
       continue;
     }
 
-    let finalBuffer = [...buffer];
-
-    // --------------------------------------------------
-    // Extract Cookie from KODIPROP stream_headers.
-    // --------------------------------------------------
-
+    let finalBuffer = [];
     let cookieValue = null;
 
-    finalBuffer = finalBuffer.filter(tag => {
-
+    for (let tag of buffer) {
+      // 1. Filter out unwanted headers/opt tags
       if (
-        tag.startsWith(
-          "#KODIPROP:inputstream.adaptive.stream_headers="
-        )
+        tag.startsWith("#EXTVLCOPT:") ||
+        tag.startsWith("#EXTHTTP:") ||
+        tag.startsWith("#KODIPROP:inputstream.adaptive.manifest_headers=")
       ) {
-
-        const headerContent =
-          tag.replace(
-            "#KODIPROP:inputstream.adaptive.stream_headers=",
-            ""
-          );
-
-        if (
-          headerContent.startsWith("Cookie=")
-        ) {
-          cookieValue =
-            headerContent.replace(
-              "Cookie=",
-              ""
-            );
-        }
-
-        return false;
+        continue; // Skip these lines completely
       }
 
-      return true;
-    });
+      // 2. Extract Cookie from KODIPROP stream_headers
+      if (
+        tag.startsWith("#KODIPROP:inputstream.adaptive.stream_headers=")
+      ) {
+        const headerContent = tag.replace(
+          "#KODIPROP:inputstream.adaptive.stream_headers=",
+          ""
+        );
 
+        if (headerContent.startsWith("Cookie=")) {
+          cookieValue = headerContent.replace("Cookie=", "");
+        }
+        // Retain or skip stream_headers as per original requirement
+        continue;
+      }
+
+      // 3. Clean up license_key line by removing everything from '|' onwards
+      if (
+        tag.startsWith("#KODIPROP:inputstream.adaptive.license_key=")
+      ) {
+        const pipeIdx = tag.indexOf("|");
+        if (pipeIdx !== -1) {
+          tag = tag.substring(0, pipeIdx);
+        }
+      }
+
+      finalBuffer.push(tag);
+    }
+
+    // --------------------------------------------------
+    // Normalize pipe-style Jio URLs.
+    // --------------------------------------------------
+
+    line = normalizePipeUrl(line);
+
+    // --------------------------------------------------
+    // If Cookie came from KODIPROP stream_headers,
+    // append it to the normalized URL.
+    // --------------------------------------------------
+
+    if (cookieValue) {
+      const separator = line.includes("?") ? "&" : "?";
+      line = `${line}${separator}${cookieValue}`;
+    }
+
+    // --------------------------------------------------
+    // Extract channel name.
+    // --------------------------------------------------
+
+    let name = null;
+
+    for (const tag of finalBuffer) {
+      if (tag.startsWith("#EXTINF") && tag.includes(",")) {
+        name = tag.substring(tag.indexOf(",") + 1).trim();
+        break;
+      }
+    }
+
+    // --------------------------------------------------
+    // Store channel.
+    // --------------------------------------------------
+
+    if (name) {
+      channels[name] = [...finalBuffer, line].join("\n");
+    }
+
+    buffer = [];
+  }
+
+  return channels;
+}
 
     // --------------------------------------------------
     // Normalize pipe-style Jio URLs.
