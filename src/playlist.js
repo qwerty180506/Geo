@@ -179,16 +179,12 @@ function normalizePipeUrl(line) {
 function parseM3U(content) {
   const lines = content.split(/\r?\n/);
   const channels = {};
-
   let buffer = [];
 
   for (const raw of lines) {
     let line = raw.trim();
 
-    if (
-      !line ||
-      line.startsWith("#EXTM3U")
-    ) {
+    if (!line || line.startsWith("#EXTM3U")) {
       continue;
     }
 
@@ -198,117 +194,43 @@ function parseM3U(content) {
     }
 
     let finalBuffer = [...buffer];
-
-    // --------------------------------------------------
-    // Extract Cookie from KODIPROP stream_headers.
-    // --------------------------------------------------
-
     let cookieValue = null;
 
+    // 1. Extract KODIPROP Cookie if exists
     finalBuffer = finalBuffer.filter(tag => {
-
-      if (
-        tag.startsWith(
-          "#KODIPROP:inputstream.adaptive.stream_headers="
-        )
-      ) {
-
-        const headerContent =
-          tag.replace(
-            "#KODIPROP:inputstream.adaptive.stream_headers=",
-            ""
-          );
-
-        if (
-          headerContent.startsWith("Cookie=")
-        ) {
-          cookieValue =
-            headerContent.replace(
-              "Cookie=",
-              ""
-            );
+      if (tag.startsWith("#KODIPROP:inputstream.adaptive.stream_headers=")) {
+        const headerContent = tag.replace("#KODIPROP:inputstream.adaptive.stream_headers=", "");
+        if (headerContent.startsWith("Cookie=")) {
+          cookieValue = headerContent.replace("Cookie=", "");
         }
-
         return false;
       }
-
       return true;
     });
 
-
-    // --------------------------------------------------
-    // Normalize pipe-style Jio URLs.
-    // --------------------------------------------------
-
+    // 2. Normalize Jio pipe-style URLs
     line = normalizePipeUrl(line);
 
-
-    // --------------------------------------------------
-    // If Cookie came from KODIPROP stream_headers,
-    // append it to the normalized URL.
-    // --------------------------------------------------
-
     if (cookieValue) {
-      const separator =
-        line.includes("?")
-          ? "&"
-          : "?";
-
-      line =
-        `${line}${separator}${cookieValue}`;
+      const separator = line.includes("?") ? "&" : "?";
+      line = `${line}${separator}${cookieValue}`;
     }
 
-
-    // --------------------------------------------------
-    // Detect MPD correctly.
-    // --------------------------------------------------
-
-    const hasMpdProp =
-      finalBuffer.some(tag =>
-        tag.includes(
-          "inputstream.adaptive.manifest_type=mpd"
-        )
-      );
-
-    const isMpdUrl =
-      /\.mpd(?:\?|[|]|$)/i.test(line) ||
-      /[?&]route=mpd(?:[&#|]|$)/i.test(line);
-
-    // --------------------------------------------------
-    // Extract channel name.
-    // --------------------------------------------------
-
+    // 3. Extract channel name from #EXTINF
     let name = null;
-
     for (const tag of finalBuffer) {
-
-      if (
-        tag.startsWith("#EXTINF") &&
-        tag.includes(",")
-      ) {
-
-        name =
-          tag
-            .substring(
-              tag.indexOf(",") + 1
-            )
-            .trim();
-
-        break;
+      if (tag.startsWith("#EXTINF")) {
+        const commaIdx = tag.lastIndexOf(",");
+        if (commaIdx !== -1) {
+          name = tag.substring(commaIdx + 1).trim();
+          break;
+        }
       }
     }
 
-
-    // --------------------------------------------------
-    // Store channel.
-    // --------------------------------------------------
-
+    // 4. Store channel with all its original tags (#EXTVLCOPT, #EXTHTTP, etc.)
     if (name) {
-      channels[name] =
-        [
-          ...finalBuffer,
-          line
-        ].join("\n");
+      channels[name] = [...finalBuffer, line].join("\n");
     }
 
     buffer = [];
