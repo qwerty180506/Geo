@@ -443,19 +443,11 @@ async function fetchSources(env) {
           "https://sflexzio.pages.dev";
       }
 
-      const fetchUrl =
-        key === "TIVI"
-          ? url
-          : `${url}?t=${Date.now()}`;
+      const fetchUrl = url.includes("raw.githubusercontent.com")
+      ? `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`
+      : url;
 
-      const response =
-        await fetch(
-          fetchUrl,
-          {
-            headers
-          }
-        );
-
+     const response = await fetch(fetchUrl);
       result[key] =
         await response.text();
 
