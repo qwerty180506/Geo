@@ -121,12 +121,12 @@ const WANTED_MAP = {
   "Sony Ten 4": ["Sports", "sonyliv"],
   "Sony Ten 5 HD": ["Sports", "sonyliv"],
 
-  "Star Sports 1 Tamil HD": ["Sports", "TIVI"],
-  "Star Sports 2 Tamil HD": ["Sports", "TIVI"],
-  "Star Sports 1 HD": ["Sports", "TIVI"],
-  "Star Sports 2 HD": ["Sports", "TIVI"],
-  "Star Sports Select 1 HD": ["Sports", "TIVI"],
-  "Star Sports Select 2 HD": ["Sports", "TIVI"],
+  "Star Sports 1 Tamil HD": ["Sports", "jioplus2"],
+  "Star Sports 2 Tamil HD": ["Sports", "jioplus2"],
+  "Star Sports 1 HD": ["Sports", "jioplus2"],
+  "Star Sports 2 HD": ["Sports", "jioplus2"],
+  "Star Sports Select 1 HD": ["Sports", "jioplus2"],
+  "Star Sports Select 2 HD": ["Sports", "jioplus2"],
   "Unite8 Sports 1 HD": ["Sports", "vzy"],
   "Unite8 Sports 2 HD": ["Sports", "vzy"],
 
