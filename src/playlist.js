@@ -8,7 +8,8 @@ const SOURCE_URLS = {
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
   hotstar: "https://premiumplugx.top/tivjh/playlist.php",
-  jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u"
+  jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u",
+  vzy: "https://premiumplugx.me/vzy/playlist.php"
 };
 
 const PRIORITY_ORDER = [
@@ -18,7 +19,8 @@ const PRIORITY_ORDER = [
   "sonyliv",
   "sunnxt",
   "jiotv",
-  "hotstar"
+  "hotstar",
+  "vzy"
 ];
 
 const WANTED_MAP = {
@@ -125,6 +127,8 @@ const WANTED_MAP = {
   "Star Sports 2 HD": ["Sports", "TIVI"],
   "Star Sports Select 1 HD": ["Sports", "TIVI"],
   "Star Sports Select 2 HD": ["Sports", "TIVI"],
+  "Unite8 Sports 1 HD": ["Sports", "vzy"],
+  "Unite8 Sports 2 HD": ["Sports", "vzy"],
 
   "Star Vijay Digital": ["Entertainment", "hotstar"],
   "Vijay Super Digital": ["Movies", "hotstar"],
@@ -581,7 +585,10 @@ export async function runMerge(env) {
       parseM3U(files.local || ""),
 
     hotstar:
-      parseM3U(files.hotstar || "")
+      parseM3U(files.hotstar || ""),
+
+    vzy:
+      parseM3U(files.vzy || "")
   };
 
   console.log(
