@@ -9,7 +9,7 @@ const SOURCE_URLS = {
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
   hotstar: "https://premiumplugx.top/tivjh/playlist.php",
   jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u",
-  vzy: "https://premiumplugx.me/vzy/playlist.php"
+  vzy: "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/vzy.m3u"
 };
 
 const PRIORITY_ORDER = [
