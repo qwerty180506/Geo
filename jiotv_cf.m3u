@@ -4320,7 +4320,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_1_Hindi_BTS/WDVLive/index.mpd
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9457eb90129456fa8ea95e10ba4ac51e:e620a970cea474c491ac78ae71a4d764
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_HD2_BTS/WDVLive/index.mpd?__hdnea__=st=1793910749~exp=1793932349~acl=/bpk-tv/Star_Sports_HD2_BTS/WDVLive/*~hmac=a286b51db84091a1bfd910b285b615d0b45ee0b7faf66b167c9174baee870c6c
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_HD2_BTS/WDVLive/index.mpd?__hdnea__=st=1793932610~exp=1793954210~acl=/bpk-tv/Star_Sports_HD2_BTS/WDVLive/*~hmac=6a44137819dbebe0811db35371651ae771bec8f610bbf6c2841b2b1ae7aad7b5
 
 #EXTINF:-1 tvg-name="Star Sports 2" tvg-logo="https://img.media.jio.com/tvpimages/11/30/302116_1749666029079_l_medium.jpg" group-title="Sports",Star Sports 2
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -4374,7 +4374,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_1_Telugu_BTS/WDVLive/index.mp
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9a6d058fa40b5460a946178900eb44cb:791d7444110cec32d731ca0c33ac6c15
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_1_Kannada_BTS/WDVLive/index.mpd?__hdnea__=st=1793910747~exp=1793932347~acl=/bpk-tv/Star_Sports_1_Kannada_BTS/WDVLive/*~hmac=2afead78cecff794358e44f99bfaa27b11c0cb31d4a618275c059d03d7226d02
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports_1_Kannada_BTS/WDVLive/index.mpd?__hdnea__=st=1793932610~exp=1793954210~acl=/bpk-tv/Star_Sports_1_Kannada_BTS/WDVLive/*~hmac=aa3f51272b96fa945a752c5e862603f80d20d37de0006af95ea855168e3851a3
 
 #EXTINF:-1 tvg-name="Star Sports 2 Kannada" tvg-logo="https://img.media.jio.com/tvpimages/11/37/301993_1749664589518_l_medium.jpg" group-title="Sports",Star Sports 2 Kannada
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -4398,7 +4398,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/StarSports2Tamil_BTS/WDVLive/index.mpd?__
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c8a2fb190fc957c1b8333af9a7a39d31:be7497b59d4ce9e33d29bfd1d38bad1d
-https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports2_Telugu_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1793910747~exp=1793932347~acl=/bpk-tv/Star_Sports2_Telugu_HD_BTS/WDVLive/*~hmac=17804bda12df09261d7ac999c6a9673ab6d7218ebb716e79360723fb60645e0f
+https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Sports2_Telugu_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1793932609~exp=1793954209~acl=/bpk-tv/Star_Sports2_Telugu_HD_BTS/WDVLive/*~hmac=469fcd857d885ee943b63803e5bccad6dd104859bf10e04d994b66748bbf0412
 
 #EXTINF:-1 tvg-name="Star Sports 2 Telugu" tvg-logo="https://img.media.jio.com/tvpimages/41/94/301562_1749665043898_l_medium.jpg" group-title="Sports",Star Sports 2 Telugu
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
