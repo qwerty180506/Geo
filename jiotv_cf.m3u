@@ -5196,7 +5196,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Indian_News_MOB/WDVLive/index.mpd?__hdnea
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9ecfc67bf2dd54fa84495c4c299c51ec:85337048d7be42ef66f6198a99376fa7
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeThiraiHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794128235~exp=1794131835~acl=/bpk-tv/ZeeThiraiHD_BTS/WDVLive/*~hmac=3ba786773142662e8076a6c63745921ef793dd1a5f97114943ce6b632f57da4f
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeThiraiHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794131760~exp=1794135360~acl=/bpk-tv/ZeeThiraiHD_BTS/WDVLive/*~hmac=137389d2c3f897607f05b64d7dca9af248b3111550ef1a71ea98b024f50ea3f2
 
 #EXTINF:-1 tvg-name="TNP News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/tnpnews.png" group-title="News",TNP News
 https://jiotvmblive.cdn.jio.com/bpk-tv/tnpnews/HLSPartner/index.m3u8?__hdnea__=st=1794096010~exp=1794182410~acl=/*~hmac=da4ec5d0c969c830279316618e115a8325c393aad6f8db0e28172f4854f2383c
