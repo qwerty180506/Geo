@@ -348,7 +348,7 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeYuva_BTS/WDVLive/index.mpd?__hdnea__=s
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=8ab0674eba3f5adf96a9b65a6e82d208:476f813d8651987fc1b4074693676fd8
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeAnmolCinema_BTS/WDVLive/index.mpd?__hdnea__=st=1794457090~exp=1794460690~acl=/bpk-tv/ZeeAnmolCinema_BTS/WDVLive/*~hmac=5c0fd2d3b74ed083c0ff96e036e122f7865dab99a26a05c7f3c80e87187da67e
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeAnmolCinema_BTS/WDVLive/index.mpd?__hdnea__=st=1794461066~exp=1794464666~acl=/bpk-tv/ZeeAnmolCinema_BTS/WDVLive/*~hmac=44d4a06ee7b17b89719887d9aabc10b1be364ac576a4af7a3f5a43ceb9544a79
 
 #EXTINF:-1 tvg-name="J Movies" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/J_Movies.png" group-title="Tamil",J Movies
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
