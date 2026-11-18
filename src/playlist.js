@@ -7,15 +7,14 @@ const SOURCE_URLS = {
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
-  hotstar: "https://premiumplugx.com/htt/hot.php?playlist=1",
+  hotstar: "https://raw.githubusercontent.com/sportlive18/sportlink-update/refs/heads/main/tstar.m3u",
   jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u",
   vzy: "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/vzy.m3u"
 };
 
 const PRIORITY_ORDER = [
-  "jioplus2",
-  "TIVI",
   "jiotvplus",
+  "TIVI",
   "sonyliv",
   "sunnxt",
   "jiotv",
