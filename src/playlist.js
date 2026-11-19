@@ -5,7 +5,7 @@ const SOURCE_URLS = {
   local: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/channels.m3u",
   sonyliv: "https://premiumplugx.com/Sliv/sony_playlist.php?m3u",
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
-  jiotvplus: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv_cf.m3u",
+  jiotvplus: "https://zeotvyash.streamxlivenow.workers.dev/",
   jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
   hotstar: "https://raw.githubusercontent.com/sportlive18/sportlink-update/refs/heads/main/tstar.m3u",
   jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u",
