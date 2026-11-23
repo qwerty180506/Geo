@@ -1,0 +1,461 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="141112" tvg-name="Isai Aruvi" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Isaiaruvi.png" group-title="Tamil - Tamil",Isai Aruvi
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6f7816cb7362b4285b9bcf1d5be9d1f4:c8ba0510d8219071ab39c70a8529b28f|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQb3gWy3NitChbm88dW+nR9BoFTmFncmEiBnNyYzYxMg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src612/dth.mpd
+#EXTINF:-1 tvg-id="141111" tvg-name="Murasu TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Murasu_TV.png" group-title="Tamil - Tamil",Murasu TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=92d8fff1913142b5af0074efd27c51ef:1d6f086ab6db69d4b5e83a13c99788e6|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQktj/8ZExQrWvAHTv0nxR7xoFTmFncmEiBnNyYzYxMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src613/dth.mpd
+#EXTINF:-1 tvg-id="141109" tvg-name="Sirippoli TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sirippoli.png" group-title="Tamil - Tamil",Sirippoli TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=599a73a2880806847d14200987c03ad8:a03d8be60acfbe790cbd624395e638aa|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQWZpzoogIBoR9FCAJh8A62BoFTmFncmEiBnNyYzYyNA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src624/dth.mpd
+#EXTINF:-1 tvg-id="149121" tvg-name="Kalaignar Chithiram" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Chithiram.png" group-title="Tamil - Tamil",Kalaignar Chithiram
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=81e206c17386d459dedbd93b53e9d1b6:0228277a2f4525fbc869f7206fc98d06|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQgeIGwXOG1Fne29k7U+nRthoFTmFncmEiBnNyYzYyMg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src622/dth.mpd
+#EXTINF:-1 tvg-id="143284" tvg-name="Zee Cinema HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeCinemaHD.png" group-title="Movies - Movies",Zee Cinema HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=10a5d617c765344fe620f6d5bf5f8f60:54a0c00acaeeb60130c8afe0ead60af4|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQEKXWF8dlNE/mIPbVv1+PYBoFTmFncmEiBWhkNTA1
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd505/dth.mpd
+#EXTINF:-1 tvg-id="143294" tvg-name="Zee TV HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeTVHD.png" group-title="Entertainment - Entertainment",Zee TV HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=45e8770335f40d3b269e7ecfa0768f10:04c997e103d8da51288a19788d776675|Content-Type=application/octet-stream|X-AxDRM-Message=AAAARHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACQIARIQReh3AzX0DTsmnn7PoHaPEBoFTmFncmEiB3N2Y2hkMTA=
+https://sundirectgo-live.pc.cdn.bitgravity.com/svchd10/dth.mpd
+#EXTINF:-1 tvg-id="141167" tvg-name="Asianet News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Asianet_News.png" group-title="Malayalam - Malayalam",Asianet News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src650/dth.mpd
+#EXTINF:-1 tvg-id="149142" tvg-name="ET Now" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ET_Now.png" group-title="English - English",ET Now
+https://sundirectgo-live.pc.cdn.bitgravity.com/src696/dth.mpd
+#EXTINF:-1 tvg-id="141120" tvg-name="India TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/India_TV.png" group-title="News - News",India TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a4bcb65005c9883f256c41f17a461039:833a6a8b1a00d6451490086de5a54d5d|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQpLy2UAXJiD8lbEHxekYQORoFTmFncmEiBnN2YzIyMA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc220/dth.mpd
+#EXTINF:-1 tvg-id="149055" tvg-name="Music India" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Music_India.png" group-title="Music - Music",Music India
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6629526da8be98f508fb4c0f0eebed4a:76c149a30cdad010c03fcca3fe9e9259|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQZilSbai+mPUI+0wPDuvtShoFTmFncmEiBnN2YzI4Ng==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc286/dth.mpd
+#EXTINF:-1 tvg-id="141089" tvg-name="NDTV India" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/NDTV_India.png" group-title="News - News",NDTV India
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=ab4e12cc418fd8557fdf71be126241c5:e9826c9567bf07bf6dffde6091d6d83b|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQq04SzEGP2FV/33G+EmJBxRoFTmFncmEiBnNyYzcxOQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src719/dth.mpd
+#EXTINF:-1 tvg-id="143236" tvg-name="Sanskar" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sanskar.png" group-title="Devotional - Devotional",Sanskar
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=198f249f76676898798aa45753d61585:79636103f71c025c3b2415103dbe24a3|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQGY8kn3ZnaJh5iqRXU9YVhRoFTmFncmEiBnNyYzYwOQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src609/dth.mpd
+#EXTINF:-1 tvg-id="143243" tvg-name="SET HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sony_HD.png" group-title="Entertainment - Entertainment",SET HD
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd517/dth.mpd
+#EXTINF:-1 tvg-id="143295" tvg-name="Zee Yuva" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeYuva.png" group-title="Marathi - Marathi",Zee Yuva
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=7e2d092d5469f4dcc1f945a7f7b98afa:cd02290954c8e65be956f2424afab88e|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQfi0JLVRp9NzB+UWn97mK+hoFTmFncmEiBnNyYzY4OA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src688/dth.mpd
+#EXTINF:-1 tvg-id="143281" tvg-name="J Movies" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/J_Movies.png" group-title="Tamil - Tamil",J Movies
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=1923d175108b6ddb891868562abb6960:5d12e9c5c1a085713bf62d5d64a98688|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQGSPRdRCLbduJGGhWKrtpYBoFTmFncmEiBnNyYzY1OQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src659/dth.mpd
+#EXTINF:-1 tvg-id="141117" tvg-name="Jaya Plus" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Jaya_Plus.png" group-title="Tamil - Tamil",Jaya Plus
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a1794c93f13816f54690951796851750:fafdfe0d1bc99a4a886b41ed6119730f|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQoXlMk/E4FvVGkJUXloUXUBoFTmFncmEiBnNyYzYxOA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src618/dth.mpd
+#EXTINF:-1 tvg-id="141051" tvg-name="Jaya TV HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Jaya_TV_HD.png" group-title="Tamil - Tamil",Jaya TV HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=cd2cba12bc8d0f50372d23921309f690:b69b44f6323c6a8182ab9ce08328d218|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQzSy6EryND1A3LSOSEwn2kBoFTmFncmEiBnNyYzYwNA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src604/dth.mpd
+#EXTINF:-1 tvg-id="149120" tvg-name="Jaya Max" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Jaya_Max.png" group-title="Tamil - Tamil",Jaya Max
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=5c0e94f8a00e3a080ab84416e48b1770:95c01e28f18bd081324f0fdd213e4ae5|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQXma5sONfZunzBeVn6NiuvBoFTmFncmEiBnNyYzYyMA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src620/dth.mpd
+#EXTINF:-1 tvg-id="149057" tvg-name="9X Jalwa" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/9XJalwa.png" group-title="Music - Music",9X Jalwa
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc282/dth.mpd
+#EXTINF:-1 tvg-id="149056" tvg-name="9x Jhakaas" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/9xjhakaas.png" group-title="Marathi - Marathi",9x Jhakaas
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc283/dth.mpd
+#EXTINF:-1 tvg-id="149136" tvg-name="Zee 24 Taas" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_24_Taas.png" group-title="Marathi - Marathi",Zee 24 Taas
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=0c1f682069b52990de87e602efac980b:83e2a8bab9dde20f79eccf02d2d3f1a5|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQDB9oIGm1KZDeh+YC76yYCxoFTmFncmEiBnN2YzI3NA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc274/dth.mpd
+#EXTINF:-1 tvg-id="141073" tvg-name="Zee 24 Ghanta" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/24_Ghanta_TV.png" group-title="Bengali - Bengali",Zee 24 Ghanta
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=1655a1a3b152164612752395a2dac376:005fa2397a39eda820a0676ab2cb0a3a|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQFlWho7FSFkYSdSOVotrDdhoFTmFncmEiBnN2YzI3NQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc275/dth.mpd
+#EXTINF:-1 tvg-id="149130" tvg-name="Anmol TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeAnmol.png" group-title="Entertainment - Entertainment",Anmol TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=15fd03617c551ed782db8ff46928b902:d98352d5c9cf747630ae53bf9b76393d|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQFf0DYXxVHteC24/0aSi5AhoFTmFncmEiBnN2YzMwNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc307/dth.mpd
+#EXTINF:-1 tvg-id="143246" tvg-name="Sony Pal" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/SonyPAL.png" group-title="Entertainment - Entertainment",Sony Pal
+https://sundirectgo-live.pc.cdn.bitgravity.com/src671/dth.mpd
+#EXTINF:-1 tvg-id="143245" tvg-name="Sony Max HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/SonyMAX.png" group-title="Movies - Movies",Sony Max HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=61e47307cfbfa6859b128867781ac669:8c6fa562ef45b33ce2eabd47eb96fdfe|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQYeRzB8+/poWbEohneBrGaRoFTmFncmEiBnN2YzI5OQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc299/dth.mpd
+#EXTINF:-1 tvg-id="141094" tvg-name="Mirror Now" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/MirrorNow.png" group-title="English - English",Mirror Now
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=60f1f30d91f3859b65e8dd3d5e15f3e6:d7ae33273eca6bdee0897173a18ad9e0|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQYPHzDZHzhZtl6N09XhXz5hoFTmFncmEiBnNyYzcxNg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src716/dth.mpd
+#EXTINF:-1 tvg-id="149040" tvg-name="News Nation" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/News_Nation.png" group-title="News - News",News Nation
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=66086aca5dbd0fd0d6587e4c0b1de3ae:f60f68c997cee7137d79b7c6b4d2e691|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQZghqyl29D9DWWH5MCx3jrhoFTmFncmEiBnN2YzIyNg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc226/dth.mpd
+#EXTINF:-1 tvg-id="144650" tvg-name="Good News Today" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Tez.png" group-title="News - News",Good News Today
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc218/dth.mpd
+#EXTINF:-1 tvg-id="149148" tvg-name="Zee News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_News.png" group-title="News - News",Zee News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src733/dth.mpd
+#EXTINF:-1 tvg-id="144942" tvg-name="Chardikla Time TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Chardikla_Time_TV.png" group-title="Punjabi - Punjabi",Chardikla Time TV
+https://sundirectgo-live.pc.cdn.bitgravity.com/src651/dth.mpd
+#EXTINF:-1 tvg-id="141137" tvg-name="Discovery Turbo" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Discovery_Turbo.png" group-title="English - English",Discovery Turbo
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=12845c8a0e985d0ddec9587a3c231413:08fa33235e2cea59ddd09868c026f055|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQEoRcig6YXQ3eyVh6PCMUExoFTmFncmEiBnNyYzczNg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src736/dth.mpd
+#EXTINF:-1 tvg-id="141158" tvg-name="Chintu TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Chintu_TV.png" group-title="Kannada - Kannada",Chintu TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=4a0f4f6f55e78fa36036aa0464420c8f:9d6fb2d425d0e124c206b08886ae5e94|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQSg9Pb1Xnj6NgNqoEZEIMjxoFTmFncmEiBnNyYzcwNA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src704/dth.mpd
+#EXTINF:-1 tvg-id="141104" tvg-name="Kochu TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kochu_TV.png" group-title="Malayalam - Malayalam",Kochu TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=37d6e8d08c644db8f1e9f9bbc7989bee:a3d596629479189eaf57d4b778ccbe6e|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQN9bo0IxkTbjx6fm7x5ib7hoFTmFncmEiBnNyYzcwMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src703/dth.mpd
+#EXTINF:-1 tvg-id="141102" tvg-name="Kushi TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kushi_TV.png" group-title="Telugu - Telugu",Kushi TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=31def20329b725ddfc0031c18c7b708f:02a6e76d40fe09e97262453a07247e46|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQMd7yAym3Jd38ADHBjHtwjxoFTmFncmEiBnNyYzcwMg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src702/dth.mpd
+#EXTINF:-1 tvg-id="149119" tvg-name="D Tamil" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/D_Tamil.png" group-title="Tamil - Tamil",D Tamil
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=34fbdc6f17790b26553bc5d1cf27adb4:127eb5f37b64ed4c32c40dd4197bc25d|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQNPvcbxd5CyZVO8XRzyettBoFTmFncmEiBnNyYzYwOA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src608/dth.mpd
+#EXTINF:-1 tvg-id="149045" tvg-name="Zing" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeZing.png" group-title="Music - Music",Zing
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=bde076c7a56b49bf3f1b363fcaae173c:7d701606977919cf818986c90ecd5ffb|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQveB2x6VrSb8/GzY/yq4XPBoFTmFncmEiBnN2YzMwNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc305/dth.mpd
+#EXTINF:-1 tvg-id="143296" tvg-name="ZOOM" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zoom.png" group-title="Music - Music",ZOOM
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=96c30ff1327283a3f1cc150258034bc6:540b729e5f312b9b208fe34929b62e13|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQlsMP8TJyg6PxzBUCWANLxhoFTmFncmEiBnNyYzY3Mw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src673/dth.mpd
+#EXTINF:-1 tvg-id="143221" tvg-name="Prarthana Life" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Prarthana_Life.png" group-title="Unknown - Unknown",Prarthana Life
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a50e16fde4d7bfa101f298e0e13b74c2:5e6c9a60285787f1a747a8adf13b9ae3|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQpQ4W/eTXv6EB8pjg4Tt0whoFTmFncmEiBnNyYzYzMg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src632/dth.mpd
+#EXTINF:-1 tvg-id="144648" tvg-name="ABP Majha" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ABP_Majha.png" group-title="Marathi - Marathi",ABP Majha
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc215/dth.mpd
+#EXTINF:-1 tvg-id="144969" tvg-name="Rang" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Rang.png" group-title="Assamese - Assamese",Rang
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=45f6a31c40ccbd3e7a09fdacb5b81674:b57633309d04efd005fd314105570bce|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQRfajHEDMvT56Cf2stbgWdBoFTmFncmEiBnNyYzcyMg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src722/dth.mpd
+#EXTINF:-1 tvg-id="143292" tvg-name="Zee Tamil" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Zee_Tamil.png" group-title="Tamil - Tamil",Zee Tamil
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=46e983166847b5f561e373534ed5f205:b31f711c7b8894200e3f95e8a2bed218|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQRumDFmhHtfVh43NTTtXyBRoFTmFncmEiBnN2YzMwMQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc301/dth.mpd
+#EXTINF:-1 tvg-id="144970" tvg-name="Pratidin Time" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Pratidin_News.png" group-title="Assamese - Assamese",Pratidin Time
+https://sundirectgo-live.pc.cdn.bitgravity.com/src623/dth.mpd
+#EXTINF:-1 tvg-id="149147" tvg-name="Zee Bharat" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_SANGAM.png" group-title="News - News",Zee Bharat
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=c9bcb8f34018a977c7127e0b7da6db2f:b6cc11588353fa5ebc3b0c20f496f8af|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQyby480AYqXfHEn4LfabbLxoFTmFncmEiBnN2YzI4OA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc288/dth.mpd
+#EXTINF:-1 tvg-id="141099" tvg-name="Manorama News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Manorama_News.png" group-title="Malayalam - Malayalam",Manorama News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src652/dth.mpd
+#EXTINF:-1 tvg-id="141173" tvg-name="ABN Andhra Jyothi" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ABN_Andhra_Jyothi.png" group-title="Telugu - Telugu",ABN Andhra Jyothi
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc278/dth.mpd
+#EXTINF:-1 tvg-id="143264" tvg-name="T News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/T_News.png" group-title="Telugu - Telugu",T News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src602/dth.mpd
+#EXTINF:-1 tvg-id="143237" tvg-name="Sathiyam TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sathiyam_TV.png" group-title="Tamil - Tamil",Sathiyam TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=3c7387b5a854e756db13ad741a04b9e5:2ea4a63af68c9eb3a9f8dbfaf138e844|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQPHOHtahU51bbE610GgS55RoFTmFncmEiBnNyYzY2MQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src661/dth.mpd
+#EXTINF:-1 tvg-id="144642" tvg-name="ABP Ananda" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ABP_Ananda.png" group-title="Bengali - Bengali",ABP Ananda
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6a2f26ef0d33dd5cb5f905b4e83363ff:3a283c173fdc1ca2cd7cc860018d55ed|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQai8m7w0z3Vy1+QW06DNj/xoFTmFncmEiBnNyYzYwNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src607/dth.mpd
+#EXTINF:-1 tvg-id="141086" tvg-name="News7 Tamil" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/News_7.png" group-title="Tamil - Tamil",News7 Tamil
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=d523d1ee959e54f3b86a6484832f9f1c:54c5212c90b07dec0977421a16f1aed9|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ1SPR7pWeVPO4amSEgy+fHBoFTmFncmEiBnNyYzYxOQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src619/dth.mpd
+#EXTINF:-1 tvg-id="143258" tvg-name="Sun News" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sun_News.png" group-title="Tamil - Tamil",Sun News
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=911af2bd29f4cc8ace45bf59b47eff17:e5170b3360d33bc14c0423b16df5bb8b|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQkRryvSn0zIrORb9ZtH7/FxoFTmFncmEiBXNkNTQz
+https://sundirectgo-live.pc.cdn.bitgravity.com/srcsd543/dth.mpd
+#EXTINF:-1 tvg-id="143275" tvg-name="Sun Udaya Movies" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Udaya_Movies.png" group-title="Kannada - Kannada",Sun Udaya Movies
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=8ce6973fd9ace06a0354b1e6c4b7d2b7:488d5b9866bcfbd570dfa3d545173143|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQjOaXP9ms4GoDVLHmxLfStxoFTmFncmEiBXNkNTQ1
+https://sundirectgo-live.pc.cdn.bitgravity.com/srcsd545/dth.mpd
+#EXTINF:-1 tvg-id="141126" tvg-name="Sun Gemini Life" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Gemini_Life.png" group-title="Telugu - Telugu",Sun Gemini Life
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=dbb1cd8d0f409dfacf2735a4778d3cc0:549172cb897ceee85282a21b4bc135b5|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ27HNjQ9AnfrPJzWkd408wBoFTmFncmEiBnNyYzYyNg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src626/dth.mpd
+#EXTINF:-1 tvg-id="141172" tvg-name="Alankar" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Alankar_TV.png" group-title="Unknown - Unknown",Alankar
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=b80c2f714f96d15fec3b2cd21179dc37:38793a8a56705971a3934b7c64813092|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQqXeuv1vBzEz5MxGaPfySFhoFTmFncmEiBnN2YzIxNA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc214/dth.mpd
+#EXTINF:-1 tvg-id="143242" tvg-name="Sony aath" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/SonyAATH.png" group-title="Bengali - Bengali",Sony aath
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=30f1efaf610cc80d135f50332ab863d2:6d886ccf2d83cb64ad7f2b0975f2607c|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQMPHvr2EMyA0TX1AzKrhj0hoFTmFncmEiBnNyYzcyOQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src729/dth.mpd
+#EXTINF:-1 tvg-id="141176" tvg-name="Aakash Aath" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Aakaash_bangla.png" group-title="Bengali - Bengali",Aakash Aath
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6946a2d8549ac54dcb41b935498d0a3f:55eac982914505baa87c124927b76737|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQaUai2FSaxU3LQbk1SY0KPxoFTmFncmEiBnNyYzcyNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src727/dth.mpd
+#EXTINF:-1 tvg-id="141052" tvg-name="Makkal TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Makkal_TV.png" group-title="Tamil - Tamil",Makkal TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=83c74c5c810f0bb02ca6cd321a0cbfbb:27c2d2e0563f1242e51a048c3f42ee62|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQg8dMXIEPC7Asps0yGgy/uxoFTmFncmEiBnNyYzY2Mw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src663/dth.mpd
+#EXTINF:-1 tvg-id="141114" tvg-name="Kairali TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kairali_TV.png" group-title="Malayalam - Malayalam",Kairali TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=869bb0265feda603addd615e3b0ca361:356d632b83daaad54cb8cc166842f043|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQhpuwJl/tpgOt3WFeOwyjYRoFTmFncmEiBnNyYzY0NA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src644/dth.mpd
+#EXTINF:-1 tvg-id="143290" tvg-name="Zee Sarthak" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeSarthak.png" group-title="Odia - Odia",Zee Sarthak
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6b2080b96bdf0f6ac9f7b1e0454231d9:746bc9e4831fd6c937b79287ccd5a560|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQayCAuWvfD2rJ97HgRUIx2RoFTmFncmEiBnNyYzY1OA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src658/dth.mpd
+#EXTINF:-1 tvg-id="141170" tvg-name="Amrita TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Amrita_TV.png" group-title="Malayalam - Malayalam",Amrita TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=927b50baac3e454fc8aab32d6367eca4:91e77ec4a151857f070b1cff3cc63285|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQkntQuqw+RU/IqrMtY2fspBoFTmFncmEiBnNyYzY0Ng==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src646/dth.mpd
+#EXTINF:-1 tvg-id="149133" tvg-name="Zee Delhi NCR Haryana" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Kalinga.png" group-title="News - News",Zee Delhi NCR Haryana
+https://sundirectgo-live.pc.cdn.bitgravity.com/src664/dth.mpd
+#EXTINF:-1 tvg-id="141115" tvg-name="Kairali News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kairali_People_TV.png" group-title="Malayalam - Malayalam",Kairali News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src653/dth.mpd
+#EXTINF:-1 tvg-id="143279" tvg-name="Vasanth TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Vasanth_TV.png" group-title="Tamil - Tamil",Vasanth TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=d1cdab97c847332d90ae9ab0a9c4847a:84cebcedf599b48fcd905a0ada9aec77|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ0c2rl8hHMy2QrpqwqcSEehoFTmFncmEiBnNyYzY5Mw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src693/dth.mpd
+#EXTINF:-1 tvg-id="141127" tvg-name="Sun Gemini Comedy" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Gemini_Comedy.png" group-title="Telugu - Telugu",Sun Gemini Comedy
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=8597999d973af3197a07b10d8e8e3ed8:ca8983a724050e24f286bd20fa2beeb9|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQhZeZnZc68xl6B7ENjo4+2BoFTmFncmEiBnNyYzYyNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src625/dth.mpd
+#EXTINF:-1 tvg-id="143234" tvg-name="Sangeet Marathi" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sangeet_Marathi.png" group-title="Marathi - Marathi",Sangeet Marathi
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=084db9d1fbba4a854a156df378691a03:df1f9616b2bd32fdfcd8674e01415abd|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQCE250fu6SoVKFW3zeGkaAxoFTmFncmEiBnNyYzYxNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src615/dth.mpd
+#EXTINF:-1 tvg-id="149050" tvg-name="Sangeet Bhojpuri" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sangeet_Bhojpuri.png" group-title="Bhojpuri - Bhojpuri",Sangeet Bhojpuri
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=d7311c372837e8da1a17bef14821290d:f3c5219ff3cf5701f85b694c271ff24f|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ1zEcNyg36NoaF77xSCEpDRoFTmFncmEiBnN2YzI5MQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc291/dth.mpd
+#EXTINF:-1 tvg-id="143276" tvg-name="Sun Udaya Music" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Udaya_Music.png" group-title="Kannada - Kannada",Sun Udaya Music
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=0506cc17fa83695639a61286c5b2732a:4d4de6170e74884bbdd2a5f5ee783bb0|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQBQbMF/qDaVY5phKGxbJzKhoFTmFncmEiBWhkNTE0
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd514/dth.mpd
+#EXTINF:-1 tvg-id="143266" tvg-name="Tarang Music" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Tarang_Music.png" group-title="Unknown - Unknown",Tarang Music
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=00979d56e6c27baf842a779d60020e33:9e5aaa55a769232fd1dd6e8b82ab6c5a|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQAJedVubCe6+EKnedYAIOMxoFTmFncmEiBnNyYzY3Mg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src672/dth.mpd
+#EXTINF:-1 tvg-id="143247" tvg-name="Sony Pix HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sony_Pix_HD.png" group-title="English - English",Sony Pix HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=227833f064583b08c9afdc074a3e6545:7682ff75237feeb6ba9fc9075c45cd71|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQIngz8GRYOwjJr9wHSj5lRRoFTmFncmEiBWhkNTI0
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd524/dth.mpd
+#EXTINF:-1 tvg-id="144975" tvg-name="Jonack" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Jonack.png" group-title="Assamese - Assamese",Jonack
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=76d9b7926ad20079d3da4711c623ed54:7129b94749455f4045ed30292d15632e|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQzG135CW25mt/jxsTThvw0BoFTmFncmEiBnNyYzYwNg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src606/dth.mpd
+#EXTINF:-1 tvg-id="143278" tvg-name="V6 News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/V6_News.png" group-title="Telugu - Telugu",V6 News
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc265/dth.mpd
+#EXTINF:-1 tvg-id="143223" tvg-name="Public Music" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Public_Music.png" group-title="Kannada - Kannada",Public Music
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=0d2a6d20469d4ad1b49708c9f98a750a:b8cbd009e81668442980dde52cfd1fcc|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQDSptIEadStG0lwjJ+Yp1ChoFTmFncmEiBnN2YzIyNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc225/dth.mpd
+#EXTINF:-1 tvg-id="143224" tvg-name="Public TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Public_TV.png" group-title="Kannada - Kannada",Public TV
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc296/dth.mpd
+#EXTINF:-1 tvg-id="141097" tvg-name="Mathrubhumi News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Mathrubhumi_News.png" group-title="Malayalam - Malayalam",Mathrubhumi News
+https://sundirectgo-live.pc.cdn.bitgravity.com/src649/dth.mpd
+#EXTINF:-1 tvg-id="141108" tvg-name="Kalinga TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kalinga_TV.png" group-title="Odia - Odia",Kalinga TV
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc256/dth.mpd
+#EXTINF:-1 tvg-id="144640" tvg-name="Peace of Mind" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Peace_of_Mind.png" group-title="Devotional - Devotional",Peace of Mind
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=2b40d7ea04ebd07da7397aa9f24fdf4e:2127b9abeac607dd0c397a766a1f70ff|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQK0DX6gTr0H2nOXqp8k/fThoFTmFncmEiBnNyYzY0Mw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src643/dth.mpd
+#EXTINF:-1 tvg-id="141118" tvg-name="Janam TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Janam_TV.png" group-title="Malayalam - Malayalam",Janam TV
+https://sundirectgo-live.pc.cdn.bitgravity.com/src654/dth.mpd
+#EXTINF:-1 tvg-id="141163" tvg-name="Sony BBC Earth HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/SonyBBCEarthHin.png" group-title="Infotainment - Infotainment",Sony BBC Earth HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6d131a8b5254b255c3224916b5eb5d98:f2c283426813e822276c95c2ac0d5026|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQbRMai1JUslXDIkkWtetdmBoFTmFncmEiBWhkNTMx
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd531/dth.mpd
+#EXTINF:-1 tvg-id="143267" tvg-name="Thanthi TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Thanthi_TV.png" group-title="Tamil - Tamil",Thanthi TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=22f8cf7e4731467e24f03624e460eb87:5f2aec3ca86531320d0961300562af12|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQIvjPfkcxRn4k8DYk5GDrhxoFTmFncmEiBnNyYzYxNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src617/dth.mpd
+#EXTINF:-1 tvg-id="141072" tvg-name="10 TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/10_TV.png" group-title="Telugu - Telugu",10 TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=5cb49b5641534db3f99fe45c1f7774f9:3a3d8184a019da381a8bec4dad5136e5|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQXLSbVkFTTbP5n+RcH3d0+RoFTmFncmEiBnN2YzI0Ng==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc246/dth.mpd
+#EXTINF:-1 tvg-id="141096" tvg-name="Mazhavil Manorama HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Mazavali_Manorama_HD.png" group-title="Malayalam - Malayalam",Mazhavil Manorama HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=0d89660afb5866d0bd52a97d2c40ba3c:8474f570e47672789b458a46826c56dd|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQDYlmCvtYZtC9Uql9LEC6PBoFTmFncmEiBWhkNTEx
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd511/dth.mpd
+#EXTINF:-1 tvg-id="143227" tvg-name="Republic TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Republic_TV.png" group-title="English - English",Republic TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=b865e88f71b4d72d293614ffd2b9ee4e:6474be8de5d0320655c09107df769ab4|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQuGXoj3G01y0pNhT/0rnuThoFTmFncmEiBnNyYzcxNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src715/dth.mpd
+#EXTINF:-1 tvg-id="144727" tvg-name="Eurosport HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Dsports_HD.png" group-title="Sports - Sports",Eurosport HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=853303d8276fb56821e50afe3fa17f25:58842f644b445920ce29234261bcecca|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhTMD2CdvtWgh5Qr+P6F/JRoFTmFncmEiBWhkNTE1
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd515/dth.mpd
+#EXTINF:-1 tvg-id="141060" tvg-name="Sun TV HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sun_TV_HD.png" group-title="Tamil - Tamil",Sun TV HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=e010b3618528096e930c1c72501b6016:3fb73c337ec0ead8adc504243babbdb2|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQ4BCzYYUoCW6TDBxyUBtgFhoFTmFncmEiBWhkNTAx
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd501/dth.mpd
+#EXTINF:-1 tvg-id="141059" tvg-name="K TV HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/KTV_HD.png" group-title="Tamil - Tamil",K TV HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=882777783626340c7a1d59a871a301cf:ad72fe0d7e9092a4dc9e71aedfc29caf|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQXYrUSB+LRChE++tuepdQ7xoFTmFncmEiBWhkNTAy
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd502/dth.mpd
+#EXTINF:-1 tvg-id="141058" tvg-name="Sun Life TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sun_Life.png" group-title="Tamil - Tamil",Sun Life TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6e020e8591908bc066e95022962c3042:2f7b5d3f89485281d27a73687f629b3b|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQXYrUSB+LRChE++tuepdQ7xoFTmFncmEiBWhkNTAy
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd516/dth.mpd
+#EXTINF:-1 tvg-id="141070" tvg-name="Sun Music HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sun_Music_HD.png" group-title="Tamil - Tamil",Sun Music HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=85bfd9cce3fa2471340792430c53f26e:2dd2093ecc27958ecc54a505ab284098|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd503/dth.mpd
+#EXTINF:-1 tvg-id="141057" tvg-name="Adithya TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Adithya_TV.png" group-title="Tamil - Tamil",Adithya TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=bfb9159440d27a1ba58e37cf3cd70cd9:a5517888854b89b126f14b0031fc3eb8|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd507/dth.mpd
+#EXTINF:-1 tvg-id="141157" tvg-name="Chutti TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Chutti_TV.png" group-title="Tamil - Tamil",Chutti TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=85bfd9cce3fa2471340792430c53f26e:2dd2093ecc27958ecc54a505ab284098|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/src701/dth.mpd
+#EXTINF:-1 tvg-id="149054" tvg-name="Moon TV" tvg-logo="https://tataprime.wordpress.com/wp-content/uploads/2024/03/20240313_0159072608720790962587693.png" group-title="Tamil - Tamil",Moon TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=38b7d64d20b1e87c8b9ca5b57a693881:266dbbe7e9ac85a2aa8f47eac46f6eb5|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc287/dth.mpd
+#EXTINF:-1 tvg-id="141178" tvg-name="Vaanavil" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Vaanavil_TV.png" group-title="Tamil - Tamil",Vaanavil
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=172bd520f386d1381206862db43b88af:97594f286ab3f97d14728395653454ee|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/src605/dth.mpd
+#EXTINF:-1 tvg-id="141095" tvg-name="Mega TV" tvg-logo="https://ltsk-cdn.s3.eu-west-1.amazonaws.com/jumpstart/Temp_Live/cdn/HLS/Channel/imageContent-111-j5fl5xo8-v1/imageContent-111-j5fl5xo8-m1.png" group-title="Tamil - Tamil",Mega TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=ff61aca1efd85879fbeac5037e8d432b:b2dc731178aa25ce6e1efc09311ea0ae|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/src611/dth.mpd
+#EXTINF:-1 tvg-id="149129" tvg-name="Sony Sports Ten 4 Tamil" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Sony_Ten_4.png" group-title="Tamil - Tamil",Sony Sports Ten 4 Tamil
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=85af0ae251df47a894bb204e78ef8e6c:14d7f79e6378c83d71562767924959af|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/src670/dth.mpd
+#EXTINF:-1 tvg-id="143225" tvg-name="Puthiya Thalaimurai" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Puthiya_Thalaimurai.png" group-title="Tamil - Tamil",Puthiya Thalaimurai
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=b0a501869fbebdfd12624cbe650a8f81:dfe2de9d2de25ec3f759600e40c0159b|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQhb/ZzOP6JHE0B5JDDFPybhoFTmFncmEiBWhkNTAz
+https://sundirectgo-live.pc.cdn.bitgravity.com/src621/dth.mpd
+#EXTINF:-1 tvg-id="141049" tvg-name="Sun Gemini HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Gemini_TV_HD.png" group-title="Telugu - Telugu",Sun Gemini HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=c5aec6fa7ca6782e778477269f4b028a:90c6c5586d0cb20749ebe5fc3181b419|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQxa7G+nymeC53hHcmn0sCihoFTmFncmEiBWhkNTA0
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd504/dth.mpd
+#EXTINF:-1 tvg-id="141045" tvg-name="Sun Gemini Music HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Gemini_Music_HD.png" group-title="Telugu - Telugu",Sun Gemini Music HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=4a12a01708b6ffdadafbbe8775a75486:1ce96182f53556439e3c0a126d096d55|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQShKgFwi2/9ra+76HdadUhhoFTmFncmEiBWhkNTA5
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd509/dth.mpd
+#EXTINF:-1 tvg-id="141046" tvg-name="Sun Surya HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Surya_HD.png" group-title="Malayalam - Malayalam",Sun Surya HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=92e017fcec20e3805a51dda8d32f2c75:a62da22e017b52b32ba6a92d711bf6e0|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQkuAX/Owg44BaUd2o0y8sdRoFTmFncmEiBWhkNTEw
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd510/dth.mpd
+#EXTINF:-1 tvg-id="143277" tvg-name="Sun Udaya HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Udaya_HD.png" group-title="Kannada - Kannada",Sun Udaya HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=37628d404bbf1ff1ae796b0c2d1dd6d1:e2b73245f55dabd2877d929f7c08d6a7|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQN2KNQEu/H/GueWsMLR3W0RoFTmFncmEiBWhkNTEy
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd512/dth.mpd
+#EXTINF:-1 tvg-id="141141" tvg-name="R.Kannada" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/R.Kannada.png" group-title="Kannada - Kannada",R.Kannada
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a8173a42d87796d41bb269eb669eacce:1e690329d60011b97e2d11aeafc23eac|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQqBc6Qth3ltQbsmnrZp6szhoFTmFncmEiBnNyYzY2OQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src669/dth.mpd
+#EXTINF:-1 tvg-id="149058" tvg-name="Pitaara" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Pitaara.png" group-title="Punjabi - Punjabi",Pitaara
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=d8fad304d82d94710e6a21ff1601fd23:42e4913b58e5d670722ae2bbfc1e4ce6|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ2PrTBNgtlHEOaiH/FgH9IxoFTmFncmEiBnN2YzI3Mg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc272/dth.mpd
+#EXTINF:-1 tvg-id="149072" tvg-name="PTC News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/PTC_News.png" group-title="Punjabi - Punjabi",PTC News
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc243/dth.mpd
+#EXTINF:-1 tvg-id="149070" tvg-name="PTC Punjabi" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/PTC_Punjabi.png" group-title="Punjabi - Punjabi",PTC Punjabi
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=abddb736b48f078c49d67b40e34f2c31:d8141ada386848b6951e790a26c97c99|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQq923NrSPB4xJ1ntA408sMRoFTmFncmEiBnN2YzI0NQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc245/dth.mpd
+#EXTINF:-1 tvg-id="149073" tvg-name="PTC Simran" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/PTC_Simran.png" group-title="Punjabi - Punjabi",PTC Simran
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=e765f7aab20f36aeb2f4fec61fb53646:68a421312e2e6b20904b8e1bbd0b74d7|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ52X3qrIPNq6y9P7GH7U2RhoFTmFncmEiBnN2YzI0Mg==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc242/dth.mpd
+#EXTINF:-1 tvg-id="141050" tvg-name="Kalaignar TV" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Kalaignar_TV.png" group-title="Tamil - Tamil",Kalaignar TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a7048e095bf29c4e89da1e5b2e359fb9:85a8cf2900f35d400b504b87236ef9a7|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQpwSOCVvynE6J2h5bLjWfuRoFTmFncmEiBnNyYzYwMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src603/dth.mpd
+#EXTINF:-1 tvg-id="141110" tvg-name="Kalaignar Seithigal" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/Kalaignar_Seithigal.png" group-title="Tamil - Tamil",Kalaignar Seithigal
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=51519e56d4ad2a5c16b28c35ba777be2:fc2c1da5d84c77c5ac983179193b90eb|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQUVGeVtStKlwWsow1und74hoFTmFncmEiBnNyYzYxNA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src614/dth.mpd
+#EXTINF:-1 tvg-id="144653" tvg-name="Ctvn Akd Plus" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/CTVN_AKD_Plus.png" group-title="Bengali - Bengali",Ctvn Akd Plus
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=37e1caca394513b799a64b5485bfe82d:010f8037383363ffc76150f8f4426454|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQN+HKyjlFE7eZpktUhb/oLRoFTmFncmEiBnNyYzY0OA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src648/dth.mpd
+#EXTINF:-1 tvg-id="144652" tvg-name="Calcutta News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Calcutta_News.png" group-title="Bengali - Bengali",Calcutta News
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc221/dth.mpd
+#EXTINF:-1 tvg-id="141103" tvg-name="Kolkata TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Kolkata_TV.png" group-title="Bengali - Bengali",Kolkata TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=5a16b25e8ef6feb3f28d967493f9d4e4:5ac1f6f35585ab986c879b8467d04902|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQWhayXo72/rPyjZZ0k/nU5BoFTmFncmEiBnNyYzYzNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src637/dth.mpd
+#EXTINF:-1 tvg-id="149068" tvg-name="B4U Kadak" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/B4U_Kadak.png" group-title="Movies - Movies",B4U Kadak
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc249/dth.mpd
+#EXTINF:-1 tvg-id="143293" tvg-name="Zee Telugu HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeTeluguHD.png" group-title="Telugu - Telugu",Zee Telugu HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=354a07e8ba9bf97af0361f053eddab9e:e415b0fe5146330f28027a1bc4ce6da1|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQNUoH6Lqb+XrwNh8FPt2rnhoFTmFncmEiBnNyYzcxMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src713/dth.mpd
+#EXTINF:-1 tvg-id="149125" tvg-name="Big Magic" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/BigMagic.png" group-title="Entertainment - Entertainment",Big Magic
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=1b7d93f5d3726a7ee4c15f36b55886c9:f65ec15fc01eca1627117c11a6757dc0|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQG32T9dNyan7kwV82tViGyRoFTmFncmEiBnN2YzMwOQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc309/dth.mpd
+#EXTINF:-1 tvg-id="143288" tvg-name="Zee Marathi HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeMarathiHD.png" group-title="Marathi - Marathi",Zee Marathi HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=e010b3618528096e930c1c72501b6016:3fb73c337ec0ead8adc504243babbdb2|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQ4BCzYYUoCW6TDBxyUBtgFhoFTmFncmEiBWhkNTAx
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd501/dth.mpd
+#EXTINF:-1 tvg-id="143252" tvg-name="Sony Wah" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/SonyWAH.png" group-title="Entertainment - Entertainment",Sony Wah
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=04d35b3f77b41399f4ddffdaddd53fd6:7fc8d6f88bb424fcdfc4d682a229a450|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQBNNbP3e0E5n03f/a3dU/1hoFTmFncmEiBnN2YzIxMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc213/dth.mpd
+#EXTINF:-1 tvg-id="149144" tvg-name="Jai Maharashtra" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Jai_Maharashtra.png" group-title="Marathi - Marathi",Jai Maharashtra
+https://sundirectgo-live.pc.cdn.bitgravity.com/src700/dth.mpd
+#EXTINF:-1 tvg-id="149066" tvg-name="Reporter TV" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Reporter_TV.png" group-title="News - News",Reporter TV
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=82dad0d6e11316edb77154f8f2430183:4beb300ebbd8f18c565889eb6ae09d0c|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQgtrQ1uETFu23cVT48kMBgxoFTmFncmEiBnN2YzI1MQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc251/dth.mpd
+#EXTINF:-1 tvg-id="149122" tvg-name="News J" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/News_J.png" group-title="Tamil - Tamil",News J
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=a4679da755c3a8750f5c25591a2a5b04:ed2bec73b4bd8e4389e944b3d414e480|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQpGedp1XDqHUPXCVZGipbBBoFTmFncmEiBnNyYzYyNw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src627/dth.mpd
+#EXTINF:-1 tvg-id="141085" tvg-name="News First" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/News_First.png" group-title="Kannada - Kannada",News First
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=005fbbcb64a303f56f4d4ee501109c84:1b0fe34dfaad43c083c4c5ae1c1c99d1|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQAF+7y2SjA/VvTU7lARCchBoFTmFncmEiBnNyYzY2NQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src665/dth.mpd
+#EXTINF:-1 tvg-id="143222" tvg-name="Public Movies" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Public_Movies.png" group-title="Kannada - Kannada",Public Movies
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=6a249fc39b74b7c596daa98f19e0a959:4a71e84c4d3e6448cc30a99866e06501|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQaiSfw5t0t8WW2qmPGeCpWRoFTmFncmEiBnNyYzY5NA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src694/dth.mpd
+#EXTINF:-1 tvg-id="143259" tvg-name="Sun Surya Comedy" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Surya_Comedy.png" group-title="Malayalam - Malayalam",Sun Surya Comedy
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=d255cf334e14380f0c899a775dc20c7f:b200116950f73369c5f8bb11745ed7b3|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ0lXPM04UOA8MiZp3XcIMfxoFTmFncmEiBnNyYzY0MQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src641/dth.mpd
+#EXTINF:-1 tvg-id="141054" tvg-name="TV9 Bangla" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/TV9_Bangla.png" group-title="Bengali - Bengali",TV9 Bangla
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=bfb948382967418b31c2fe024a69a9d2:02d03367aa48cd15b077e32cd1e47ecb|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQv7lIOClnQYsxwv4CSmmp0hoFTmFncmEiBnN2YzIzNQ==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc235/dth.mpd
+#EXTINF:-1 tvg-id="143260" tvg-name="Sun Surya Movies" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Surya_Movies.png" group-title="Malayalam - Malayalam",Sun Surya Movies
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=59cfa4820e32fd3122b24b2640e93fcc:d450272adc231351e7b20a6a15e6ae16|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQWc+kgg4y/TEisksmQOk/zBoFTmFncmEiBXNkNTQ0
+https://sundirectgo-live.pc.cdn.bitgravity.com/srcsd544/dth.mpd
+#EXTINF:-1 tvg-id="143269" tvg-name="Times Now Navbharat" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Times_Now_Navbharat.png" group-title="News - News",Times Now Navbharat
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=f5158836c8047215317cd8f33fbcf35e:229c708c0012f377ad6f1ef513db4a3f|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ9RWINsgEchUxfNjzP7zzXhoFTmFncmEiBnNyYzcyMw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src723/dth.mpd
+#EXTINF:-1 tvg-id="149143" tvg-name="ET Now Swadesh" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ET_Now_Swadesh.png" group-title="Business News - Business News",ET Now Swadesh
+https://sundirectgo-live.pc.cdn.bitgravity.com/src697/dth.mpd
+#EXTINF:-1 tvg-id="143283" tvg-name="Zee Bangla HD" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeBanglaHD.png" group-title="Bengali - Bengali",Zee Bangla HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=76ad28798f0092430a39fd93ad501d37:ffd55aad08d98a95fcd7d1caffa449cf|Content-Type=application/octet-stream|X-AxDRM-Message=AAAARHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACQIARIQdq0oeY8AkkMKOf2TrVAdNxoFTmFncmEiB3N2Y2hkMTI=
+https://sundirectgo-live.pc.cdn.bitgravity.com/svchd12/dth.mpd
+#EXTINF:-1 tvg-id="141122" tvg-name="Zee Kannada News" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Kannada_News.png" group-title="Kannada - Kannada",Zee Kannada News
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=11ded13ab4bdc6865c853c6b8e3499e1:5d3302e8d4eb577a74664a61f6278fb9|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQt1slpGjsluT3czqfecKUmhoFTmFncmEiBnN2YzI4Nw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc287/dth.mpd
+#EXTINF:-1 tvg-id="143271" tvg-name="Sun Neo HD" tvg-logo="https://raw.githubusercontent.com/vijay-iptv/logos/refs/heads/main/SUN_Neo_HD.png" group-title="Tamil - Tamil",Sun Neo HD
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=753e7adb090a102f7c4c102f4298d8ac:bf5953dccbe33d2afde7a25c9576c3a7|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQdT562wkKEC98TBAvQpjYrBoFTmFncmEiBWhkNTMz
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd533/dth.mpd
+#EXTINF:-1 tvg-id="149061" tvg-name="Jay Jagannath" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Jay_Jagannath.png" group-title="English - English",Jay Jagannath
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=1bb2a6da15fc7e42bcd519e301487b85:fe5700173b67019013fc759f378d40c7|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACIIARIQG7Km2hX8fkK81RnjAUh7hRoFTmFncmEiBWhkNTQw
+https://sundirectgo-live.pc.cdn.bitgravity.com/hd540/dth.mpd
+#EXTINF:-1 tvg-id="149048" tvg-name="EPIC Bhojpuri" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Filamchi_Bhojpuri.png" group-title="Unknown - Unknown",EPIC Bhojpuri
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=5e7db5597dd567c4404fe8aa5742725f:ff9adc2523a42f97d3a46dbec823665d|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQXn21WX3VZ8RAT+iqV0JyXxoFTmFncmEiBnN2YzI5Mw==
+https://sundirectgo-live.pc.cdn.bitgravity.com/svc293/dth.mpd
+#EXTINF:-1 tvg-id="143282" tvg-name="Zee Bangla Sonar" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ZeeBanglaSonar.png" group-title="Unknown - Unknown",Zee Bangla Sonar
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=faf9c843949b036bd54c34a3a2027e9a:d0aebe320106e76da87ed94a9ebf41e3|Content-Type=application/octet-stream|X-AxDRM-Message=AAAAQ3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAACMIARIQ+vnIQ5SbA2vVTDSjogJ+mhoFTmFncmEiBnNyYzY2MA==
+https://sundirectgo-live.pc.cdn.bitgravity.com/src660/dth.mpd
