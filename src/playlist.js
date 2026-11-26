@@ -3,7 +3,7 @@ const SOURCE_URLS = {
   fancode: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/fancode_1080p.m3u",
   bexo: "https://raw.githubusercontent.com/drmlive/sliv-live-events/refs/heads/main/sonyliv.m3u",
   local: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/channels.m3u",
-  sonyliv: "https://premiumplugx.com/Sliv/sony_playlist.php?m3u",
+  sonyliv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sony1080p.m3u",
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
   jiotv: "https://zeotvyash.streamxlivenow.workers.dev/",
   vzy: "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/vzy.m3u"
