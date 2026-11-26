@@ -412,8 +412,9 @@ function setGroupTitle(content, category) {
 
 // ---------------- FETCH SOURCES ----------------
 
-async function fetchSources(env) {
+const SERVICE_BOUND_KEYS = new Set(["jiostb", "zee5", "hotstar"]);
 
+async function fetchSources(env) {
   const result = {};
 
   const sourceUrls = {
@@ -423,49 +424,30 @@ async function fetchSources(env) {
     hotstar: env.HOTSTAR_URL,
   };
 
-  for (
-    const [key, url]
-    of Object.entries(sourceUrls)
-  ) {
-
+  for (const [key, url] of Object.entries(sourceUrls)) {
     if (!url) continue;
 
     try {
-
       const headers = {
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
       };
 
-      if (key === "jiotv") {
-
-        headers["Referer"] =
-          "https://sflexzio.pages.dev";
-
-        headers["Origin"] =
-          "https://sflexzio.pages.dev";
-      }
-
       const fetchUrl = url.includes("raw.githubusercontent.com")
-      ? `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`
-      : url;
+        ? `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`
+        : url;
 
-     const response = await fetch(fetchUrl);
-      result[key] =
-        await response.text();
+      const response =
+        SERVICE_BOUND_KEYS.has(key) && env.UPSTREAM
+          ? await env.UPSTREAM.fetch(fetchUrl, { headers })
+          : await fetch(fetchUrl);
 
-      console.log(
-        `Downloaded ${key}: ${response.status}`
-      );
-
-    } catch (err) {
-
-      console.log(
-        `Failed downloading ${key}:`,
-        err.toString()
-      );
-
+      result[key] = await response.text();
+      console.log(`Downloaded ${key}: ${response.status}`);
+    } 
+    catch (err) {
+      console.log(`Failed downloading ${key}:`, err.toString());
       result[key] = "";
     }
   }
