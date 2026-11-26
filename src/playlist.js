@@ -5,19 +5,16 @@ const SOURCE_URLS = {
   local: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/channels.m3u",
   sonyliv: "https://premiumplugx.com/Sliv/sony_playlist.php?m3u",
   sunnxt: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/sunnxt.m3u",
-  jiotvplus: "https://zeotvyash.streamxlivenow.workers.dev/",
-  jiotv: "https://raw.githubusercontent.com/qwerty180506/Geo/refs/heads/main/jiotv2.m3u",
-  hotstar: "https://raw.githubusercontent.com/sportlive18/sportlink-update/refs/heads/main/tstar.m3u",
-  jiohotstar_events: "https://raw.githubusercontent.com/Sflex0719/JH4K/refs/heads/main/JHS.m3u",
+  jiotv: "https://zeotvyash.streamxlivenow.workers.dev/",
   vzy: "https://raw.githubusercontent.com/qwerty180506/json/refs/heads/main/vzy.m3u"
 };
 
 const PRIORITY_ORDER = [
-  "jiotvplus",
-  "TIVI",
+  "jiotv",
+  "jiostb",
+  "zee5",
   "sonyliv",
   "sunnxt",
-  "jiotv",
   "hotstar",
   "vzy"
 ];
@@ -421,9 +418,9 @@ async function fetchSources(env) {
 
   const sourceUrls = {
     ...SOURCE_URLS,
-    jioplus2: env.JIOPLUS2_URL,
-    TIVI: env.TIVI,
-    jiohotstar_events: env.JIOHOTSTAR_EVENTS_URL || SOURCE_URLS.jiohotstar_events
+    jiostb: env.JIOSTB_URL,
+    zee5: env.ZEE5_URL,
+    hotstar: env.HOTSTAR_URL,
   };
 
   for (
@@ -573,15 +570,6 @@ export async function runMerge(env) {
     jiotv:
       parseM3U(files.jiotv || ""),
 
-    jiotvplus:
-      parseM3U(files.jiotvplus || ""),
-
-    jioplus2:
-      parseM3U(files.jioplus2 || ""),
-
-    TIVI:
-      parseM3U(files.TIVI || ""),
-
     local:
       parseM3U(files.local || ""),
 
@@ -589,7 +577,13 @@ export async function runMerge(env) {
       parseM3U(files.hotstar || ""),
 
     vzy:
-      parseM3U(files.vzy || "")
+      parseM3U(files.vzy || ""),
+
+    jiostb: 
+      parseM3U(files.jiostb || ""),
+    
+    zee5: 
+      parseM3U(files.zee5 || ""),
   };
 
   console.log(
