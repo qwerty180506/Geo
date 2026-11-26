@@ -146,37 +146,6 @@ function escapeRegex(str) {
 }
 
 
-// ---------------- JIO URL NORMALIZER ----------------
-
-function normalizePipeUrl(line) {
-  const pipeIndex = line.indexOf("|");
-
-  if (pipeIndex === -1) {
-    return line;
-  }
-
-  const baseUrl = line.substring(0, pipeIndex);
-  const pipeHeaders = line.substring(pipeIndex + 1);
-
-  // Extract Cookie/cookie value
-  const cookieMatch = pipeHeaders.match(
-    /(?:^|&)cookie=([^&]*)/i
-  );
-
-  if (cookieMatch) {
-    const cookieValue = cookieMatch[1];
-
-    // Remove trailing ? or &
-    const cleanBaseUrl = baseUrl.replace(/[?&]$/, "");
-
-    return cleanBaseUrl + "?" + cookieValue;
-  }
-
-  // No cookie: remove everything after |
-  return baseUrl;
-}
-
-
 // ---------------- M3U PARSER ----------------
 
 function parseM3U(content) {
@@ -211,14 +180,6 @@ function parseM3U(content) {
       return true;
     });
 
-    // 2. Normalize Jio pipe-style URLs
-    line = normalizePipeUrl(line);
-
-    if (cookieValue) {
-      const separator = line.includes("?") ? "&" : "?";
-      line = `${line}${separator}${cookieValue}`;
-    }
-
     // 3. Extract channel name from #EXTINF
     let name = null;
     for (const tag of finalBuffer) {
@@ -241,88 +202,6 @@ function parseM3U(content) {
 
   return channels;
 }
-
-
-// ---------------- JIOHOTSTAR LIVE EVENTS PARSER ----------------
-
-function parseJioHotstarEvents(content) {
-  const lines = content.split(/\r?\n/);
-  const channels = {};
-  let buffer = [];
-
-  for (const raw of lines) {
-    const line = raw.trim();
-
-    if (!line || line.startsWith("#EXTM3U")) {
-      continue;
-    }
-
-    if (line.startsWith("#")) {
-      buffer.push(line);
-      continue;
-    }
-
-    let originalGroup = "";
-    let originalName = "";
-    let extinfIndex = -1;
-
-    for (let i = 0; i < buffer.length; i++) {
-      const tag = buffer[i];
-      if (tag.startsWith("#EXTINF")) {
-        extinfIndex = i;
-
-        // Extract original group-title if present
-        const groupMatch = tag.match(/group-title="([^"]*)"/i);
-        if (groupMatch) {
-          originalGroup = groupMatch[1].trim();
-        }
-
-        // Extract original channel name (after comma)
-        const commaIndex = tag.lastIndexOf(",");
-        if (commaIndex !== -1) {
-          originalName = tag.substring(commaIndex + 1).trim();
-        }
-
-        break;
-      }
-    }
-
-    if (originalName) {
-      // Build new channel name: "GROUP_TITLE | CHANNEL_NAME"
-      const newName = originalGroup
-        ? `${originalGroup} | ${originalName}`
-        : originalName;
-
-      if (extinfIndex !== -1) {
-        let extinf = buffer[extinfIndex];
-
-        // Remove existing group-title attribute
-        extinf = extinf.replace(/\s*group-title="[^"]*"/gi, "");
-
-        // Set group-title="JioHotstar Live Events" right after #EXTINF:-1
-        extinf = extinf.replace(
-          /^#EXTINF:-1/,
-          `#EXTINF:-1 group-title="JioHotstar Live Events"`
-        );
-
-        // Update the channel name after the last comma
-        const lastCommaIndex = extinf.lastIndexOf(",");
-        if (lastCommaIndex !== -1) {
-          extinf = extinf.substring(0, lastCommaIndex + 1) + " " + newName;
-        }
-
-        buffer[extinfIndex] = extinf;
-      }
-
-      channels[`JioHotstar_${newName}`] = [...buffer, line].join("\n");
-    }
-
-    buffer = [];
-  }
-
-  return channels;
-}
-
 
 // ---------------- SAFE MATCH ----------------
 
