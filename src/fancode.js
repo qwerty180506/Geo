@@ -34,7 +34,7 @@ async function generateFancodeM3U() {
 
   let output = [
     "#EXTM3U",
-    `# Source Updated: ${data["last update time"] || "N/A"}`,
+    `# Source Updated: ${data["generated_at"] || data["source_last_updated"] || "N/A"}`,
     `# Generated At: ${now}`, // ✅ FORCE FILE CHANGE
     "",
   ];
@@ -45,8 +45,7 @@ async function generateFancodeM3U() {
         continue;
       }
 
-      const stream =
-        match.adfree_url || match.dai_url;
+      const stream = match.stream_url || match.adfree_url || match.dai_url;
 
       if (!stream) continue;
 
@@ -72,7 +71,7 @@ async function generateFancodeM3U() {
       }
       // --- END CHANGES ---
 
-      const logo = match.src || "";
+      const logo = match.logo || match.image || "";
 
       const cleanCategory = category.replace(/,/g, "").trim();
       const cleanTitle = displayTitle.replace(/,/g, "").trim();
