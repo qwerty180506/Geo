@@ -1,9 +1,12 @@
 #EXTM3U
-# Source Updated: 2026-11-26 14:55:10
-# Generated At: 2026-11-26T15:01:04.016Z
+# Source Updated: 2026-11-26 15:00:13
+# Generated At: 2026-11-26T15:05:21.254Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4251055_53162_ADKR_MIE_FC-APP.jpg" group-title="Fancode",Cricket | Mi Emirates Vs Abu Dhabi Knight Riders
 https://in-mc-vod.fancode.com/mumbai/4251055_english_hls_b4b255f9cb46377_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4251087_53163_IAI_YSG_fc-App.jpg" group-title="Fancode",Cricket | Ias Invincibles Vs Yalla Shabab Giants
+https://in-mc-vod.fancode.com/mumbai/4251087_english_hls_58107faec355684_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Andalucia-Costa-Del-Sol-Open-De-Espana_1080_x_810.jpg" group-title="Fancode",Golf | Day 1
 https://in-mc-vod.fancode.com/mumbai/4250886_english_hls_aa3ec48a8e56574_1ta-di_h264/index.m3u8
