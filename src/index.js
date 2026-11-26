@@ -1,5 +1,3 @@
-import { runJioTV } from "./jiotv.js";
-import { runJioTV2 } from "./jiotv2.js";
 import { runFancode } from "./fancode.js";
 import { runMerge } from "./playlist.js";
 
@@ -10,8 +8,6 @@ export default {
     try {
       await Promise.all([
         runFancode(env),
-        //runJioTV(env),
-        //runJioTV2(env),
       ]);
 
       await runMerge(env);
