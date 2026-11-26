@@ -1,4 +1,4 @@
-const JSON_URL = "https://raw.githubusercontent.com/drmlive/fancode-live-events/refs/heads/main/fancode.json";
+const JSON_URL = "https://raw.githubusercontent.com/sportlive18/Fancode-New-Auto-Update/refs/heads/main/fancode4.json";
 
 // ---------------- BASE64 SAFE ----------------------
 function toBase64(str) {
