@@ -1,13 +1,13 @@
 #EXTM3U x-tvg-url="https://www.tsepg.cf/epg.xml.gz"
 # Source: https://premiumplugx.top/sony247655g/sony.php
-# Filtered At: 2026-11-26T16:10:34.799Z
+# Filtered At: 2026-11-26T16:15:33.350Z
 
 # SonyLIV Premium Playlist — 247 CDN
-# Generated  : 2026-11-26 16:10:34
-# Token exp  : 2026-11-27 16:10:34
+# Generated  : 2026-11-26 16:15:33
+# Token exp  : 2026-11-27 16:15:33
 
 #EXTINF:-1 tvg-id="SET HD [1080p 3500 kbps]" tvg-name="SET HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SET%20LOGO.png" group-title="Entertainment",SET HD
-https://sony247channels.akamaized.net/hls/live/2011671/SETHD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011671/SETHD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -17,7 +17,7 @@ https://sony247channels.akamaized.net/hls/live/2011671/SETHD/hdntl=exp=179579583
 
 
 #EXTINF:-1 tvg-id="Sony SAB HD [1080p 3500 kbps]" tvg-name="Sony SAB HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY%20SAB%20HD_WHITE.png" group-title="Entertainment",Sony SAB HD
-https://sony247channels.akamaized.net/hls/live/2011749/SABHD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011749/SABHD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -27,7 +27,7 @@ https://sony247channels.akamaized.net/hls/live/2011749/SABHD/hdntl=exp=179579583
 
 
 #EXTINF:-1 tvg-id="Sony Marathi [1080p 3500 kbps]" tvg-name="Sony Marathi [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_MARATHI.png" group-title="Entertainment",Sony Marathi
-https://sony247channels.akamaized.net/hls/live/2011740/SonyMarathi/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011740/SonyMarathi/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -37,7 +37,7 @@ https://sony247channels.akamaized.net/hls/live/2011740/SonyMarathi/hdntl=exp=179
 
 
 #EXTINF:-1 tvg-id="Sony PAL [1080p 3500 kbps]" tvg-name="Sony PAL [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY%20PAL.png" group-title="Entertainment",Sony PAL
-https://sony247channels.akamaized.net/hls/live/2011741/SonyPalSD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011741/SonyPalSD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -47,7 +47,7 @@ https://sony247channels.akamaized.net/hls/live/2011741/SonyPalSD/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="Sony AATH [1080p 3500 kbps]" tvg-name="Sony AATH [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY%20AATH.png" group-title="Entertainment",Sony AATH
-https://sony247channels.akamaized.net/hls/live/2011641/SonyAathSD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011641/SonyAathSD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -57,7 +57,7 @@ https://sony247channels.akamaized.net/hls/live/2011641/SonyAathSD/hdntl=exp=1795
 
 
 #EXTINF:-1 tvg-id="Sony YAY! [1080p 3500 kbps]" tvg-name="Sony YAY! [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY%20YAY.png" group-title="Kids",Sony YAY!
-https://sony247channels.akamaized.net/hls/live/2011746/SonyYaySD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011746/SonyYaySD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -67,7 +67,7 @@ https://sony247channels.akamaized.net/hls/live/2011746/SonyYaySD/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="Sony MAX HD [1080p 3500 kbps]" tvg-name="Sony MAX HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_MAX-HD_WHITE.png" group-title="Movies",Sony MAX HD
-https://sony247channels.akamaized.net/hls/live/2011670/SonyMaxhd/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011670/SonyMaxhd/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -77,7 +77,7 @@ https://sony247channels.akamaized.net/hls/live/2011670/SonyMaxhd/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="Sony MAX [1080p 3500 kbps]" tvg-name="Sony MAX [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_MAX.png" group-title="Movies",Sony MAX
-https://sony247channels.akamaized.net/hls/live/2011745/SonyMaxSD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011745/SonyMaxSD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -87,7 +87,7 @@ https://sony247channels.akamaized.net/hls/live/2011745/SonyMaxSD/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="Sony MAX 2 [1080p 3500 kbps]" tvg-name="Sony MAX 2 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_MAX2.png" group-title="Movies",Sony MAX 2
-https://sony247channels.akamaized.net/hls/live/2011908/MAX2/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011908/MAX2/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -97,7 +97,7 @@ https://sony247channels.akamaized.net/hls/live/2011908/MAX2/hdntl=exp=1795795834
 
 
 #EXTINF:-1 tvg-id="Sony WAH [1080p 3500 kbps]" tvg-name="Sony WAH [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_WAH.png" group-title="Movies",Sony WAH
-https://sony247channels.akamaized.net/hls/live/2011906/SonyWah/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011906/SonyWah/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -107,7 +107,7 @@ https://sony247channels.akamaized.net/hls/live/2011906/SonyWah/hdntl=exp=1795795
 
 
 #EXTINF:-1 tvg-id="Sony PIX HD [1080p 3500 kbps]" tvg-name="Sony PIX HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/PIX%20HD_WHITE.png" group-title="Movies",Sony PIX HD
-https://sony247channels.akamaized.net/hls/live/2011748/PIXHD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011748/PIXHD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -117,7 +117,7 @@ https://sony247channels.akamaized.net/hls/live/2011748/PIXHD/hdntl=exp=179579583
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten1 HD [1080p 3500 kbps]" tvg-name="Sony Sports Ten1 HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen1_HD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 1 HD
-https://sony247channels.akamaized.net/hls/live/2011747/TEN1HD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011747/TEN1HD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -127,7 +127,7 @@ https://sony247channels.akamaized.net/hls/live/2011747/TEN1HD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten1 [1080p 3500 kbps]" tvg-name="Sony Sports Ten1 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen1_SD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 1
-https://sony247channels.akamaized.net/hls/live/2011739/TEN1SD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011739/TEN1SD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -137,7 +137,7 @@ https://sony247channels.akamaized.net/hls/live/2011739/TEN1SD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten2 HD [1080p 3500 kbps]" tvg-name="Sony Sports Ten2 HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen2_HD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 2 HD
-https://sony247channels.akamaized.net/hls/live/2020434/TEN2HD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020434/TEN2HD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -147,7 +147,7 @@ https://sony247channels.akamaized.net/hls/live/2020434/TEN2HD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten2 [1080p 3500 kbps]" tvg-name="Sony Sports Ten2 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen2_SD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 2
-https://sony247channels.akamaized.net/hls/live/2020590/TEN2SD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020590/TEN2SD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -157,7 +157,7 @@ https://sony247channels.akamaized.net/hls/live/2020590/TEN2SD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten3 HD [1080p 3500 kbps]" tvg-name="Sony Sports Ten3 HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_Sports_Ten_3_Hindi_HD.png" group-title="Sports",Sony Sports Ten 3 HD
-https://sony247channels.akamaized.net/hls/live/2020591/TEN3HD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020591/TEN3HD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -167,7 +167,7 @@ https://sony247channels.akamaized.net/hls/live/2020591/TEN3HD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten3 [1080p 3500 kbps]" tvg-name="Sony Sports Ten3 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_Sports_Ten_3_Hindi.png" group-title="Sports",Sony Sports Ten 3
-https://sony247channels.akamaized.net/hls/live/2020592/TEN3SD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020592/TEN3SD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -177,7 +177,7 @@ https://sony247channels.akamaized.net/hls/live/2020592/TEN3SD/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten4 HD [1080p 3500 kbps]" tvg-name="Sony Sports Ten4 HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_Sports_Ten_4_Telugu.png" group-title="Sports",Sony Sports Ten 4 HD
-https://sony247channels.akamaized.net/hls/live/2020589/ten4hd/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020589/ten4hd/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -187,7 +187,7 @@ https://sony247channels.akamaized.net/hls/live/2020589/ten4hd/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten4 [1080p 3500 kbps]" tvg-name="Sony Sports Ten4 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/Sony_Sports_Ten_4_Tamil.png" group-title="Sports",Sony Sports Ten 4
-https://sony247channels.akamaized.net/hls/live/2020437/ten4sd/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020437/ten4sd/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -197,7 +197,7 @@ https://sony247channels.akamaized.net/hls/live/2020437/ten4sd/hdntl=exp=17957958
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten5 HD [1080p 3500 kbps]" tvg-name="Sony Sports Ten5 HD [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen5_HD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 5 HD
-https://sony247channels.akamaized.net/hls/live/2020593/SONYSIXHD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020593/SONYSIXHD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -207,7 +207,7 @@ https://sony247channels.akamaized.net/hls/live/2020593/SONYSIXHD/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="Sony Sports Ten5 [1080p 3500 kbps]" tvg-name="Sony Sports Ten5 [1080p 3500 kbps]" tvg-logo="https://www.sonypicturesnetworks.com/images/logos/SONY_SportsTen5_SD_Logo_CLR.png" group-title="Sports",Sony Sports Ten 5
-https://sony247channels.akamaized.net/hls/live/2020594/SONYSIXSD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2020594/SONYSIXSD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
@@ -217,7 +217,7 @@ https://sony247channels.akamaized.net/hls/live/2020594/SONYSIXSD/hdntl=exp=17957
 
 
 #EXTINF:-1 tvg-id="BBC Earth HD [1080p 3500 kbps]" tvg-name="BBC Earth HD [1080p 3500 kbps]" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkGqUKmpju0bOD-Yq5DvO3VRopZwxgLguE0BZK8WxfGw&s=10" group-title="Infotainment",BBC Earth HD
-https://sony247channels.akamaized.net/hls/live/2011907/SonyBBCEarthHD/hdntl=exp=1795795834~acl=%2f*~id=60fad5566f4a4cfe02b959c30a34304d-1795709183186~data=hdntl~hmac=12bfb0cd13d5550617c30b78873c46e74a598c71a26bce3713877d174c245144/master_3500.m3u8
+https://sony247channels.akamaized.net/hls/live/2011907/SonyBBCEarthHD/hdntl=exp=1795796133~acl=%2f*~id=9c08fd98b5a9679073d3c0bb209d8624-1795709499003~data=hdntl~hmac=3037d64d66ef1875c626a637a20b042e1ccc2e998598bed23c88d4ac77ff3c8c/master_3500.m3u8
 
 
 
