@@ -1,70 +1,28 @@
-/* --------------------------- CONFIG --------------------------- */
-const M3U_URL = "https://premiumplugx.top/sony247655g/sony.php";
+const JSON_URL = "https://allinonereborn2.online/sony/sliv3.json";
 
 const GITHUB_PATH = "sony1080p.m3u";
 
 /* ------------------------ HELPERS --------------------------- */
-// Encode a UTF‑8 string to classic Base64 (works in Workers & Node).
-function toBase64(str) {
-  const bytes = new TextEncoder().encode(str);
-  let binary = "";
-  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-  return btoa(binary);
+
+// Escape values used in M3U attributes.
+function escapeAttribute(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/\r?\n/g, " ")
+    .trim();
 }
 
-// Remove any “[…]” block (including surrounding whitespace) from a name.
-function stripQualityInfo(name) {
-  return name.replace(/\s*\[[^\]]+\]/g, "").trim();
-}
-
-// Insert a space before the trailing digit(s) in sport‑channel titles:
-//   "Sony Sports Ten5" → "Sony Sports Ten 5"
+// Normalise sport channel names.
 function normaliseSportName(name) {
-  // Handles Ten, Pal, etc. – only adds a space when a digit follows a word without a space.
-  return name.replace(/\b(Ten|Pal|AATH|YAY|MAX|MAX2|WAh|PIX|Sports|Sports Ten)(\d+)\b/gi, "$1 $2");
+  return name.replace(
+    /\b(TEN|PAL|AATH|YAY|MAX|MAX2|WAH|PIX)(\d+)\b/gi,
+    "$1 $2"
+  );
 }
 
-// Keep only the rows that belong to a 1080p channel.
-// Returns an array of playlist lines (including the header).
-function filter1080p(lines) {
-  const out = [];
-  let i = 0;
-
-  while (i < lines.length) {
-    const line = lines[i].trim();
-
-    // Preserve non‑#EXTINF lines (e.g. #EXTM3U, comments).
-    if (!line.startsWith("#EXTINF")) {
-      out.push(line);
-      i++;
-      continue;
-    }
-
-    // Next line should be the stream URL.
-    const urlLine = i + 1 < lines.length ? lines[i + 1].trim() : "";
-
-    // Extract the display title after the last comma.
-    const [, info] = line.split(",", 2);
-    const displayTitle = info ? info.trim() : "";
-
-    // Keep only if the original title mentions 1080p.
-    if (displayTitle.includes("1080p")) {
-      const cleaned = stripQualityInfo(displayTitle);
-      const normalised = normaliseSportName(cleaned);
-      const cleanExtinf = `${line.split(",")[0]},${normalised}`;
-      out.push(cleanExtinf);
-      out.push(urlLine);
-      out.push(""); // blank line for readability
-    }
-
-    i += 2; // skip the URL line we just processed
-  }
-
-  return out;
-}
-
-/* ---------------------- CORE LOGIC ------------------------ */
-async function fetchM3U(url) {
+// Fetch and parse JSON.
+async function fetchJSON(url) {
   const resp = await fetch(`${url}?t=${Date.now()}`, {
     headers: {
       "Cache-Control": "no-cache",
@@ -73,50 +31,99 @@ async function fetchM3U(url) {
   });
 
   if (!resp.ok) {
-    throw new Error(`Failed to fetch M3U: ${resp.status} ${resp.statusText}`);
+    throw new Error(
+      `Failed to fetch JSON: ${resp.status} ${resp.statusText}`
+    );
   }
-  return await resp.text();
+
+  return await resp.json();
 }
 
+/* ---------------------- JSON TO M3U ------------------------ */
+
+// Convert JSON channel objects into M3U format.
+function convertJSONtoM3U(data) {
+  const output = ["#EXTM3U"];
+
+  for (const [key, channel] of Object.entries(data)) {
+    if (!channel || !channel.m3u8) continue;
+
+    const name = normaliseSportName(
+      channel.title || key
+    );
+
+    const logo = channel.logo || "";
+    const genre = channel.genre || "Uncategorized";
+    const language = channel.language || "";
+    const streamURL = channel.m3u8;
+
+    // M3U metadata.
+    const extinf =
+      `#EXTINF:-1 ` +
+      `tvg-id="${escapeAttribute(channel.id || key)}" ` +
+      `tvg-name="${escapeAttribute(name)}" ` +
+      `tvg-logo="${escapeAttribute(logo)}" ` +
+      `group-title="${escapeAttribute(genre)}" ` +
+      `tvg-language="${escapeAttribute(language)}",` +
+      `${name}`;
+
+    output.push(extinf);
+    output.push(streamURL);
+    output.push("");
+  }
+
+  return output.join("\n");
+}
+
+/* ---------------------- CORE LOGIC ------------------------ */
+
 async function generateFilteredM3U() {
-  const raw = await fetchM3U(M3U_URL);
-  const now = new Date().toISOString();
+  const data = await fetchJSON(JSON_URL);
 
-  const lines = raw.split("\n");
-  const filtered = filter1080p(lines);
-
-  // Ensure a header exists.
-  if (!filtered[0].startsWith("#EXTM3U")) filtered.unshift("#EXTM3U");
-
-  // Insert helpful meta‑comments.
-  filtered.splice(
-    1,
-    0,
-    `# Source: ${M3U_URL}`,
-    `# Filtered At: ${now}`,
-    ""
+  const channels = Object.values(data).filter(
+    channel => channel && channel.m3u8
   );
 
-  return filtered.join("\n");
+  if (channels.length === 0) {
+    throw new Error("No valid channels found in JSON");
+  }
+
+  const m3u = convertJSONtoM3U(data);
+
+  const now = new Date().toISOString();
+
+  return [
+    "#EXTM3U",
+    `# Source: ${JSON_URL}`,
+    `# Generated At: ${now}`,
+    "",
+    ...m3u.split("\n").slice(1),
+  ].join("\n");
 }
 
 /* ---------------------- GITHUB UPLOAD --------------------- */
+
 async function uploadToGitHub(content, env) {
-  // Owner / repo are taken from environment variables (must be set as secrets).
   const owner = env.GITHUB_OWNER;
   const repo = env.GITHUB_REPO;
+  const token = env.GITHUB_TOKEN;
 
-  if (!owner || !repo) {
-    throw new Error("Missing GITHUB_OWNER or GITHUB_REPO in environment");
+  if (!owner || !repo || !token) {
+    throw new Error(
+      "Missing GITHUB_OWNER, GITHUB_REPO or GITHUB_TOKEN"
+    );
   }
 
-  const api = `https://api.github.com/repos/${owner}/${repo}/contents/${GITHUB_PATH}`;
+  const api =
+    `https://api.github.com/repos/${owner}/${repo}/contents/${GITHUB_PATH}`;
 
-  // Get the old file SHA (if the file already exists) – required for updates.
+  // Get existing file SHA.
   let sha;
+
   const oldResp = await fetch(api, {
     headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
       "User-Agent": "Cloudflare-Worker",
     },
   });
@@ -124,18 +131,31 @@ async function uploadToGitHub(content, env) {
   if (oldResp.ok) {
     const oldJson = await oldResp.json();
     sha = oldJson.sha;
+  } else if (oldResp.status !== 404) {
+    throw new Error(
+      `GitHub read failed: ${oldResp.status} ${await oldResp.text()}`
+    );
+  }
+
+  // UTF-8 Base64 encoding.
+  const bytes = new TextEncoder().encode(content);
+  let binary = "";
+
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
   }
 
   const body = {
-    message: "Auto‑update filtered 1080p playlist",
-    content: toBase64(content),
-    sha,
+    message: "Auto-update JSON to M3U playlist",
+    content: btoa(binary),
+    ...(sha ? { sha } : {}),
   };
 
   const putResp = await fetch(api, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
       "Content-Type": "application/json",
       "User-Agent": "Cloudflare-Worker",
     },
@@ -143,19 +163,28 @@ async function uploadToGitHub(content, env) {
   });
 
   const result = await putResp.text();
+
   console.log("GitHub upload status:", putResp.status);
   console.log(result);
+
+  if (!putResp.ok) {
+    throw new Error(`GitHub upload failed: ${result}`);
+  }
 }
 
 /* ---------------------- EXPORT ---------------------------- */
+
+// KEEPING ORIGINAL EXPORT FUNCTION NAME.
 export async function runFilter1080p(env) {
-  // 1️⃣ Generate the cleaned playlist.
+  // 1. Fetch JSON and generate M3U.
   const m3u = await generateFilteredM3U();
 
-  // 2️⃣ Upload to GitHub if a token is provided; otherwise just log.
+  // 2. Upload to GitHub if token exists.
   if (env?.GITHUB_TOKEN) {
     await uploadToGitHub(m3u, env);
   } else {
     console.log("Generated playlist (no upload):\n", m3u);
   }
+
+  return m3u;
 }
