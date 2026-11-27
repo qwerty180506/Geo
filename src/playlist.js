@@ -111,12 +111,12 @@ const WANTED_MAP = {
   "Travelxp Tamil": "Infotainment",
   "Sony BBC Earth HD": ["Infotainment", "jiostb"],
 
-  "Sony Sports Ten 1 HD": ["Sports", "sonyliv"],
-  "Sony Sports Ten 2 HD": ["Sports", "sonyliv"],
-  "Sony Sports Ten 3 HD": ["Sports", "sonyliv"],
-  "Sony Sports Ten 4 HD": ["Sports", "sonyliv"],
-  "Sony Sports Ten 4": ["Sports", "sonyliv"],
-  "Sony Sports Ten 5 HD": ["Sports", "sonyliv"],
+  "Sony Ten 1 HD": ["Sports", "sonyliv"],
+  "Sony Ten 2 HD": ["Sports", "sonyliv"],
+  "Sony Ten 3 HD": ["Sports", "sonyliv"],
+  "Sony Ten 4 HD": ["Sports", "sonyliv"],
+  "Sony Ten 4": ["Sports", "sonyliv"],
+  "Sony Ten 5 HD": ["Sports", "sonyliv"],
 
   "Star Sports 1 Tamil HD": ["Sports", "jiostb"],
   "Star Sports 2 Tamil HD": ["Sports", "jiostb"],
