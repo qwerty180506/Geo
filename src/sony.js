@@ -45,21 +45,25 @@ async function fetchJSON(url) {
 function convertJSONtoM3U(data) {
   const output = ["#EXTM3U"];
 
+  // Hardcoded custom headers
+  const referer = "https://allinonereborn2.online/";
+  const userAgent = "Mozilla/5.0 (Linux; Android 16; Pixel 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Mobile Safari/537.36";
+
+  const kodiHeaders = `#KODIPROP:inputstream.adaptive.stream_headers=` +
+    `Referer=${encodeURIComponent(referer)}&` +
+    `User-Agent=${encodeURIComponent(userAgent)}`;
+
   for (const [key, channel] of Object.entries(data)) {
     if (!channel || !channel.m3u8) continue;
 
-    const name = normaliseSportName(
-      channel.title || key
-    );
-
+    const name = normaliseSportName(channel.title || key);
     const logo = channel.logo || "";
     const genre = channel.genre || "Uncategorized";
     const language = channel.language || "";
     const streamURL = channel.m3u8;
 
-    // M3U metadata.
-    const extinf =
-      `#EXTINF:-1 ` +
+    // M3U metadata
+    const extinf = `#EXTINF:-1 ` +
       `tvg-id="${escapeAttribute(channel.id || key)}" ` +
       `tvg-name="${escapeAttribute(name)}" ` +
       `tvg-logo="${escapeAttribute(logo)}" ` +
@@ -68,12 +72,14 @@ function convertJSONtoM3U(data) {
       `${name}`;
 
     output.push(extinf);
+    output.push(kodiHeaders);
     output.push(streamURL);
     output.push("");
   }
 
   return output.join("\n");
 }
+
 
 /* ---------------------- CORE LOGIC ------------------------ */
 
