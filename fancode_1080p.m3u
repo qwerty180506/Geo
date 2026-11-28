@@ -1,12 +1,15 @@
 #EXTM3U
-# Source Updated: 2026-11-28 12:55:03
-# Generated At: 2026-11-28T12:55:22.925Z
+# Source Updated: 2026-11-28 13:00:04
+# Generated At: 2026-11-28T13:01:08.403Z
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Brescia-Lions-vs-Rome-Gladiators_web.png" group-title="Fancode",Cricket | Brescia Lions Vs Rome Gladiators
 https://in-mc-vod.fancode.com/mumbai/4251151_english_hls_acdf23ee4415372_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4250017_52993_PST_NOR_fc-web.jpg" group-title="Fancode",Football | Preston North End F.c. Vs Norwich City F.c.
 https://in-mc-vod.fancode.com/mumbai/4250017_english_hls_0f3078357e4413_1ta-di_h264/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Andalucia-Costa-Del-Sol-Open-De-Espana_1080_x_810.jpg" group-title="Fancode",Golf | Day 3 (Andalucia Costa Del Sol Open De Espana 2026)
+https://in-mc-vod.fancode.com/mumbai/4250888_english_hls_2b8e33f44e79993_1ta-di_h264/index.m3u8
 
 #EXTINF:-1 tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4251057_53162_MIE_DV_FC-APP.jpg" group-title="Fancode",Cricket | Mi Emirates Vs Desert Vipers
 https://in-mc-vod.fancode.com/mumbai/4251057_english_hls_532c94c02873604_1ta-di_h264/index.m3u8
