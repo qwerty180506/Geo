@@ -1,69 +1,91 @@
 #EXTM3U
 # Source: https://allinonereborn2.online/sony/sliv3.json
-# Generated At: 2026-11-28T08:32:32.845Z
+# Generated At: 2026-11-28T08:55:24.196Z
 
 #EXTINF:-1 tvg-id="sony-hd" tvg-name="SONY HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_HD.png" group-title="Entertainment" tvg-language="Hindi",SONY HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_hd.m3u8
 
 #EXTINF:-1 tvg-id="sab-hd" tvg-name="SAB HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_SAB_HD.png" group-title="Entertainment" tvg-language="Hindi",SAB HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sab_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-marathi" tvg-name="SONY MARATHI" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Marathi_SD.png" group-title="Entertainment" tvg-language="Marathi",SONY MARATHI
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_marathi.m3u8
 
 #EXTINF:-1 tvg-id="sony-pal" tvg-name="SONY PAL" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Pal.png" group-title="Movies" tvg-language="Hindi",SONY PAL
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_pal.m3u8
 
 #EXTINF:-1 tvg-id="sony-aath" tvg-name="SONY AATH" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_aath.png" group-title="Entertainment" tvg-language="Bengali",SONY AATH
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_aath.m3u8
 
 #EXTINF:-1 tvg-id="sony-yay" tvg-name="SONY YAY" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Yay_Hindi.png" group-title="Kids" tvg-language="Hindi",SONY YAY
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_yay.m3u8
 
 #EXTINF:-1 tvg-id="sony-max-hd" tvg-name="SONY MAX HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Max_HD.png" group-title="Movies" tvg-language="Hindi",SONY MAX HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_max_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-max" tvg-name="SONY MAX" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Max_SD.png" group-title="Movies" tvg-language="Hindi",SONY MAX
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_max.m3u8
 
 #EXTINF:-1 tvg-id="sony-wah" tvg-name="SONY WAH" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Wah.png" group-title="Movies" tvg-language="Hindi",SONY WAH
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_wah.m3u8
 
 #EXTINF:-1 tvg-id="sony-max2" tvg-name="SONY MAX 2" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_MAX2.png" group-title="Movies" tvg-language="Hindi",SONY MAX 2
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_max2.m3u8
 
 #EXTINF:-1 tvg-id="sony-pix-hd" tvg-name="SONY PIX HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_Pix_HD.png" group-title="Movies" tvg-language="Hindi",SONY PIX HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_pix_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-1-hd" tvg-name="SONY TEN 1 HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png" group-title="Sports" tvg-language="English",SONY TEN 1 HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten1_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-1" tvg-name="SONY TEN 1" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten_1.png" group-title="Sports" tvg-language="English",SONY TEN 1
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten1.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-2-hd" tvg-name="SONY TEN 2 HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png" group-title="Sports" tvg-language="English",SONY TEN 2 HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten2_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-2" tvg-name="SONY TEN 2" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png" group-title="Sports" tvg-language="English",SONY TEN 2
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten2.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-3-hd" tvg-name="SONY TEN 3 HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png" group-title="Sports" tvg-language="Hindi",SONY TEN 3 HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten3_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-3" tvg-name="SONY TEN 3" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png" group-title="Sports" tvg-language="Hindi",SONY TEN 3
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten3.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-4-hd" tvg-name="SONY TEN 4 HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten_4_HD_Telugu.png" group-title="Sports" tvg-language="Hindi",SONY TEN 4 HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten4_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-4" tvg-name="SONY TEN 4" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten_4_Telugu.png" group-title="Sports" tvg-language="Telugu",SONY TEN 4
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten4.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-5-hd" tvg-name="SONY TEN 5 HD" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png" group-title="Sports" tvg-language="Hindi",SONY TEN 5 HD
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten5_hd.m3u8
 
 #EXTINF:-1 tvg-id="sony-ten-5" tvg-name="SONY TEN 5" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png" group-title="Sports" tvg-language="English",SONY TEN 5
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/sony_ten5.m3u8
 
 #EXTINF:-1 tvg-id="bbc-earth" tvg-name="BBC EARTH" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_BBC_Earth_HD.png" group-title="Infotainment" tvg-language="English",BBC EARTH
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https%3A%2F%2Fallinonereborn2.online%2F&User-Agent=Mozilla%2F5.0%20(Linux%3B%20Android%2016%3B%20Pixel%2010)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F158.0.0.0%20Mobile%20Safari%2F537.36
 https://mini.allinonereborn.site/sony-new/playlists/bbc_earth.m3u8
